@@ -120,7 +120,7 @@ void assign(char *str, t_list **list)
     check_type(str, &i, list);
 }
 
-int init_parse(char *str, t_list **list)
+int init_parse(const char *str, t_list **list)
 {
     int i;
     int count;

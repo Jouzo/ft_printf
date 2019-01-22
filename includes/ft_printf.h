@@ -14,6 +14,17 @@
 ** Structures
 */
 
+typedef union       
+{
+    char            as_char;
+    short           as_short;
+    int             as_int;
+    long            as_long;
+    float           as_float;
+    double          as_double;
+    void*           as_ptr;
+}                   t_value;
+
 typedef struct      s_list
 {
     int             prec;                        /* Precision. */
@@ -38,6 +49,9 @@ typedef struct      s_list
     struct s_list   *next;
 }                   t_list;
 
+
+
+
 /*
 ** Functions
 */
@@ -45,14 +59,14 @@ typedef struct      s_list
 /*
 **  list functions
 */
-t_list      *ft_lstnew();
+t_list      *ft_lstnew(void);
 void        init_list(t_list **list);
 
 /*
 **  parsing functions
 */
 
-int init_parse(char *str, t_list **list);
+int init_parse(const char *str, t_list **list);
 
 
 int ft_printf(const char *format, ...);

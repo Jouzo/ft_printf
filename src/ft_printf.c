@@ -24,7 +24,7 @@ void init_list(t_list **list)
     // (*list)->pad = 0;                /* Padding character.  */
 }
 
-t_list *ft_lstnew()
+t_list  *ft_lstnew(void)
 {
     t_list *list;
 
@@ -33,6 +33,13 @@ t_list *ft_lstnew()
     list->next = NULL;
     return (list);
 }
+
+// t_value get_value(va_list ap, char type) {
+
+//     if (type == 'c') {
+//             return va_arg(ap, char);
+//     }
+// }
 
 int ft_printf(const char *format, ...)
 {
@@ -57,4 +64,5 @@ int ft_printf(const char *format, ...)
         ptr = ptr->next;
     }
     va_end(ap);
+    return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdescler <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jdescler <jdescler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/12 16:59:15 by jdescler          #+#    #+#             */
-/*   Updated: 2018/12/14 15:03:13 by jdescler         ###   ########.fr       */
+/*   Updated: 2019/01/22 15:37:02 by jdescler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,25 +20,17 @@
 # define BUFF_SIZE 32
 # define FD_MAX 15
 
-typedef struct		s_list
-{
-	void			*content;
-	size_t			content_size;
-	struct s_list	*next;
-}					t_list;
-
 /*
  ** Lists functions
 */
 
-t_list				*ft_lstnew(void const *content, size_t content_size);
-void				ft_lstdelone(t_list **alst, void (*del)(void *, size_t));
-void				ft_lstdel(t_list **alst, void (*del)(void *, size_t));
-void				ft_lstadd(t_list **alst, t_list *new);
-void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
-t_list				*ft_lstcpy (t_list *lst);
-t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
-int					ft_lstlen(t_list *lst);
+// void				ft_lstdelone(t_list **alst, void (*del)(void *, size_t));
+// void				ft_lstdel(t_list **alst, void (*del)(void *, size_t));
+// void				ft_lstadd(t_list **alst, t_list *new);
+// void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
+// t_list				*ft_lstcpy (t_list *lst);
+// t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
+// int					ft_lstlen(t_list *lst);
 
 /*
  ** Memory functions

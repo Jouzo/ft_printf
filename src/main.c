@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include "ft_printf.h"
+
 int     main()
 {
     char *format;
@@ -10,7 +12,7 @@ int     main()
     strcpy(ret, format2);
     strcpy(ret + 10, format);
     strcpy(ret+10 + strlen(format), format2+10 +strlen(format));
-    printf("%s", ret);
+    ft_printf("%s", ret);
     // printf("%.4d", 45);
     return (0);
 }

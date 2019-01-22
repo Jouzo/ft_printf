@@ -6,15 +6,15 @@
 #    By: jdescler <jdescler@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/05 13:08:40 by jdescler          #+#    #+#              #
-#    Updated: 2019/01/21 13:28:23 by jdescler         ###   ########.fr        #
+#    Updated: 2019/01/22 15:42:32 by jdescler         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = Printf
 
 SRCS =	src/main.c\
-		src/ft_print.c\
-		src/parsing.c\
+		src/ft_printf.c\
+		src/init_parse.c\
 
 OBJS = $(SRCS:.c=.o)
 
