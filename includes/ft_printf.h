@@ -40,6 +40,4 @@ typedef struct      s_list
 ** Functions
 */
 
-
-
 #endif

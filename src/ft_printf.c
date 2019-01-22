@@ -6,7 +6,7 @@ void init_list(t_list **list)
 {
     (*list)->prec = 0;               /* Precision. */
     (*list)->width = 0;              /* Width.  */
-    (*list)->spec = 0;;               /* Format letter.  */
+    (*list)->spec = 0;               /* Format letter.  */
     (*list)->is_long_double = 0; /* L flag.  */
     (*list)->is_short = 0;       /* h flag.  */
     (*list)->is_long = 0;        /* l flag.  */
@@ -37,14 +37,23 @@ int ft_printf(const char *format, ...)
 {
     va_list ap;
     t_list *list;
+    t_list *ptr;
+    char ret[10000];
 
     list = ft_lstnew;
+    ptr = list;
     init_list(&list);
     va_start(ap, format);
-
-    while (*format)
+    if (!(init_parse(format)))
+        return (-1);
+    // if (!(ret = (char*)malloc(sizeof(char) * list->size + 1)))
+        // return (-1);
+    ft_strcpy(ret, format);
+    printf("%s", ret);
+    while (ptr)
     {
         va_arg(ap, int);
+        ptr = ptr->next;
     }
     va_end(ap);
 }
