@@ -116,6 +116,7 @@ void assign(char *str)
     check_larg_mini(str, &i);
     check_prec(str, &i);
     check_taille(str, &i);
+    check_type(str, &i);
 }
 
 int init_parse(char *str)
