@@ -10,17 +10,18 @@ void init_list(t_list **list)
     (*list)->is_long_double = 0; /* L flag.  */
     (*list)->is_short = 0;       /* h flag.  */
     (*list)->is_long = 0;        /* l flag.  */
+    (*list)->is_long_long = 0;        /* ll flag.  */
+    (*list)->is_char = 0;        /* hh flag.  */
     (*list)->alt = 0;            /* # flag.  */
     (*list)->space = 0;          /* Space flag.  */
     (*list)->left = 0;           /* - flag.  */
     (*list)->showsign = 0;       /* + flag.  */
     (*list)->group = 0;          /* ' flag.  */
     (*list)->extra = 0;          /* For special use.  */
-    (*list)->is_char = 0;        /* hh flag.  */
     (*list)->wide = 0;           /* Nonzero for wide character streams.  */
     (*list)->i18n = 0;           /* I flag.  */
     (*list)->is_binary128 = 0;   /* Floating-argument is ABI-compatible */
-    (*list)->pad = 0;                /* Padding character.  */
+    // (*list)->pad = 0;                /* Padding character.  */
 }
 
 t_list *ft_lstnew()
@@ -44,7 +45,7 @@ int ft_printf(const char *format, ...)
     ptr = list;
     init_list(&list);
     va_start(ap, format);
-    if (!(init_parse(format)))
+    if (!(init_parse(format, &list)))
         return (-1);
     // if (!(ret = (char*)malloc(sizeof(char) * list->size + 1)))
         // return (-1);

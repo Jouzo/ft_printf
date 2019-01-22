@@ -42,4 +42,19 @@ typedef struct      s_list
 ** Functions
 */
 
+/*
+**  list functions
+*/
+t_list      *ft_lstnew();
+void        init_list(t_list **list);
+
+/*
+**  parsing functions
+*/
+
+int init_parse(char *str, t_list **list);
+
+
+int ft_printf(const char *format, ...);
+
 #endif
