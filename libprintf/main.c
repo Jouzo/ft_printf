@@ -1,15 +1,6 @@
 #include <unistd.h>
 #include <stdio.h>
-
-size_t  ft_strlen(char const *s)
-{
-        int i;
-
-        i = 0;
-        while (s[i])
-                i++;
-        return (i);
-}
+#include "../includes/ft_printf.h"
 
 void	printf_endl(char const *s)
 {
@@ -22,6 +13,7 @@ void	printf_endl(char const *s)
 
 int     main()
 {
-    printf("salut les gars : %df", 123);
+    ft_printf("salut les gars : %+d sdf %d\n", 123, 25);
+    printf("salut les gars : %+d sdf %d\n", 123, 25);
     return (0);
 }
