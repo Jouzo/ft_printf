@@ -31,24 +31,43 @@ void init_args(t_args *args)
 //     }
 // }
 
+char     *conversion_int(int nb)
+{
+    return (ft_itoa_base(nb, 10));
+}
+
 int ft_printf(const char *format, ...)
 {
     va_list ap;
     t_args args;
-    char ret[10000];
+    char buf[10000];
+    int i;
+    int start;
+    int size_of_dir;
+    
 
+    size_of_dir = 0;
+    start = 0;
+    i = 0;
+    ft_bzero(buf, 10000);
     init_args(&args);
     va_start(ap, format);
-    if (!(init_parse(format, &args)))
-        return (-1);
-    ft_strcpy(ret, format);
-    printf("%s", ret);
-    while (format)
+    while (format[i])
     {
-        if (*format != '%')
-            ft_putchar(*format);
-        va_arg(ap, int);
+        if (format[i] == '%')
+        {
+            ft_strncat(buf, format + start, i);
+            start = i + assign(format, &args);
+        //function conversion
+            // va_arg(ap, int);
+            ft_strncat(buf, conversion_int(va_arg(ap, int)), ft_strlen(conversion_int(va_arg(ap, int))));
+            i = start;
+            printf("%s\n", buf);
+        }
+        i++;
     }
+    
     va_end(ap);
+    printf("%s\n", buf);
     return (0);
 }

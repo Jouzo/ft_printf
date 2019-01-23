@@ -51,7 +51,12 @@ typedef struct      s_args
 /*
 ** Functions
 */
-
+char	*ft_itoa_base(int value, int base);
+char	*ft_strncat(char *s1, const char *s2, size_t n);
+size_t	ft_strlen(char const *s);
+int assign(const char *str, t_args *args);
+char	*ft_strchr(const char *s, int c);
+void	ft_bzero(void *s, size_t n);
 /*
 **  parsing functions
 */
