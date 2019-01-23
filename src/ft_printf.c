@@ -52,19 +52,18 @@ int ft_printf(const char *format, ...)
     ft_bzero(buf, 10000);
     init_args(&args);
     va_start(ap, format);
+
     while (format[i])
     {
-        if (format[i] == '%')
+        while (format[i] && format[i] != '%')
         {
-            ft_strncat(buf, format + start, i);
-            start = i + assign(format, &args);
-        //function conversion
-            // va_arg(ap, int);
-            ft_strncat(buf, conversion_int(va_arg(ap, int)), ft_strlen(conversion_int(va_arg(ap, int))));
-            i = start;
-            printf("%s\n", buf);
-        }
-        i++;
+            buf[i] = format[i]
+            i++;
+        
+        i += assign(format, &args);
+        va_arg(ap, int);
+        //j += ft_convert(&buf, args, format); qui renvoie strlen(converted) et copie converted dans buf
+       
     }
     
     va_end(ap);
