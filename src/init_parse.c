@@ -3,9 +3,9 @@
 
 void check_option(const char *str, int *i, t_args *args)
 {
-    char *option;
+    char option[5];
 
-    option = "-+#0 ";
+    ft_memcpy(option, "-+#0 ", 5);
     while (ft_strchr(option, str[*i]))
     {
         if (str[*i] == '-')
@@ -111,12 +111,12 @@ int assign(const char *str, t_args *args)
 {
     int i;
 
-    i = 0;
+    i = 1;
     check_option(str, &i, args);
     check_larg_mini(str, &i, args);
     check_prec(str, &i, args);
     check_taille(str, &i, args);
     check_type(str, &i, args);
-    printf("value of i %d\n", i);
+    // printf("value of i %d\n", i);
     return (i);
 }

@@ -57,6 +57,9 @@ size_t	ft_strlen(char const *s);
 int assign(const char *str, t_args *args);
 char	*ft_strchr(const char *s, int c);
 void	ft_bzero(void *s, size_t n);
+void	*ft_memcpy(void *dst, const void *src, size_t n);
+void	printf_endl(char const *s);
+void	ft_putchar(char c);
 /*
 **  parsing functions
 */

@@ -44,30 +44,23 @@ int ft_printf(const char *format, ...)
     int i;
     int start;
     int size_of_dir;
-    
+    char *tmp;
 
     size_of_dir = 0;
     start = 0;
     i = 0;
-    ft_bzero(buf, 10000);
     init_args(&args);
     va_start(ap, format);
     while (format[i])
     {
-        if (format[i] == '%')
+        while (format[i] && format[i] != '%')
         {
-            ft_strncat(buf, format + start, i);
-            start = i + assign(format, &args);
-        //function conversion
-            // va_arg(ap, int);
-            ft_strncat(buf, conversion_int(va_arg(ap, int)), ft_strlen(conversion_int(va_arg(ap, int))));
-            i = start;
-            printf("%s\n", buf);
+            ft_putchar(format[i]);
+            i++;
+        }
         }
         i++;
     }
-    
     va_end(ap);
-    printf("%s\n", buf);
     return (0);
 }
