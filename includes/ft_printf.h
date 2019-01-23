@@ -14,18 +14,18 @@
 ** Structures
 */
 
-typedef union       
-{
-    char            as_char;
-    short           as_short;
-    int             as_int;
-    long            as_long;
-    float           as_float;
-    double          as_double;
-    void*           as_ptr;
-}                   t_value;
+// typedef union       
+// {
+//     char            as_char;
+//     short           as_short;
+//     int             as_int;
+//     long            as_long;
+//     float           as_float;
+//     double          as_double;
+//     void*           as_ptr;
+// }                   t_value;
 
-typedef struct      s_list
+typedef struct      s_args
 {
     int             prec;                        /* Precision. */
     int             width;                       /* Width.  */
@@ -46,10 +46,7 @@ typedef struct      s_list
     unsigned int    i18n : 1;               /* I flag.  */
     unsigned int    is_binary128 : 1;       /* Floating-point argument is ABI-compatible */
     // char            pad;                     /* Padding character.  */
-    struct s_list   *next;
-}                   t_list;
-
-
+}                   t_args;
 
 
 /*
@@ -57,17 +54,10 @@ typedef struct      s_list
 */
 
 /*
-**  list functions
-*/
-t_list      *ft_lstnew(void);
-void        init_list(t_list **list);
-
-/*
 **  parsing functions
 */
 
-int init_parse(const char *str, t_list **list);
-
+int init_parse(const char *str, t_args *args);
 
 int ft_printf(const char *format, ...);
 
