@@ -34,11 +34,9 @@ void init_args(t_args *args)
 int ft_printf(const char *format, ...)
 {
     va_list ap;
-    t_args *args;
+    t_args args;
     char ret[10000];
 
-    if (!(args = malloc(sizeof(t_args))))
-        return (-1);
     init_args(&args);
     va_start(ap, format);
     if (!(init_parse(format, &args)))
