@@ -1,28 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_sizeofint.c                                     :+:      :+:    :+:   */
+/*   ft_memccpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdescler <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jdescler <jdescler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/08 15:14:37 by jdescler          #+#    #+#             */
-/*   Updated: 2018/11/12 13:31:25 by jdescler         ###   ########.fr       */
+/*   Created: 2018/11/08 13:03:23 by jdescler          #+#    #+#             */
+/*   Updated: 2019/01/23 17:56:43 by jdescler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_sizeofint(int n)
+void	*ft_memccpy(void *dst, const void *src, int c, size_t n)
 {
-	int				size;
-	unsigned int	nb;
+	unsigned char	*ptr;
 
-	nb = ft_abs(n);
-	size = 0;
-	while (nb > 0)
+	ptr = dst;
+	while (n--)
 	{
-		nb /= 10;
-		size++;
+		if ((*ptr++ = (*(unsigned char *)src++)) == (unsigned char)c)
+			return (ptr);
 	}
-	return (size);
+	return (NULL);
 }

@@ -1,7 +1,7 @@
 #include <stdio.h>
-#include "ft_printf.h"
+#include "../includes/ft_printf.h"
 
-void check_option(char *str, int *i, t_list **list)
+void check_option(char *str, int *i, t_args *args)
 {
     char *option;
 
@@ -9,20 +9,20 @@ void check_option(char *str, int *i, t_list **list)
     while (ft_strchr(option, str[*i]))
     {
         if (str[*i] == '-')
-            (*list)->left = 1;
+            args->left = 1;
         if (str[*i] == '+')
-            (*list)->showsign = 1;
+            args->showsign = 1;
         if (str[*i] == '#')
-            (*list)->alt = 1;
+            args->alt = 1;
         if (str[*i] == ' ')
-            (*list)->space = 1;
+            args->space = 1;
         if (str[*i] == '0')
-            (*list)->zero = 1;
+            args->zero = 1;
         *i++;
     }
 }
 
-void check_larg_mini(char *str, int *i, t_list **list)
+void check_larg_mini(char *str, int *i, t_args *args)
 {
     int res;
 
@@ -32,10 +32,10 @@ void check_larg_mini(char *str, int *i, t_list **list)
         res = res * 10 + str[*i] + '0';
         *i++;
     }
-    (*list)->width = res;
+    args->width = res;
 }
 
-void check_prec(char *str, int *i, t_list **list)
+void check_prec(char *str, int *i, t_args *args)
 {
     int res;
 
@@ -47,80 +47,80 @@ void check_prec(char *str, int *i, t_list **list)
             res = res * 10 + str[*i] + '0';
             *i++;
         }
-        (*list)->prec = res;
+        args->prec = res;
     }
 }
 
-void check_taille(char *str, int *i, t_list **list)
+void check_taille(char *str, int *i, t_args *args)
 {
     if (str[*i] == 'h')
     {
         if (str[*i + 1] == 'h')
         {
-            (*list)->is_char = 1;
+            args->is_char = 1;
             *i++;
         }
         else
-            (*list)->is_short = 1;
+            args->is_short = 1;
         *i++;
     }
     else if (str[*i] == 'l')
     {
         if (str[*i + 1] == 'l')
         {
-            (*list)->is_long = 1;
+            args->is_long = 1;
             *i++;
         }
         else
-            (*list)->is_long_long = 1;
+            args->is_long_long = 1;
         *i++;
     }
     else if (str[*i] == 'L')
     {
-        (*list)->is_long_double = 1;
+        args->is_long_double = 1;
         *i++;
     }
 }
 
-void check_type(char *str, int *i, t_list **list)
+void check_type(char *str, int *i, t_args *args)
 {
 "cspdiouxXf";
     if (str[*i] == 'c')
-        (*list)->spec = 'c';
+        args->spec = 'c';
     else if (str[*i] == 's')
-        (*list)->spec = 's';
+        args->spec = 's';
     else if (str[*i] == 'p')
-        (*list)->spec = 'p';
+        args->spec = 'p';
     else if (str[*i] == 'd')
-        (*list)->spec = 'd';
+        args->spec = 'd';
     else if (str[*i] == 'i')
-        (*list)->spec = 'i';
+        args->spec = 'i';
     else if (str[*i] == 'o')
-        (*list)->spec = 'o';
+        args->spec = 'o';
     else if (str[*i] == 'u')
-        (*list)->spec = 'u';
+        args->spec = 'u';
     else if (str[*i] == 'x')
-        (*list)->spec = 'x';
+        args->spec = 'x';
     else if (str[*i] == 'X')
-        (*list)->spec = 'X';
+        args->spec = 'X';
     else if (str[*i] == 'f')
-        (*list)->spec = 'f';
+        args->spec = 'f';
     *i++;
 }
 
-void assign(char *str, t_list **list)
+void assign(char *str, t_args *args)
 {
     int i;
 
     i = 0;
-    check_option(str, &i, list);
-    check_larg_mini(str, &i, list);
-    check_prec(str, &i, list);
-    check_taille(str, &i, list);
-    check_type(str, &i, list);
+    check_option(str, &i, args);
+    check_larg_mini(str, &i, args);
+    check_prec(str, &i, args);
+    check_taille(str, &i, args);
+    check_type(str, &i, args);
 }
 
-int init_parse(const char *str, t_list **list)
+int init_parse(const char *str, t_args *args)
 {
     int i;
     int count;
@@ -132,10 +132,8 @@ int init_parse(const char *str, t_list **list)
         if (str[i] == '%' && str[i + 1] != '%')
         {
             count++;
-            init_list(&list);
-            assign(str, &list);
-            (*list)->next = ft_lstnew();
-            (*list) = (*list)->next;
+            init_list(&args);
+            assign(str, &args);
         }
         i++;
     }
