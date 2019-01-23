@@ -36,7 +36,11 @@ int ft_printf(const char *format, ...)
     va_list ap;
     t_args *args;
     char ret[10000];
+    int i;
+    int j;    
 
+    i = 0;
+    j = 0;
     if (!(args = malloc(sizeof(t_args))))
         return (-1);
     init_args(&args);
@@ -45,11 +49,17 @@ int ft_printf(const char *format, ...)
         return (-1);
     ft_strcpy(ret, format);
     printf("%s", ret);
-    while (format)
+    while (format[i])
     {
-        if (*format != '%')
-            ft_putchar(*format);
+        while (format[i] && format[i] != '%')
+        {
+            buf[i] = format[i]
+            i++;
+        
+        i += assign(format, &args);
         va_arg(ap, int);
+        //ft_convert
+        
     }
     va_end(ap);
     return (0);
