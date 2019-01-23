@@ -108,7 +108,7 @@ void check_type(char *str, int *i, t_args *args)
     *i++;
 }
 
-void assign(char *str, t_args *args)
+int assign(char *str, t_args *args)
 {
     int i;
 
@@ -118,24 +118,5 @@ void assign(char *str, t_args *args)
     check_prec(str, &i, args);
     check_taille(str, &i, args);
     check_type(str, &i, args);
-}
-
-int init_parse(const char *str, t_args *args)
-{
-    int i;
-    int count;
-
-    count = 0;
-    i = 0;
-    while (str[i])
-    {
-        if (str[i] == '%' && str[i + 1] != '%')
-        {
-            count++;
-            init_list(&args);
-            assign(str, &args);
-        }
-        i++;
-    }
-    return (count);
+    return (i);
 }
