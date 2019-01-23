@@ -64,6 +64,7 @@ int ft_printf(const char *format, ...)
             j += conversion_int(buf + j, va_arg(ap, int));
         }
     }
+    printf_endl(buf);
     va_end(ap);
     return (0);
 }
