@@ -52,15 +52,15 @@ int ft_printf(const char *format, ...)
     while (format[i])
     {
         while (format[i] && format[i] != '%')
+            buf[j++] = format[i++];
+        if (format[i] == '%')
         {
-            buf[i] = format[i]
-            i++;
-        
-        i += assign(format, &args);
-        va_arg(ap, int);
-        //ft_convert
-        
+            i += assign(format, &args);
+            va_arg(ap, int);
+            //j += ft_convert(&buf, args, format); qui renvoie strlen(converted) et copie converted dans buf
+        }
     }
+    ft_putstr(buf);
     va_end(ap);
     return (0);
 }
