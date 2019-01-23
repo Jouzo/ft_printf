@@ -117,6 +117,5 @@ int assign(const char *str, t_args *args)
     check_prec(str, &i, args);
     check_taille(str, &i, args);
     check_type(str, &i, args);
-    // printf("value of i %d\n", i);
     return (i);
 }

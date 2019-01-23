@@ -13,7 +13,7 @@ void	printf_endl(char const *s)
 
 int     main()
 {
-    ft_printf("salut les gars : %0d sdf %d", 123, 28);
-    printf("salut les gars : %0d sdf %d\n", 123, 28);
+    ft_printf("j'ai %d enfants et %d e", 32121, 3);
+//    printf("salut les gars : %+d sdf %d\n", 123, 25);
     return (0);
 }

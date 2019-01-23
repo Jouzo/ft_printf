@@ -68,4 +68,10 @@ int init_parse(const char *str, t_args *args);
 
 int ft_printf(const char *format, ...);
 
+
+
+
+
+void	*ft_memcpy(void *dst, const void *src, size_t n);
+
 #endif

@@ -12,7 +12,7 @@ int     main()
     strcpy(ret, format2);
     strcpy(ret + 10, format);
     strcpy(ret+10 + strlen(format), format2+10 +strlen(format));
-    ft_printf("%s", ret);
+    ft_printf("j'ai %d enfants et %d femmes", ret);
     // printf("%.4d", 45);
     return (0);
 }
