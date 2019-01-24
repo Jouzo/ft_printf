@@ -3,28 +3,31 @@
 #include "../includes/ft_printf.h"
 void    ft_itoa_base_b(int nb, int base, char **res)
 {
-    char str_base[33];
+    char *str_base = "0123456789abcdef0123456789ABCDEF";
 
-    ft_memcpy(str_base, "0123456789abcdef0123456789ABCDEF", 32);
-    ft_memset(str_base + 32, '\0', 1);
     int i;
     int capitale = 0; // a rajouter dans la struct
     int tmp;
+    char buf[] = "000000000000000000";
+    char *buf_bis;
 
     tmp = 0;
     i = 0;
     while (nb > 0)
     {
-   printf("dede %c\n", str_base[nb % 10]);
+    //    printf("value tmp %c\n", str_base[nb % 10]);
         tmp = str_base[nb % 10];
-   printf("dede %c\n", tmp);
-        ft_memset(*res, tmp, 1);
+        ft_memset(buf + i, tmp, 1);
+    //    *res[i] = 'a';
         nb /= 10;
         i++;
-        printf("value de mes boulles: enorme%s\n", *res);
+        printf("value de res: %s\n", buf);
     }
-
-    printf("dede%s\n", *res);
+    buf[i] = '\0';
+    ft_memcpy(buf_bis, buf, ft_strlen(buf) + 1);
+ //   printf("dede%s\n", *res);
+    printf("value de buf_bis: %s\n", buf_bis);
+    *res = buf_bis;
 }
 
 int main()
@@ -32,6 +35,5 @@ int main()
     char *res;
     
     ft_itoa_base_b(2147483647, 10, &res);
-    printf("dede");
     printf("%s", res);
 }
