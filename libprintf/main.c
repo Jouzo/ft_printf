@@ -12,7 +12,7 @@ void	ft_printstr(char const *s)
 
 int     main()
 {
-	ft_printf("j'ai %d enfants et % d femmes et %c\n", 3000, -3000, 'c');
-   	printf("j'ai %d enfants et % d femmes et %c\n", 3000, -3000, 'c');
+	ft_printf("j'ai %d enfants et % d femmes et %3c\n", 3000, -3000, 'z');
+   	printf("j'ai %d enfants et % d femmes et %3c\n", 3000, -3000, 'z');
     return (0);
 }
