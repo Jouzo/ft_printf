@@ -3,13 +3,8 @@
 int     conversion_int(char *buf, int nb, t_args args, int *start)
 {   
     char *conv;
-    printf("Dde\n");
     if (args.spec == 'c')
-    {
-    //    ft_strcpy(conv, ft_itoc(nb));
-        ft_itoc(nb, &conv);  
-        printf("%sfesse\n", conv);
-    }
+        ft_itoc(nb, &conv);
     else
         conv = ft_itoa_base(nb, 10);
     add_option(buf, args, conv, start);
