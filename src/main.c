@@ -1,18 +1,16 @@
+#include <unistd.h>
 #include <stdio.h>
-#include "ft_printf.h"
+#include "../includes/ft_printf.h"
+
+void	ft_printstr(char const *s)
+{
+	if (s)
+		write(1, s, ft_strlen(s));
+}
 
 int     main()
 {
-    char *format;
-    char *format2;
-    format = "23";
-    format2 = "salut les %d gros come state ragga";
-    char ret[10000];
-
-    strcpy(ret, format2);
-    strcpy(ret + 10, format);
-    strcpy(ret+10 + strlen(format), format2+10 +strlen(format));
-    ft_printf("j'ai %d enfants et %d femmes", ret);
-    // printf("%.4d", 45);
+	ft_printf("j'ai %d enfants et % d femmes et %3c\n", 3000, -3000, 'z');
+   	printf("j'ai %d enfants et % d femmes et %3c\n", 3000, -3000, 'z');
     return (0);
 }
