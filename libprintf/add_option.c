@@ -44,7 +44,7 @@ void print_sign(char *buf, int *start)
 
 void add_option(char *buf, t_args args, char *conv, int *start)
 {
-    if (args.space && !args.width && !args.showsign)
+    if (args.space && !args.width && !args.showsign && conv[0] != '-')
         one_space(buf, args, ft_strlen(conv), start);
     if ((args.space && args.width && !args.left) || (args.width && !args.zero && !args.left) )
         padding_left(buf, args, ft_strlen(conv), start);

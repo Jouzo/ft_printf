@@ -31,17 +31,6 @@ void init_args(t_args *args)
 //     }
 // }
 
-int     conversion_int(char *buf, int nb, t_args args, int *start)
-{
-    char *conv;
-
-    conv = ft_itoa_base(nb, 10);
-    add_option(buf, args, conv, start);
-    ft_memcpy(buf + *start, conv, ft_strlen(conv));
-    if (args.left)
-        padding_right(buf, conv, args.width, start);
-    return (ft_strlen(conv));
-}
 
 int ft_printf(const char *format, ...)
 {
@@ -64,7 +53,7 @@ int ft_printf(const char *format, ...)
         {
             init_args(&args);
             i += assign(format + i, &args);
-            j += conversion_int(buf, va_arg(ap, int), args, &j);
+            j += conversion(buf, ap, args, &j);
         }
     }
     ft_printstr(buf);

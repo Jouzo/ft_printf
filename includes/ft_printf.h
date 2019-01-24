@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#include <stdarg.h>
 
 /*
 ** Macros
@@ -67,5 +68,10 @@ int ft_printf(const char *format, ...);
 void    add_option(char *buf, t_args args, char *conv, int *start);
 void    padding_right(char *buf, char *conv, int size_of_conversion, int *start);
 
+/*
+**  Conversion functions
+*/
+
+int     conversion(char *buf, va_list ap, t_args args, int *start);
 
 #endif
