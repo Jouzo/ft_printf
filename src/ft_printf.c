@@ -31,14 +31,6 @@ void init_args(t_args *args)
 //     }
 // }
 
-int     conversion_int(char *buf, int nb)
-{
-    char *conv;
-
-    conv = ft_itoa_base(nb, 10);
-    ft_memcpy(buf, conv, ft_strlen(conv));
-    return (ft_strlen(conv));
-}
 
 int ft_printf(const char *format, ...)
 {
@@ -51,7 +43,7 @@ int ft_printf(const char *format, ...)
     i = 0;
     j = 0;
     ft_bzero(buf, 10000);
-    init_args(&args);
+    
     va_start(ap, format);
     while (format[i])
     {
@@ -59,12 +51,12 @@ int ft_printf(const char *format, ...)
             buf[j++] = format[i++];
         if (format[i] == '%')
         {
+            init_args(&args);
             i += assign(format + i, &args);
-            //j += ft_convert(&buf + j, args, format); qui renvoie strlen(converted) et copie converted dans buf
-            j += conversion_int(buf + j, va_arg(ap, int));
+            j += conversion(buf, ap, args, &j);
         }
     }
+    ft_printstr(buf);
     va_end(ap);
-    printf("%s\n", buf);
     return (0);
 }
