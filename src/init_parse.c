@@ -1,11 +1,11 @@
 #include <stdio.h>
 #include "../includes/ft_printf.h"
 
-void check_option(char *str, int *i, t_args *args)
+void check_option(const char *str, int *i, t_args *args)
 {
-    char *option;
+    char option[5];
 
-    option = "-+#0 ";
+    ft_memcpy(option, "-+#0 ", 5);
     while (ft_strchr(option, str[*i]))
     {
         if (str[*i] == '-')
@@ -18,24 +18,24 @@ void check_option(char *str, int *i, t_args *args)
             args->space = 1;
         if (str[*i] == '0')
             args->zero = 1;
-        *i++;
+        *i += 1;
     }
 }
 
-void check_larg_mini(char *str, int *i, t_args *args)
+void check_larg_mini(const char *str, int *i, t_args *args)
 {
     int res;
 
     res = 0;
     while (str[*i] <= '9' && str[*i] >= '0')
     {
-        res = res * 10 + str[*i] + '0';
-        *i++;
+        res = res * 10 + str[*i] - '0';
+        *i += 1;
     }
     args->width = res;
 }
 
-void check_prec(char *str, int *i, t_args *args)
+void check_prec(const char *str, int *i, t_args *args)
 {
     int res;
 
@@ -44,47 +44,46 @@ void check_prec(char *str, int *i, t_args *args)
     {
         while (str[*i + 1] <= '9' && str[*i + 1] >= '0')
         {
-            res = res * 10 + str[*i] + '0';
-            *i++;
+            res = res * 10 + str[*i] - '0';
+            *i += 1;
         }
         args->prec = res;
     }
 }
 
-void check_taille(char *str, int *i, t_args *args)
+void check_taille(const char *str, int *i, t_args *args)
 {
     if (str[*i] == 'h')
     {
         if (str[*i + 1] == 'h')
         {
             args->is_char = 1;
-            *i++;
+            *i += 1;
         }
         else
             args->is_short = 1;
-        *i++;
+        *i += 1;
     }
     else if (str[*i] == 'l')
     {
         if (str[*i + 1] == 'l')
         {
             args->is_long = 1;
-            *i++;
+            *i += 1;
         }
         else
             args->is_long_long = 1;
-        *i++;
+        *i += 1;
     }
     else if (str[*i] == 'L')
     {
         args->is_long_double = 1;
-        *i++;
+        *i += 1;
     }
 }
 
-void check_type(char *str, int *i, t_args *args)
+void check_type(const char *str, int *i, t_args *args)
 {
-"cspdiouxXf";
     if (str[*i] == 'c')
         args->spec = 'c';
     else if (str[*i] == 's')
@@ -105,14 +104,14 @@ void check_type(char *str, int *i, t_args *args)
         args->spec = 'X';
     else if (str[*i] == 'f')
         args->spec = 'f';
-    *i++;
+    *i += 1;
 }
 
-int assign(char *str, t_args *args)
+int assign(const char *str, t_args *args)
 {
     int i;
 
-    i = 0;
+    i = 1;
     check_option(str, &i, args);
     check_larg_mini(str, &i, args);
     check_prec(str, &i, args);

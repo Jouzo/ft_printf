@@ -31,26 +31,43 @@ void init_args(t_args *args)
 //     }
 // }
 
+int     conversion_int(char *buf, int nb, t_args args, int *start)
+{
+    char *conv;
+
+    conv = ft_itoa_base(nb, 10);
+    add_option(buf, args, conv, start);
+    ft_memcpy(buf + *start, conv, ft_strlen(conv));
+    if (args.left)
+        padding_right(buf, conv, args.width, start);
+    return (ft_strlen(conv));
+}
+
 int ft_printf(const char *format, ...)
 {
     va_list ap;
-    t_args *args;
-    char ret[10000];
+    t_args args;
+    char buf[10000];
+    int i;
+    int j;
 
-    if (!(args = malloc(sizeof(t_args))))
-        return (-1);
-    init_args(&args);
+    i = 0;
+    j = 0;
+    ft_bzero(buf, 10000);
+    
     va_start(ap, format);
-    if (!(init_parse(format, &args)))
-        return (-1);
-    ft_strcpy(ret, format);
-    printf("%s", ret);
-    while (format)
+    while (format[i])
     {
-        if (*format != '%')
-            ft_putchar(*format);
-        va_arg(ap, int);
+        while (format[i] && format[i] != '%')
+            buf[j++] = format[i++];
+        if (format[i] == '%')
+        {
+            init_args(&args);
+            i += assign(format + i, &args);
+            j += conversion_int(buf, va_arg(ap, int), args, &j);
+        }
     }
+    ft_printstr(buf);
     va_end(ap);
     return (0);
 }
