@@ -5,22 +5,30 @@
 
 void ft_itoa_base_b(int nb, int base, char **res)
 {
-    char str_base[33];
+    char *str_base;
+    int i;
+    int capitale = 0; // a rajouter dans la struct
 
-    ft_memcpy(str_base, "0123456789abcdef0123456789ABCDEF", 32);
-    ft_memset(str_base + 32, '\0', 1);
+    str_base = "0123456789abcdef0123456789ABCDEF";
+    char buf[] = "000000000000000000";
+    char *buf_bis;
+
+    i = 0;
     while (nb > 0)
     {
-        ft_memset((*res), (str_base[(nb % 10)]), 1);
+        ft_memset(buf + i, str_base[nb % 10], 1);
         nb /= 10;
+        i++;
     }
-    printf("value of res in itoa %s", *res);
+    buf[i] = '\0';
+    ft_memcpy(buf_bis, buf, ft_strlen(buf) + 1);
+    *res = buf_bis;
 }
 
 int main()
 {
     char *res;
-
-    ft_itoa_base_b(2147483647, 10, &res);
-    printf("value of res after itoa %s", res);
+    
+    ft_itoa_base_b(247, 10, &res);
+    printf("%s", res);
 }
