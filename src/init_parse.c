@@ -29,7 +29,7 @@ void check_larg_mini(const char *str, int *i, t_args *args)
     res = 0;
     while (str[*i] <= '9' && str[*i] >= '0')
     {
-        res = res * 10 + str[*i] + '0';
+        res = res * 10 + str[*i] - '0';
         *i += 1;
     }
     args->width = res;
@@ -44,7 +44,7 @@ void check_prec(const char *str, int *i, t_args *args)
     {
         while (str[*i + 1] <= '9' && str[*i + 1] >= '0')
         {
-            res = res * 10 + str[*i] + '0';
+            res = res * 10 + str[*i] - '0';
             *i += 1;
         }
         args->prec = res;

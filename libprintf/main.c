@@ -2,18 +2,17 @@
 #include <stdio.h>
 #include "../includes/ft_printf.h"
 
-void	printf_endl(char const *s)
+void	ft_printstr(char const *s)
 {
 	if (s)
 	{
 		write(1, s, ft_strlen(s));
-		write(1, "\n", 1);
 	}
 }
 
 int     main()
 {
-    ft_printf("j'ai %d enfants et %d e", 32121, 3);
-//    printf("salut les gars : %+d sdf %d\n", 123, 25);
+	ft_printf("j'ai %d enfants et %d femmes et %d\n", 3000, 3000, 3000);
+   	printf("j'ai %d enfants et %d femmes et %d\n", 3000, 3000, 3000);
     return (0);
 }
