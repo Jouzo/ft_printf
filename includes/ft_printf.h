@@ -53,7 +53,12 @@ void	ft_putchar(char c);
 void	*ft_memcpy(void *dst, const void *src, size_t n);
 void	*ft_memset(void *b, int c, size_t len);
 char	*ft_strcpy(char *dst, const char *src);
-
+void	ft_bzero(void *s, size_t n);
+void	*ft_memcpy(void *dst, const void *src, size_t n);
+char	*ft_strchr(const char *s, int c);
+size_t	ft_strlen(char const *s);
+char	*ft_strrev(char *s);
+int ft_itoa_base2(int n, t_args args, char *buf, int *start);
 
 /*
 **  parsing functions
@@ -78,6 +83,6 @@ void    padding_right(char *buf, char *conv, int size_of_conversion, int *start)
 int     conversion(char *buf, va_list ap, t_args args, int *start);
 
 void    ft_itoc(int nb, char **conv);
-char	*ft_itoa_base(int value, int base);
+char	*ft_itoa_base(int value, int base, int capital);
 
 #endif
