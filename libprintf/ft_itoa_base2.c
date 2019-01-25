@@ -20,5 +20,8 @@ int ft_itoa_base2(int n, t_args args, char *buf, int *start)
     len = ft_strlen(s);
     add_option(buf, args, s, start);
     ft_memcpy(buf + *start, s, ft_strlen(s));
+    printf("args.left %d\n", args.left);
+    if (args.left)
+        padding_right(buf, s, args.width, start);
     return (len);
 }

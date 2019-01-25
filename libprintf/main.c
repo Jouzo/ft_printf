@@ -4,7 +4,7 @@
 
 int     main()
 {
-	ft_printf("j'ai %5i enfants e  \n", 2);
-   	printf("j'ai %5i enfants e  \n", 2);
+	ft_printf("j'ai %-4X enfants e  \n", 25222423);
+   	printf("j'ai %-4X enfants e  \n", 25222423);
     return (0);
 }

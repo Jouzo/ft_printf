@@ -3,14 +3,16 @@
 int     conversion_int(char *buf, int nb, t_args args, int *start)
 {   
     int len;
-    // if (args.spec == 'c')
-        // ft_itoc(nb, &conv);
-    // else
-    len = ft_itoa_base2(nb, args, buf, start);
-    // add_option(buf, args, conv, start);
-    // ft_memcpy(buf + *start, conv, ft_strlen(conv));
-    // if (args.left)
-        // padding_right(buf, conv, args.width, start);
+
+    if (args.spec == 'c')
+    {
+        ft_itoc(nb, &buf, start);
+        if (args.left)
+            padding_right(buf, "", args.width, start);
+        len = 0 - args.left;
+    }
+    else
+        len = ft_itoa_base2(nb, args, buf, start);
     return (len);
 }
 
@@ -29,15 +31,7 @@ int     conversion_float(char *buf, double nb, t_args args, int *start)
 
 int     conversion_unsigned(char *buf, unsigned long nb, t_args args, int *start)
 {   
-    char *conv;
-    
-    // conv = NULL;
-    conv = ft_itoa_base(nb, args.base, args.capital);
-    add_option(buf, args, conv, start);
-    ft_memcpy(buf + *start, conv, ft_strlen(conv));
-    if (args.left)
-        padding_right(buf, conv, args.width, start);
-    return (ft_strlen(conv));
+    return (ft_itoa_base2(nb, args, buf, start));
 }
 
 int     conversion_string(char *buf, char *str, t_args args, int *start)
