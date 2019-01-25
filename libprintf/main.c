@@ -4,8 +4,7 @@
 
 int     main()
 {
-	ft_printf("j'ai %.8i enfants et %o femmes et %s\n", 3000, 150, "salut");
-   	printf("j'ai %.8i enfants et %o femmes et %s\n", 3000, 150, "salut");
-	printf("size of args : %lu", sizeof(t_args));
+	ft_printf("j'ai %5i enfants e  \n", 2);
+   	printf("j'ai %5i enfants e  \n", 2);
     return (0);
 }

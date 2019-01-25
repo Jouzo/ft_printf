@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa_base.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmovahhe <mmovahhe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jdescler <jdescler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/24 13:42:02 by exam              #+#    #+#             */
-/*   Updated: 2019/01/24 15:31:08 by mmovahhe         ###   ########.fr       */
+/*   Updated: 2019/01/25 23:29:48 by jdescler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 
-char	*ft_itoa_base(int value, int base)
+char	*ft_itoa_base(int value, int base, int capital)
 {
 	if (base < 2 || base > 16)
 		return (0);
-	char *str_base = "0123456789ABCDEF";
+	char *str_base = "0123456789abcdef0123456789ABCDEF";
 	char *res;
 	int value_size;
 	unsigned int abs_value;
@@ -42,11 +42,11 @@ char	*ft_itoa_base(int value, int base)
 			return (NULL);
 		while (value_size > 2)
 		{
-			res[value_size - 1] = str_base[(abs_value % base)];
+			res[value_size - 1] = str_base[(abs_value % base) + capital];
 			abs_value /= base;
 			value_size--;
 		}
-		res[1] = str_base[abs_value];
+		res[1] = str_base[abs_value + capital];
 		res[0] = '-';
 	}
 	else
@@ -55,11 +55,11 @@ char	*ft_itoa_base(int value, int base)
 			return (NULL);
 		while (value_size > 1)
 		{
-			res[value_size - 1] = str_base[(abs_value % base)];
+			res[value_size - 1] = str_base[(abs_value % base) + capital];
 			abs_value /= base;
 			value_size--;
 		}	
-		res[0] = str_base[abs_value];
+		res[0] = str_base[abs_value + capital];
 	}
 	return (res);
 }
