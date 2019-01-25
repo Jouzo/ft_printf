@@ -6,7 +6,7 @@
 #    By: jdescler <jdescler@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/07 18:10:13 by jdescler          #+#    #+#              #
-#    Updated: 2019/01/25 23:30:42 by jdescler         ###   ########.fr        #
+#    Updated: 2019/01/26 00:19:11 by jdescler         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,8 +28,7 @@ SRCS =	add_option.c\
 		ft_strrev.c\
 		init_parse.c\
 		ft_printf.c\
-		ft_itoa_base2.c\
-
+		ft_itoa_base.c\
 
 OBJS = $(SRCS:.c=.o)
 

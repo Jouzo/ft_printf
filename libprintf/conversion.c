@@ -12,26 +12,21 @@ int     conversion_int(char *buf, int nb, t_args args, int *start)
         len = 0 - args.left;
     }
     else
-        len = ft_itoa_base2(nb, args, buf, start);
+        len = ft_itoa_base(nb, args, buf, start);
     return (len);
 }
 
 int     conversion_float(char *buf, double nb, t_args args, int *start)
 {   
-    char *conv;
+    int len;
     
-    // conv = NULL;
-    conv = ft_itoa_base(nb, 10, args.capital);
-    add_option(buf, args, conv, start);
-    ft_memcpy(buf + *start, conv, ft_strlen(conv));
-    if (args.left)
-        padding_right(buf, conv, args.width, start);
-    return (ft_strlen(conv));
+    len = ft_itoa_base(nb, args, buf, start);
+    return (len);
 }
 
 int     conversion_unsigned(char *buf, unsigned long nb, t_args args, int *start)
 {   
-    return (ft_itoa_base2(nb, args, buf, start));
+    return (ft_utoa_base(nb, args, buf, start));
 }
 
 int     conversion_string(char *buf, char *str, t_args args, int *start)
