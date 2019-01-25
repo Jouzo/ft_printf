@@ -24,11 +24,3 @@ void ft_itoa_base_b(int nb, int base, char **res)
     ft_memcpy(buf_bis, buf, ft_strlen(buf) + 1);
     *res = buf_bis;
 }
-
-int main()
-{
-    char *res;
-    
-    ft_itoa_base_b(247, 10, &res);
-    printf("%s", res);
-}

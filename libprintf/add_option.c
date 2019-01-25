@@ -1,20 +1,31 @@
 #include "ft_printf.h"
 
-void fill_zero(char *buf, t_args args, int size_of_conversion, int *start)
-{
-    if (args.width - size_of_conversion > 0)
-    {
-        ft_memset(buf + *start, '0', args.width - size_of_conversion);
-        *start += args.width - size_of_conversion;
-    }
-}
-
 void padding_left(char *buf, t_args args, int size_of_conversion, int *start)
 {
     if (args.width - size_of_conversion - args.showsign > 0)
     {
         ft_memset(buf + *start, ' ', args.width - size_of_conversion - args.showsign);
         *start += args.width - size_of_conversion - args.showsign;
+    }
+}
+
+void fill_zero(char *buf, t_args args, int size_of_conversion, int *start)
+{
+    if (args.width - size_of_conversion > 0 && args.spec != 'c')
+    {
+        ft_memset(buf + *start, '0', args.width - size_of_conversion);
+        *start += args.width - size_of_conversion;
+    }
+    else if (args.width - size_of_conversion > 0 && args.spec == 'c')
+        padding_left(buf, args, size_of_conversion, start);   
+}
+
+void fill_prec(char *buf, t_args args, int size_of_conversion, int *start)
+{
+    if (args.prec - size_of_conversion > 0 && args.spec != 'f')
+    {
+        ft_memset(buf + *start, '0', args.prec - size_of_conversion);
+        *start += args.prec - size_of_conversion;
     }
 }
 
@@ -52,4 +63,6 @@ void add_option(char *buf, t_args args, char *conv, int *start)
         print_sign(buf, start);
     if (args.zero && args.width && !args.left)
         fill_zero(buf, args, ft_strlen(conv), start);
+    if (args.prec && !args.left)
+        fill_prec(buf, args, ft_strlen(conv), start);
 }

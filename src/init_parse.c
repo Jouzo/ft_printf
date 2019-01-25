@@ -42,7 +42,8 @@ void check_prec(const char *str, int *i, t_args *args)
     res = 0;
     if (str[*i] == '.')
     {
-        while (str[*i + 1] <= '9' && str[*i + 1] >= '0')
+        *i += 1;
+        while (str[*i] <= '9' && str[*i] >= '0')
         {
             res = res * 10 + str[*i] - '0';
             *i += 1;
@@ -95,13 +96,22 @@ void check_type(const char *str, int *i, t_args *args)
     else if (str[*i] == 'i')
         args->spec = 'i';
     else if (str[*i] == 'o')
+    {
         args->spec = 'o';
+        args->base = 8;
+    }
     else if (str[*i] == 'u')
         args->spec = 'u';
     else if (str[*i] == 'x')
+    {
         args->spec = 'x';
+        args->base = 16;
+    }
     else if (str[*i] == 'X')
+    {
         args->spec = 'X';
+        args->base = 16;
+    }
     else if (str[*i] == 'f')
         args->spec = 'f';
     *i += 1;

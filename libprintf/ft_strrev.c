@@ -1,23 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_strrev.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdescler <jdescler@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jdescler <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/09 11:21:25 by jdescler          #+#    #+#             */
-/*   Updated: 2019/01/24 17:48:42 by jdescler         ###   ########.fr       */
+/*   Created: 2018/11/12 13:16:55 by jdescler          #+#    #+#             */
+/*   Updated: 2018/11/12 13:17:03 by jdescler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memcpy(void *dst, const void *src, size_t n)
+char	*ft_strrev(char *s)
 {
-	void *ptr;
+	int i;
+	int len;
+	int tmp;
 
-	ptr = dst;
-	while (n--)
-		*(unsigned char *)dst++ = *(unsigned char *)src++;
-	return (ptr);
+	tmp = 0;
+	i = 0;
+	len = ft_strlen(s);
+	while (i < len)
+	{
+		tmp = s[i];
+		s[i] = s[len - 1];
+		s[len - 1] = tmp;
+		i++;
+		len--;
+	}
+	return (s);
 }
