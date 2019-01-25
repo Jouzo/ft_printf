@@ -1,32 +1,30 @@
 #include <unistd.h>
 #include <stdio.h>
 #include "../includes/ft_printf.h"
-void    ft_itoa_base_b(int nb, int base, char **res)
+
+void ft_itoa(int n, char s[], int base)
 {
-    char *str_base;
     int i;
-    int capitale = 0; // a rajouter dans la struct
+    int sign;
+    char *str_base = "0123456789abcdef";
 
-    str_base = "0123456789abcdef0123456789ABCDEF";
-    char buf[] = "000000000000000000";
-    char *buf_bis;
-
+    if ((sign = n) < 0)
+        n = -n;
     i = 0;
-    while (nb > 0)
+    if (n > 0)
+    s[i++] = str_base[n % base];
+    while ((n /= base) > 0)
     {
-        ft_memset(buf + i, str_base[nb % 10], 1);
-        nb /= 10;
-        i++;
+        s[i++] = str_base[n % base];
     }
-    buf[i] = '\0';
-    ft_memcpy(buf_bis, buf, ft_strlen(buf) + 1);
-    *res = buf_bis;
+    if (sign < 0)
+        s[i++] = '-';
+    s[i] = '\0';
 }
 
 int main()
 {
-    char *res;
-    
-    ft_itoa_base_b(247, 10, &res);
-    printf("%s", res);
+    char str[32];
+    ft_itoa(2147483647, str, 16);
+    printf("%s", str);
 }
