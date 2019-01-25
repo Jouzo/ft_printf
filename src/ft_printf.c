@@ -18,6 +18,7 @@ void init_args(t_args *args)
     args->showsign = 0;       /* + flag.  */
     args->group = 0;          /* ' flag.  */
     args->extra = 0;          /* For special use.  */
+    args->base = 10;          /* base */
     args->wide = 0;           /* Nonzero for wide character streams.  */
     args->i18n = 0;           /* I flag.  */
     args->is_binary128 = 0;   /* Floating-argument is ABI-compatible */
