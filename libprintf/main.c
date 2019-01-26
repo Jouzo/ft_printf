@@ -4,7 +4,7 @@
 
 int     main()
 {
-	ft_printf("%#15X\n", -22);
-   	printf("%#15X", -22);
+	ft_printf("%X\n", -42);
+   	printf("%X\n", -42);
     return (0);
 }
