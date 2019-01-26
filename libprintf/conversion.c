@@ -38,8 +38,12 @@ int conversion_float(char *buf, double nb, t_args args, int *start)
     return (len);
 }
 
-int conversion_unsigned(char *buf, unsigned int nb, t_args args, int *start)
-{
+int     conversion_unsigned(char *buf, unsigned int nb, t_args args, int *start)
+{   
+    if (args.is_short)
+        nb = (unsigned short)nb;
+    if (args.is_char)
+        nb = (unsigned char)nb;
     return (ft_utoa_base(nb, args, buf, start));
 }
 
@@ -55,7 +59,6 @@ int conversion_long_long_unsigned(char *buf, unsigned long long nb, t_args args,
 
 int conversion_string(char *buf, char *str, t_args args, int *start)
 {
-    int len;
 
     len = ft_strlen(str);
     if (args.prec && ft_strlen(str) > (size_t)args.prec)

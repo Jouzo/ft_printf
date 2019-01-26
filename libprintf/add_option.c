@@ -26,10 +26,10 @@ void fill_zero(char *buf, t_args args, int size_of_conversion, int *start)
             args.width -= 1;
         if (args.alt && (args.spec == 'x' || args.spec == 'X'))
             args.width -= 2;
-        if (args.width - size_of_conversion - args.showsign > 0)
+        if (args.width - size_of_conversion - args.showsign - args.minus > 0)
         {
-            ft_memset(buf + *start, '0', args.width - size_of_conversion - args.showsign);
-            *start += args.width - size_of_conversion - args.showsign;
+            ft_memset(buf + *start, '0', args.width - size_of_conversion - args.showsign - args.minus);
+            *start += args.width - size_of_conversion - args.showsign - args.minus;
         }
     }
 }
@@ -57,10 +57,10 @@ void padding_right(char *buf, char *conv, t_args args, int *start)
     int len;
 
     len = ft_strlen(conv);
-    if (args.width - len - args.left > 0)
+    if (args.width - len - args.left + args.zero > 0)
     {
-        ft_memset(buf + *start + len, ' ', args.width - len - args.left);
-        *start += args.width - len - args.left;
+        ft_memset(buf + *start + len, ' ', args.width - len - args.left + args.zero);
+        *start += args.width - len - args.left + args.zero;
     }
 }
 
