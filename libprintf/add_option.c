@@ -2,22 +2,24 @@
 
 void padding_left(char *buf, t_args args, int size_of_conversion, int *start)
 {
-    if (args.width - size_of_conversion - args.showsign > 0)
+    int len;
+
+    len = args.prec > size_of_conversion ? args.prec : size_of_conversion;
+    if (args.width - len - args.showsign > 0)
     {
-        ft_memset(buf + *start, ' ', args.width - size_of_conversion - args.showsign);
-        *start += args.width - size_of_conversion - args.showsign;
+        ft_memset(buf + *start, ' ', args.width - len - args.showsign);
+        *start += args.width - len - args.showsign;
     }
+    
 }
 
 void fill_zero(char *buf, t_args args, int size_of_conversion, int *start)
 {
-    if (args.width - size_of_conversion > 0 && args.spec != 'c')
+    if (args.width - size_of_conversion > 0)
     {
         ft_memset(buf + *start, '0', args.width - size_of_conversion);
         *start += args.width - size_of_conversion;
-    }
-    else if (args.width - size_of_conversion > 0 && args.spec == 'c')
-        padding_left(buf, args, size_of_conversion, start);   
+    }  
 }
 
 void fill_prec(char *buf, t_args args, int size_of_conversion, int *start)
@@ -29,7 +31,7 @@ void fill_prec(char *buf, t_args args, int size_of_conversion, int *start)
     }
 }
 
-void    one_space(char *buf, t_args args, int size_of_conversion, int *start)
+void    one_space(char *buf, int *start)
 {
         ft_memset(buf + *start, ' ', 1);
         *start += 1;
@@ -56,7 +58,7 @@ void print_sign(char *buf, int *start)
 void add_option(char *buf, t_args args, char *conv, int *start)
 {
     if (args.space && !args.width && !args.showsign && conv[0] != '-')
-        one_space(buf, args, ft_strlen(conv), start);
+        one_space(buf, start);
     if ((args.space && args.width && !args.left) || (args.width && !args.zero && !args.left) )
         padding_left(buf, args, ft_strlen(conv), start);
     if (args.showsign && conv[0] != '-')

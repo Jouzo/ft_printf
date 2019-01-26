@@ -69,11 +69,11 @@ void check_taille(const char *str, int *i, t_args *args)
     {
         if (str[*i + 1] == 'l')
         {
-            args->is_long = 1;
+            args->is_long_long = 1;
             *i += 1;
         }
         else
-            args->is_long_long = 1;
+            args->is_long = 1;
         *i += 1;
     }
     else if (str[*i] == 'L')
@@ -85,6 +85,8 @@ void check_taille(const char *str, int *i, t_args *args)
 
 void check_type(const char *str, int *i, t_args *args)
 {
+    if (str[*i] == 'j')
+        args->spec = 'j';
     if (str[*i] == 'c')
         args->spec = 'c';
     else if (str[*i] == 's')
@@ -100,7 +102,7 @@ void check_type(const char *str, int *i, t_args *args)
         args->spec = 'o';
         args->base = 8;
     }
-    else if (str[*i] == 'u')
+    else if (str[*i] == 'u' || str[*i] == 'U')
         args->spec = 'u';
     else if (str[*i] == 'x')
     {
@@ -111,6 +113,7 @@ void check_type(const char *str, int *i, t_args *args)
     {
         args->spec = 'X';
         args->base = 16;
+        args->capital = 16;
     }
     else if (str[*i] == 'f')
         args->spec = 'f';

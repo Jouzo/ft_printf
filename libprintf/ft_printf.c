@@ -19,6 +19,7 @@ void init_args(t_args *args)
     args->group = 0;          /* ' flag.  */
     args->extra = 0;          /* For special use.  */
     args->base = 10;          /* base */
+    args->capital = 0;            /* capital base for X and O */
     args->wide = 0;           /* Nonzero for wide character streams.  */
     args->i18n = 0;           /* I flag.  */
     args->is_binary128 = 0;   /* Floating-argument is ABI-compatible */
@@ -44,10 +45,10 @@ int ft_printf(const char *format, ...)
     i = 0;
     j = 0;
     ft_bzero(buf, 10000);
-    
     va_start(ap, format);
     while (format[i])
     {
+        
         while (format[i] && format[i] != '%')
             buf[j++] = format[i++];
         if (format[i] == '%')
@@ -59,5 +60,5 @@ int ft_printf(const char *format, ...)
     }
     ft_printstr(buf);
     va_end(ap);
-    return (0);
+    return (ft_strlen(buf));
 }
