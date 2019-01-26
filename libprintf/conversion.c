@@ -79,19 +79,23 @@ int conversion_string(char *buf, char *str, t_args args, int *start)
     }
 }
 
-int conversion_void(char *buf, void *ptr, t_args args, int *start)
+int conversion_void(char *buf, unsigned long long ptr, t_args args, int *start)
 {
     //  conv = NULL;
     // printf("value of void ptr dans conversion void %d\n\n", ptr);
-    // ptr = ft_itoa_base(ptr, 16);
     // flag alt pour rajouter 0x au debut de l'adresse
-    args.alt = 1;
+     args.alt = 1;
+     args.base = 16;
+    // void *ptr;
 
-    add_option(buf, args, ptr, start);
-    ft_memcpy(buf + *start, ptr, ft_strlen(ptr));
-    if (args.left)
-        padding_right(buf, ptr, args, start);
-    return (ft_strlen(ptr));
+    // ft_itoa_base(ptr, args, &buf, 16);
+
+    // add_option(buf, args, ptr, start);
+    // ft_memcpy(buf + *start, ptr, ft_strlen(ptr));
+    // if (args.left)
+    //     padding_right(buf, ptr, args, start);
+    // return (ft_strlen(ptr));
+    return (ft_ltoa_base(ptr, args, buf, start));
 }
 
 int conversion(char *buf, va_list ap, t_args args, int *start)
@@ -105,7 +109,7 @@ int conversion(char *buf, va_list ap, t_args args, int *start)
     if (args.spec == 's')
         return conversion_string(buf, va_arg(ap, char *), args, start);
     if (args.spec == 'p')
-        return conversion_void(buf, va_arg(ap, char *), args, start);
+        return conversion_void(buf, va_arg(ap, unsigned long long), args, start);
     if ((args.spec == 'u' || args.spec == 'o' || args.spec == 'x') && !args.is_long && !args.is_long_long)
         return conversion_unsigned(buf, va_arg(ap, unsigned int), args, start);
     if ((args.spec == 'u' || args.spec == 'o' || args.spec == 'x') && args.is_long)

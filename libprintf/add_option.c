@@ -72,7 +72,7 @@ void print_sign(char *buf, int *start)
 
 void add_hash(char *buf, t_args args, int *start)
 {
-    if (args.spec == 'x')
+    if (args.spec == 'x' || args.spec == 'p')
     {
         ft_memset(buf + *start, '0', 1);
         ft_memset(buf + *start + 1, 'x' - args.capital * 2, 1);
@@ -91,7 +91,7 @@ void add_option(char *buf, t_args args, char *conv, int *start)
         one_space(buf, start);
     if ((args.space && args.width && !args.left && !args.zero) || (args.width && !args.zero && !args.left))
         padding_left(buf, args, ft_strlen(conv), start);
-    if (args.alt == 1 && (args.spec == 'x' || args.spec == 'o'))
+    if (args.alt == 1 && (args.spec == 'x' || args.spec == 'o' || args.spec == 'p'))
         add_hash(buf, args, start);
     if (args.showsign && conv[0] != '-')
         print_sign(buf, start);
