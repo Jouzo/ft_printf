@@ -18,7 +18,7 @@ void padding_left(char *buf, t_args args, int size_of_conversion, int *start)
 
 void fill_zero(char *buf, t_args args, int size_of_conversion, int *start)
 {
-    if (args.spec == 's')
+    if (args.spec == 's' || args.spec == '%')
         padding_left(buf, args, size_of_conversion, start);
     else
     {
@@ -36,7 +36,7 @@ void fill_zero(char *buf, t_args args, int size_of_conversion, int *start)
 
 void fill_prec(char *buf, t_args args, int size_of_conversion, int *start)
 {
-    if (args.spec != 's')
+    if (args.spec != 's' && args.spec != '%')
     {
         if (args.prec - size_of_conversion > 0 && args.spec != 'f')
         {
