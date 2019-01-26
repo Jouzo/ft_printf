@@ -39,13 +39,13 @@ int ft_printf(const char *format, ...)
 {
     va_list ap;
     t_args args;
-    char buf[10000];
+    char buf[BUFF_SIZE];
     int i;
     int j;
 
     i = 0;
     j = 0;
-    ft_bzero(buf, 10000);
+    ft_bzero(buf, BUFF_SIZE);
     va_start(ap, format);
     while (format[i])
     {

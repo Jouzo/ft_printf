@@ -59,6 +59,7 @@ int conversion_long_long_unsigned(char *buf, unsigned long long nb, t_args args,
 
 int conversion_string(char *buf, char *str, t_args args, int *start)
 {
+    int len;
 
     len = ft_strlen(str);
     if (args.prec && ft_strlen(str) > (size_t)args.prec)
@@ -105,11 +106,11 @@ int conversion(char *buf, va_list ap, t_args args, int *start)
         return conversion_string(buf, va_arg(ap, char *), args, start);
     if (args.spec == 'p')
         return conversion_void(buf, va_arg(ap, char *), args, start);
-    if ((args.spec == 'u' || args.spec == 'o' || args.spec == 'x' || args.spec == 'X') && !args.is_long && !args.is_long_long)
+    if ((args.spec == 'u' || args.spec == 'o' || args.spec == 'x') && !args.is_long && !args.is_long_long)
         return conversion_unsigned(buf, va_arg(ap, unsigned int), args, start);
-    if ((args.spec == 'u' || args.spec == 'o' || args.spec == 'x' || args.spec == 'X') && args.is_long)
+    if ((args.spec == 'u' || args.spec == 'o' || args.spec == 'x') && args.is_long)
         return conversion_long_unsigned(buf, va_arg(ap, unsigned long int), args, start);
-    if ((args.spec == 'u' || args.spec == 'o' || args.spec == 'x' || args.spec == 'X') && args.is_long_long)
+    if ((args.spec == 'u' || args.spec == 'o' || args.spec == 'x') && args.is_long_long)
         return conversion_long_long_unsigned(buf, va_arg(ap, unsigned long long int), args, start);
     if (args.spec == 'f')
         return conversion_float(buf, va_arg(ap, unsigned long), args, start);

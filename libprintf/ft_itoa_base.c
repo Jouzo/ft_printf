@@ -2,6 +2,7 @@
 
 int ft_itoa_base(int n, t_args args, char *buf, int *start)
 {
+    
     int i;
     char s[31];
     char *str_base = "0123456789abcdef0123456789ABCDEF";
