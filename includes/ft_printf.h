@@ -87,8 +87,8 @@ int     ft_itoa_base(int n, t_args args, char *buf, int *start);
 int     ft_ltoa_base(long n, t_args args, char *buf, int *start);
 int     ft_lltoa_base(long long n, t_args args, char *buf, int *start);
 
-int ft_utoa_base(unsigned int n, t_args args, char *buf, int *start);
-int ft_ultoa_base(unsigned long int n, t_args args, char *buf, int *start);
-int ft_ulltoa_base(unsigned long long int n, t_args args, char *buf, int *start);
+int     ft_utoa_base(unsigned int n, t_args args, char *buf, int *start);
+int     ft_ultoa_base(unsigned long int n, t_args args, char *buf, int *start);
+int     ft_ulltoa_base(unsigned long long int n, t_args args, char *buf, int *start);
 
 #endif
