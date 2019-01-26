@@ -30,6 +30,7 @@ typedef struct      s_args
     unsigned int    space : 1;              /* Space flag.  */
     unsigned int    left : 1;               /* - flag.  */
     unsigned int    showsign : 1;           /* + flag.  */
+    unsigned int    minus : 1;              /* if param is negatif  */
     unsigned int    zero : 1;                /* 0 flag.  */
     unsigned int    group : 1;              /* ' flag.  */
     unsigned int    extra : 1;              /* For special use.  */

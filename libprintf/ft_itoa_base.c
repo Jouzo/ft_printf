@@ -13,8 +13,11 @@ int ft_itoa_base(int n, t_args args, char *buf, int *start)
     s[i++] = str_base[(abs % args.base) + args.capital];
     while ((abs /= args.base) > 0)
         s[i++] = str_base[(abs % args.base) + args.capital];
-    if (n < 0)
-        s[i++] = '-';
+    if (n < 0){
+        ft_memset(buf + *start, '-', 1);
+        *start += 1;
+        args.minus = 1;
+    }
     s[i] = '\0';
     ft_strrev(s);
     len = ft_strlen(s);
@@ -38,8 +41,11 @@ int ft_ltoa_base(long n, t_args args, char *buf, int *start)
     s[i++] = str_base[(abs % args.base) + args.capital];
     while ((abs /= args.base) > 0)
         s[i++] = str_base[(abs % args.base) + args.capital];
-    if (n < 0)
-        s[i++] = '-';
+    if (n < 0){
+        ft_memset(buf + *start, '-', 1);
+        *start += 1;
+        args.minus = 1;
+    }
     s[i] = '\0';
     ft_strrev(s);
     len = ft_strlen(s);
@@ -63,8 +69,11 @@ int ft_lltoa_base(long long n, t_args args, char *buf, int *start)
     s[i++] = str_base[(abs % args.base) + args.capital];
     while ((abs /= args.base) > 0)
         s[i++] = str_base[(abs % args.base) + args.capital];
-    if (n < 0)
-        s[i++] = '-';
+    if (n < 0){
+        ft_memset(buf + *start, '-', 1);
+        *start += 1;
+        args.minus = 1;
+    }
     s[i] = '\0';
     ft_strrev(s);
     len = ft_strlen(s);

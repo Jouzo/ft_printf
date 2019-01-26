@@ -16,6 +16,7 @@ void init_args(t_args *args)
     args->space = 0;          /* Space flag.  */
     args->left = 0;           /* - flag.  */
     args->showsign = 0;       /* + flag.  */
+    args->minus = 0;              /* if param is negatif  */
     args->group = 0;          /* ' flag.  */
     args->extra = 0;          /* For special use.  */
     args->base = 10;          /* base */
@@ -59,7 +60,6 @@ int ft_printf(const char *format, ...)
         }
     }
     ft_printstr(buf);
-    // ft_putchar('\n');
     va_end(ap);
     return (ft_strlen(buf));
 }
