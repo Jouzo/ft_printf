@@ -117,6 +117,8 @@ void check_type(const char *str, int *i, t_args *args)
     }
     else if (str[*i] == 'f')
         args->spec = 'f';
+    else if (str[*i] == '%')
+        args->spec = '%';
     *i += 1;
 }
 

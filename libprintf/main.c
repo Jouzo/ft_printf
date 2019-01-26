@@ -4,7 +4,9 @@
 
 int     main()
 {
-	ft_printf("je mappelle %.2s tototo\n", "dddd");
-   	printf("je mappelle %.2s tototo\n", "dddd");
+	char *a = "dede";
+
+	ft_printf("je mappelle %.5% tototo\n");
+   	printf("je mappelle %.5% tototo\n");
     return (0);
 }
