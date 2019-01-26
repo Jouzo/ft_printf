@@ -59,6 +59,7 @@ int ft_printf(const char *format, ...)
         }
     }
     ft_printstr(buf);
+    // ft_putchar('\n');
     va_end(ap);
     return (ft_strlen(buf));
 }

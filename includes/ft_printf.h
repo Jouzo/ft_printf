@@ -6,6 +6,8 @@
 #include <math.h>
 #include <stdarg.h>
 #include <unistd.h>
+#include <limits.h>
+
 /*
 ** Macros
 */
@@ -65,16 +67,16 @@ char	*ft_strrev(char *s);
 */
 
 int     assign(const char *str, t_args *args);
-int init_parse(const char *str, t_args *args);
+int     init_parse(const char *str, t_args *args);
 
-int ft_printf(const char *format, ...);
+int     ft_printf(const char *format, ...);
 
 /*
 **  options functions
 */
 
 void    add_option(char *buf, t_args args, char *conv, int *start);
-void    padding_right(char *buf, char *conv, int size_of_conversion, int *start);
+void    padding_right(char *buf, char *conv, t_args args, int *start);
 
 /*
 **  Conversion functions

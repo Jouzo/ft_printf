@@ -12,7 +12,7 @@ int     conversion_int(char *buf, int nb, t_args args, int *start)
     {
         ft_itoc(nb, &buf, start, args);
         if (args.left)
-            padding_right(buf, "", args.width, start);
+            padding_right(buf, "", args, start);
         len = 0 - args.left;
     }
     else
@@ -57,30 +57,35 @@ int     conversion_string(char *buf, char *str, t_args args, int *start)
 {
     int len;
 
+    if (!str)
+    {
+        ft_memcpy(buf + *start, "(null)", 6);
+        return (6);
+    }
+    else
+    {
     add_option(buf, args, str, start);
     len = ft_strlen(str) < (size_t)args.prec ? ft_strlen(str) : args.prec;
-    ft_memcpy(buf + *start, str, 2);
+    ft_memcpy(buf + *start, str, len);
     if (args.left)
-        padding_right(buf, str, args.width, start);
-    return (ft_strlen(str));
+        padding_right(buf, str, args, start);
+    return (len);
+    }
 }
 
 int     conversion_void(char *buf, void *ptr, t_args args, int *start)
 {
-    char *conv;
-
     //  conv = NULL;
    printf("value of void ptr dans conversion void %p\n\n", ptr);
     // ptr = ft_itoa_base(ptr, 16);
-    conv= NULL;
     // flag alt pour rajouter 0x au debut de l'adresse
     args.alt = 1;
-    ft_memcpy(conv, ptr, ft_strlen(ptr));
-    add_option(buf, args, conv, start);
-    ft_memcpy(buf + *start, conv, ft_strlen(conv));
+
+    add_option(buf, args, ptr, start);
+    ft_memcpy(buf + *start, ptr, ft_strlen(ptr));
     if (args.left)
-        padding_right(buf, conv, args.width, start);
-    return (ft_strlen(conv));
+        padding_right(buf, ptr, args, start);
+    return (ft_strlen(ptr));
 }
 
 int     conversion(char *buf, va_list ap, t_args args, int *start)

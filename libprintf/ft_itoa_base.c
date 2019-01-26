@@ -21,7 +21,7 @@ int ft_itoa_base(int n, t_args args, char *buf, int *start)
     add_option(buf, args, s, start);
     ft_memcpy(buf + *start, s, ft_strlen(s));
     if (args.left)
-        padding_right(buf, s, args.width, start);
+        padding_right(buf, s, args, start);
     return (len);
 }
 
@@ -46,7 +46,7 @@ int ft_ltoa_base(long n, t_args args, char *buf, int *start)
     add_option(buf, args, s, start);
     ft_memcpy(buf + *start, s, ft_strlen(s));
     if (args.left)
-        padding_right(buf, s, args.width, start);
+        padding_right(buf, s, args, start);
     return (len);
 }
 
@@ -71,7 +71,7 @@ int ft_lltoa_base(long long n, t_args args, char *buf, int *start)
     add_option(buf, args, s, start);
     ft_memcpy(buf + *start, s, ft_strlen(s));
     if (args.left)
-        padding_right(buf, s, args.width, start);
+        padding_right(buf, s, args, start);
     return (len);
 }
 
@@ -93,7 +93,7 @@ int ft_utoa_base(unsigned int n, t_args args, char *buf, int *start)
     add_option(buf, args, s, start);
     ft_memcpy(buf + *start, s, ft_strlen(s));
     if (args.left)
-        padding_right(buf, s, args.width, start);
+        padding_right(buf, s, args, start);
     return (len);
 }
 
@@ -114,7 +114,7 @@ int ft_ultoa_base(unsigned long int n, t_args args, char *buf, int *start)
     add_option(buf, args, s, start);
     ft_memcpy(buf + *start, s, ft_strlen(s));
     if (args.left)
-        padding_right(buf, s, args.width, start);
+        padding_right(buf, s, args, start);
     return (len);
 }
 
@@ -135,6 +135,6 @@ int ft_ulltoa_base(unsigned long long int n, t_args args, char *buf, int *start)
     add_option(buf, args, s, start);
     ft_memcpy(buf + *start, s, ft_strlen(s));
     if (args.left)
-        padding_right(buf, s, args.width, start);
+        padding_right(buf, s, args, start);
     return (len);
 }
