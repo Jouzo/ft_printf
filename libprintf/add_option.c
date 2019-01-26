@@ -2,22 +2,24 @@
 
 void padding_left(char *buf, t_args args, int size_of_conversion, int *start)
 {
-    if (args.width - size_of_conversion - args.showsign > 0)
+    int len;
+
+    len = args.prec > size_of_conversion ? args.prec : size_of_conversion;
+    if (args.width - len - args.showsign > 0)
     {
-        ft_memset(buf + *start, ' ', args.width - size_of_conversion - args.showsign);
-        *start += args.width - size_of_conversion - args.showsign;
+        ft_memset(buf + *start, ' ', args.width - len - args.showsign);
+        *start += args.width - len - args.showsign;
     }
+    
 }
 
 void fill_zero(char *buf, t_args args, int size_of_conversion, int *start)
 {
-    if (args.width - size_of_conversion > 0 && args.spec != 'c')
+    if (args.width - size_of_conversion > 0)
     {
         ft_memset(buf + *start, '0', args.width - size_of_conversion);
         *start += args.width - size_of_conversion;
-    }
-    else if (args.width - size_of_conversion > 0 && args.spec == 'c')
-        padding_left(buf, args, size_of_conversion, start);   
+    }  
 }
 
 void fill_prec(char *buf, t_args args, int size_of_conversion, int *start)

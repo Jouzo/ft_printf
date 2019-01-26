@@ -60,5 +60,5 @@ int ft_printf(const char *format, ...)
     }
     ft_printstr(buf);
     va_end(ap);
-    return (0);
+    return (ft_strlen(buf));
 }
