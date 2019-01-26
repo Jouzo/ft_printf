@@ -76,7 +76,7 @@ int     conversion_string(char *buf, char *str, t_args args, int *start)
 int     conversion_void(char *buf, void *ptr, t_args args, int *start)
 {
     //  conv = NULL;
-   printf("value of void ptr dans conversion void %p\n\n", ptr);
+    printf("value of void ptr dans conversion void %d\n\n", ptr);
     // ptr = ft_itoa_base(ptr, 16);
     // flag alt pour rajouter 0x au debut de l'adresse
     args.alt = 1;
