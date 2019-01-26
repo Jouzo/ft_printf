@@ -97,7 +97,7 @@ void check_type(const char *str, int *i, t_args *args)
         args->spec = 'd';
     else if (str[*i] == 'i')
         args->spec = 'i';
-    else if (str[*i] == 'o')
+    else if (str[*i] == 'o' || str[*i] == 'O')
     {
         args->spec = 'o';
         args->base = 8;
