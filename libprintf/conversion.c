@@ -57,6 +57,9 @@ int     conversion_string(char *buf, char *str, t_args args, int *start)
 {
     int len;
 
+    len = ft_strlen(str);
+    if (args.prec && ft_strlen(str) > (size_t)args.prec)
+        len = args.prec;
     if (!str)
     {
         ft_memcpy(buf + *start, "(null)", 6);
@@ -65,7 +68,6 @@ int     conversion_string(char *buf, char *str, t_args args, int *start)
     else
     {
     add_option(buf, args, str, start);
-    len = ft_strlen(str) < (size_t)args.prec ? ft_strlen(str) : args.prec;
     ft_memcpy(buf + *start, str, len);
     if (args.left)
         padding_right(buf, str, args, start);
@@ -76,7 +78,7 @@ int     conversion_string(char *buf, char *str, t_args args, int *start)
 int     conversion_void(char *buf, void *ptr, t_args args, int *start)
 {
     //  conv = NULL;
-    printf("value of void ptr dans conversion void %d\n\n", ptr);
+    // printf("value of void ptr dans conversion void %d\n\n", ptr);
     // ptr = ft_itoa_base(ptr, 16);
     // flag alt pour rajouter 0x au debut de l'adresse
     args.alt = 1;
