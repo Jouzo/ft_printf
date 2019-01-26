@@ -4,7 +4,8 @@
 
 int     main()
 {
-	ft_printf("%5p\n", "42");
-   	printf("%5p\n", "42");
+	ft_printf("% o|%+o", 42, 42);
+	ft_putchar('\n');
+   	printf("% o|%+o", 42, 42);
     return (0);
 }

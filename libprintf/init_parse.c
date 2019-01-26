@@ -93,17 +93,26 @@ void check_type(const char *str, int *i, t_args *args)
         args->spec = 's';
     else if (str[*i] == 'p')
         args->spec = 'p';
-    else if (str[*i] == 'd' || str[*i] == 'D')
+    else if (str[*i] == 'd' || str[*i] == 'i')
         args->spec = 'd';
-    else if (str[*i] == 'i')
-        args->spec = 'i';
+    else if (str[*i] == 'D' || str[*i] == 'I')
+    {
+        args->spec = 'd';
+        args->is_long = 1;
+    }
     else if (str[*i] == 'o' || str[*i] == 'O')
     {
+        if (str[*i] == 'O')
+            args->is_long = 1;
         args->spec = 'o';
         args->base = 8;
     }
     else if (str[*i] == 'u' || str[*i] == 'U')
+    {
+    if (str[*i] == 'U')
+            args->is_long = 1;
         args->spec = 'u';
+    }
     else if (str[*i] == 'x')
     {
         args->spec = 'x';
