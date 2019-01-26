@@ -87,17 +87,17 @@ void check_type(const char *str, int *i, t_args *args)
 {
     if (str[*i] == 'j')
         args->spec = 'j';
-    if (str[*i] == 'c')
+    if (str[*i] == 'c' || str[*i] == 'C')
         args->spec = 'c';
     else if (str[*i] == 's')
         args->spec = 's';
     else if (str[*i] == 'p')
         args->spec = 'p';
-    else if (str[*i] == 'd')
+    else if (str[*i] == 'd' || str[*i] == 'D')
         args->spec = 'd';
     else if (str[*i] == 'i')
         args->spec = 'i';
-    else if (str[*i] == 'o')
+    else if (str[*i] == 'o' || str[*i] == 'O')
     {
         args->spec = 'o';
         args->base = 8;
