@@ -55,8 +55,11 @@ int     conversion_long_long_unsigned(char *buf, unsigned long long nb, t_args a
 
 int     conversion_string(char *buf, char *str, t_args args, int *start)
 {
+    int len;
+
     add_option(buf, args, str, start);
-    ft_memcpy(buf + *start, str, ft_strlen(str));
+    len = ft_strlen(str) < (size_t)args.prec ? ft_strlen(str) : args.prec;
+    ft_memcpy(buf + *start, str, 2);
     if (args.left)
         padding_right(buf, str, args.width, start);
     return (ft_strlen(str));

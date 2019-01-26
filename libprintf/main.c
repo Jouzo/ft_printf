@@ -4,7 +4,7 @@
 
 int     main()
 {
-	ft_printf("%jd\n", -429496729522);
-   	printf("%jd", -429496729522);
+	ft_printf("je msmmsm %.2s fawfwefe\n", "dede");
+   	printf("je msmmsm %.2s fawfwefe\n", "dede");
     return (0);
 }
