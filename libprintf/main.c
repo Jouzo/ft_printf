@@ -4,8 +4,7 @@
 
 int     main()
 {
-	ft_printf("%zd", LLONG_MAX);
-	ft_putchar('\n');
-   	printf("%zd", LLONG_MAX);
+	ft_printf("je mappelle %08d\n", 123);
+   	printf("je mappelle %08d", 123);
     return (0);
 }
