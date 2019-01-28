@@ -20,7 +20,6 @@ int ft_itoa_base(int n, t_args args, char *buf, int *start)
     char s[31];
     char *str_base = "0123456789abcdef0123456789ABCDEF";
     unsigned int abs;
-//    int len;
 
     abs = n < 0 ? -n : n;
     i = 0;

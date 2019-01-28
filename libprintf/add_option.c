@@ -5,6 +5,8 @@ void padding_left(char *buf, t_args args, int size_of_conversion, int *start)
     int len;
 
     len = args.prec > size_of_conversion ? args.prec : size_of_conversion;
+    if (args.minus)
+        len++;
     if (args.alt && args.spec == 'o')
         args.width -= 1;
     if (args.alt && args.spec == 'x')
@@ -18,18 +20,23 @@ void padding_left(char *buf, t_args args, int size_of_conversion, int *start)
 
 void fill_zero(char *buf, t_args args, int size_of_conversion, int *start)
 {
-    if (args.spec == 's' || args.spec == '%' || ((args.width > args.prec) && (args.spec == 'x' || args.spec =='o')))
+    int min;
+
+    min = 0;
+    if (args.spec == 's' || args.spec == '%' || ((args.width > args.prec) && (args.spec == 'x' || args.spec == 'o')))
         padding_left(buf, args, size_of_conversion, start);
     else
     {
+        if ((args.showsign != args.minus) || (args.showsign && args.minus))
+            min = 1;
         if (args.alt && args.spec == 'o')
             args.width -= 1;
         if (args.alt && args.spec == 'x')
             args.width -= 2;
-        if (args.width - size_of_conversion - args.showsign - args.minus > 0)
+        if (args.width - size_of_conversion - min > 0)
         {
-            ft_memset(buf + *start, '0', args.width - size_of_conversion - args.showsign - args.minus);
-            *start += args.width - size_of_conversion - args.showsign - args.minus;
+            ft_memset(buf + *start, '0', args.width - size_of_conversion - min);
+            *start += args.width - size_of_conversion - min;
         }
     }
 }
@@ -70,6 +77,12 @@ void print_sign(char *buf, int *start)
     *start += 1;
 }
 
+void print_minus(char *buf, int *start)
+{
+    ft_memset(buf + *start, '-', 1);
+    *start += 1;
+}
+
 void add_hash(char *buf, t_args args, int *start)
 {
     if (args.spec == 'x' || args.spec == 'p')
@@ -93,7 +106,9 @@ void add_option(char *buf, t_args args, char *conv, int *start)
         padding_left(buf, args, ft_strlen(conv), start);
     if (args.alt == 1 && (args.spec == 'x' || args.spec == 'o' || args.spec == 'p'))
         add_hash(buf, args, start);
-    if (args.showsign && conv[0] != '-')
+    if (args.minus)
+        print_minus(buf, start);
+    if (args.showsign && !args.minus)
         print_sign(buf, start);
     if (args.zero && args.width && !args.left)
         fill_zero(buf, args, ft_strlen(conv), start);
