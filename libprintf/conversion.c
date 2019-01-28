@@ -38,8 +38,8 @@ int conversion_float(char *buf, double nb, t_args args, int *start)
     return (len);
 }
 
-int     conversion_unsigned(char *buf, unsigned int nb, t_args args, int *start)
-{   
+int conversion_unsigned(char *buf, unsigned int nb, t_args args, int *start)
+{
     if (args.is_short)
         nb = (unsigned short)nb;
     if (args.is_char)
@@ -81,20 +81,9 @@ int conversion_string(char *buf, char *str, t_args args, int *start)
 
 int conversion_void(char *buf, unsigned long long ptr, t_args args, int *start)
 {
-    //  conv = NULL;
-    // printf("value of void ptr dans conversion void %d\n\n", ptr);
-    // flag alt pour rajouter 0x au debut de l'adresse
-     args.alt = 1;
-     args.base = 16;
-    // void *ptr;
-
-    // ft_itoa_base(ptr, args, &buf, 16);
-
-    // add_option(buf, args, ptr, start);
-    // ft_memcpy(buf + *start, ptr, ft_strlen(ptr));
-    // if (args.left)
-    //     padding_right(buf, ptr, args, start);
-    // return (ft_strlen(ptr));
+    args.alt = 1;
+    args.base = 16;
+ 
     return (ft_ltoa_base(ptr, args, buf, start));
 }
 

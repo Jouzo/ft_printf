@@ -28,6 +28,9 @@ int main(int argc, char** argv) {
     printf("DBL_MAX     :   %g\n", (double) DBL_MAX);
     printf("DBL_MIN     :   %g\n", (double) DBL_MIN);
     printf("-DBL_MAX     :  %g\n", (double) -DBL_MAX);
-    printf("j'ai %lf enfants e  \n", -1.79769e+308);
+    printf("LONG_DBL_MAX     :   %g\n", (long double) DBL_MAX);
+    printf( "size of %i", sizeof(double));
+
+    printf("long float %Lf", 1.79769e+308);
     return (EXIT_SUCCESS);
 }

@@ -4,8 +4,8 @@
 
 int     main()
 {
-	ft_printf("{%010d}", 42);
+	ft_printf("%zd", LLONG_MAX);
 	ft_putchar('\n');
-   	printf("{%010d}", 42);
+   	printf("%zd", LLONG_MAX);
     return (0);
 }

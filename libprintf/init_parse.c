@@ -81,6 +81,11 @@ void check_taille(const char *str, int *i, t_args *args)
         args->is_long_double = 1;
         *i += 1;
     }
+    if (str[*i] == 'z')
+    {
+        args->is_sizet = 1;
+        *i += 1;
+    }
 }
 
 void check_type(const char *str, int *i, t_args *args)
@@ -109,7 +114,7 @@ void check_type(const char *str, int *i, t_args *args)
     }
     else if (str[*i] == 'u' || str[*i] == 'U')
     {
-    if (str[*i] == 'U')
+        if (str[*i] == 'U')
             args->is_long = 1;
         args->spec = 'u';
     }

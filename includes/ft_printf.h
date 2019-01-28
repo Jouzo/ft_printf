@@ -12,6 +12,8 @@
 ** Macros
 */
 
+# define BUFF_SIZE 256
+
 /*
 ** Structures
 */
@@ -26,6 +28,7 @@ typedef struct      s_args
     unsigned int    is_long : 1;            /* l flag.  */
     unsigned int    is_long_long : 1;       /* ll flag.  */
     unsigned int    is_char : 1;            /* hh flag.  */
+    unsigned int    is_sizet : 1;           /* z flag */
     unsigned int    alt : 1;                /* # flag.  */
     unsigned int    space : 1;              /* Space flag.  */
     unsigned int    left : 1;               /* - flag.  */
@@ -78,6 +81,7 @@ int     ft_printf(const char *format, ...);
 
 void    add_option(char *buf, t_args args, char *conv, int *start);
 void    padding_right(char *buf, char *conv, t_args args, int *start);
+void    padding_left(char *buf, t_args args, int size_of_conversion, int *start);
 
 /*
 **  Conversion functions
