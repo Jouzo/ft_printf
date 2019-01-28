@@ -113,16 +113,12 @@ void check_type(const char *str, int *i, t_args *args)
             args->is_long = 1;
         args->spec = 'u';
     }
-    else if (str[*i] == 'x')
+    else if (str[*i] == 'x' || str[*i] == 'X')
     {
+        if (str[*i] == 'X')
+            args->capital = 16;
         args->spec = 'x';
         args->base = 16;
-    }
-    else if (str[*i] == 'X')
-    {
-        args->spec = 'X';
-        args->base = 16;
-        args->capital = 16;
     }
     else if (str[*i] == 'f')
         args->spec = 'f';

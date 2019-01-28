@@ -5,9 +5,9 @@ void padding_left(char *buf, t_args args, int size_of_conversion, int *start)
     int len;
 
     len = args.prec > size_of_conversion ? args.prec : size_of_conversion;
-    if (args.alt && (args.spec == 'o' || args.spec == 'O'))
+    if (args.alt && args.spec == 'o')
         args.width -= 1;
-    if (args.alt && (args.spec == 'x' || args.spec == 'X'))
+    if (args.alt && args.spec == 'x')
         args.width -= 2;
     if (args.width - len - args.showsign > 0)
     {
@@ -18,13 +18,13 @@ void padding_left(char *buf, t_args args, int size_of_conversion, int *start)
 
 void fill_zero(char *buf, t_args args, int size_of_conversion, int *start)
 {
-    if (args.spec == 's' || args.spec == '%')
+    if (args.spec == 's' || args.spec == '%' || ((args.width > args.prec) && (args.spec == 'x' || args.spec =='o')))
         padding_left(buf, args, size_of_conversion, start);
     else
     {
-        if (args.alt && (args.spec == 'o' || args.spec == 'O'))
+        if (args.alt && args.spec == 'o')
             args.width -= 1;
-        if (args.alt && (args.spec == 'x' || args.spec == 'X'))
+        if (args.alt && args.spec == 'x')
             args.width -= 2;
         if (args.width - size_of_conversion - args.showsign - args.minus > 0)
         {
@@ -72,13 +72,13 @@ void print_sign(char *buf, int *start)
 
 void add_hash(char *buf, t_args args, int *start)
 {
-    if (args.spec == 'x' || args.spec == 'X' || args.spec == 'p')
+    if (args.spec == 'x' || args.spec == 'p')
     {
         ft_memset(buf + *start, '0', 1);
         ft_memset(buf + *start + 1, 'x' - args.capital * 2, 1);
         *start += 2;
     }
-    else if (args.spec == 'o' || args.spec == 'O')
+    else if (args.spec == 'o')
     {
         ft_memset(buf + *start, '0', 1);
         *start += 1;
@@ -91,7 +91,7 @@ void add_option(char *buf, t_args args, char *conv, int *start)
         one_space(buf, start);
     if ((args.space && args.width && !args.left && !args.zero) || (args.width && !args.zero && !args.left))
         padding_left(buf, args, ft_strlen(conv), start);
-    if (args.alt == 1 && (args.spec == 'x' || args.spec == 'X' || args.spec == 'o' || args.spec == 'p'))
+    if (args.alt == 1 && (args.spec == 'x' || args.spec == 'o' || args.spec == 'p'))
         add_hash(buf, args, start);
     if (args.showsign && conv[0] != '-')
         print_sign(buf, start);
