@@ -4,7 +4,8 @@
 
 int     main()
 {
-	ft_printf("je mappelle %08d\n", 123);
-   	printf("je mappelle %08d", 123);
+	ft_printf("%O", 0);
+	ft_putchar('\n');
+   	printf("%O", 0);
     return (0);
 }

@@ -23,7 +23,7 @@ void fill_zero(char *buf, t_args args, int size_of_conversion, int *start)
     int min;
 
     min = 0;
-    if (args.spec == 's' || args.spec == '%' || ((args.width > args.prec) && (args.spec == 'x' || args.spec == 'o')))
+    if (args.spec == 's' || args.spec == '%') //|| ((args.width > args.prec) && (args.spec == 'x' || args.spec == 'o')))
         padding_left(buf, args, size_of_conversion, start);
     else
     {
@@ -100,7 +100,7 @@ void add_hash(char *buf, t_args args, int *start)
 
 void add_option(char *buf, t_args args, char *conv, int *start)
 {
-    if (args.space && !args.width && !args.showsign && conv[0] != '-')
+    if (args.space && !args.width && !args.showsign && conv[0] != '-' && !args.minus && args.spec != 'o' && args.spec != 'x')
         one_space(buf, start);
     if ((args.space && args.width && !args.left && !args.zero) || (args.width && !args.zero && !args.left))
         padding_left(buf, args, ft_strlen(conv), start);
@@ -108,7 +108,7 @@ void add_option(char *buf, t_args args, char *conv, int *start)
         add_hash(buf, args, start);
     if (args.minus)
         print_minus(buf, start);
-    if (args.showsign && !args.minus)
+    if (args.showsign && !args.minus && args.spec != 'o' && args.spec != 'x')
         print_sign(buf, start);
     if (args.zero && args.width && !args.left)
         fill_zero(buf, args, ft_strlen(conv), start);
