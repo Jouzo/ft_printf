@@ -1,12 +1,25 @@
 #include "../includes/ft_printf.h"
 
+int add_toa(char *s, char *buf, int *start, t_args args)
+{
+    int len;
+
+    len = ft_strlen(s);
+    ft_strrev(s);
+    add_option(buf, args, s, start);
+    ft_memcpy(buf + *start, s, ft_strlen(s));
+    if (args.left)
+        padding_right(buf, s, args, start);
+    return (len);
+}
+
 int ft_itoa_base(int n, t_args args, char *buf, int *start)
 {
     int i;
     char s[31];
     char *str_base = "0123456789abcdef0123456789ABCDEF";
     unsigned int abs;
-    int len;
+//    int len;
 
     abs = n < 0 ? -n : n;
     i = 0;
@@ -19,13 +32,7 @@ int ft_itoa_base(int n, t_args args, char *buf, int *start)
         args.minus = 1;
     }
     s[i] = '\0';
-    ft_strrev(s);
-    len = ft_strlen(s);
-    add_option(buf, args, s, start);
-    ft_memcpy(buf + *start, s, ft_strlen(s));
-    if (args.left)
-        padding_right(buf, s, args, start);
-    return (len);
+    return (add_toa(s, buf, start, args));
 }
 
 int ft_ltoa_base(long n, t_args args, char *buf, int *start)

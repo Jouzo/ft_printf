@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jdescler <jdescler@student.42.fr>          +#+  +:+       +#+         #
+#    By: mmovahhe <mmovahhe@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/07 18:10:13 by jdescler          #+#    #+#              #
-#    Updated: 2019/01/26 00:21:56 by jdescler         ###   ########.fr        #
+#    Updated: 2019/01/28 18:07:50 by mmovahhe         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ SRCS =	add_option.c\
 		ft_strrev.c\
 		init_parse.c\
 		ft_printf.c\
-		ft_itoa_base.c\
+		ft_all_toa_base.c\
 
 OBJS = $(SRCS:.c=.o)
 

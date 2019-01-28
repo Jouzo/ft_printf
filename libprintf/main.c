@@ -4,9 +4,7 @@
 
 int     main()
 {
-	char *a = "dede";
-
-	ft_printf("je mappelle %p\n", a);
-   	printf("je mappelle %p", a);
+	ft_printf("je mappelle %d\n", 123);
+   	printf("je mappelle %d", 123);
     return (0);
 }
