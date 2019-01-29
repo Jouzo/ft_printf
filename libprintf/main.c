@@ -7,9 +7,9 @@ int     main()
 	int i, j;
 
 	i = 0;
-	i = ft_printf("{%s}", 0);
+	i = ft_printf("%");
 	printf("\n");
-   	j = printf("{%s}", 0);
+   	j = printf("%");
 	printf("\n\nreturn value : %i %i\n", i, j);
     return (0);
 }

@@ -89,6 +89,9 @@ int conversion_void(char *buf, unsigned long long ptr, t_args args, int *start)
 
 int conversion(char *buf, va_list ap, t_args args, int *start)
 {
+    if (args.is_sizet)
+        if (args.spec == 'd')
+            args.spec = 'u';
     if (args.spec == 'c' || (args.spec == 'd' && !args.is_long && !args.is_long_long) || (args.spec == 'i' && !args.is_long && !args.is_long_long))
         return conversion_int(buf, va_arg(ap, int), args, start);
     if ((args.spec == 'd' && args.is_long) || (args.spec == 'i' && args.is_long))

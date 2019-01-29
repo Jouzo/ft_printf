@@ -47,7 +47,8 @@ int ft_printf(const char *format, ...)
     j = 0;
     ft_bzero(buf, BUFF_SIZE);
     va_start(ap, format);
-
+    if (format[0] == '%' && ft_strlen(format) == 1)
+        return (0);
     while (format[i])
     {
 

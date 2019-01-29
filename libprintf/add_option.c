@@ -4,12 +4,15 @@ void padding_left(char *buf, t_args args, int size_of_conversion, int *start)
 {
     int len;
 
-    len = args.prec > size_of_conversion ? args.prec : size_of_conversion;
+    if (args.spec != 's')
+        len = args.prec > size_of_conversion ? args.prec : size_of_conversion;
+    else
+        len = args.prec < size_of_conversion ? args.prec : size_of_conversion;
     if (args.minus)
         len++;
     if (args.alt && args.spec == 'o')
         args.width -= 1;
-    if (args.alt && args.spec == 'x')
+    if (args.alt && (args.spec == 'x' || args.spec == 'p'))
         args.width -= 2;
     if (args.width - len - args.showsign - args.space > 0)
     {
@@ -23,7 +26,7 @@ void fill_zero(char *buf, t_args args, int size_of_conversion, int *start)
     int min;
 
     min = 0;
-    if (args.spec == 's' || args.spec == '%') //|| ((args.width > args.prec) && (args.spec == 'x' || args.spec == 'o')))
+    if (/*args.spec == 's' || */args.spec == '%')
         padding_left(buf, args, size_of_conversion, start);
     else
     {
@@ -31,7 +34,7 @@ void fill_zero(char *buf, t_args args, int size_of_conversion, int *start)
             min = 1;
         if (args.alt && args.spec == 'o')
             args.width -= 1;
-        if (args.alt && args.spec == 'x')
+        if (args.alt && (args.spec == 'x' || args.spec == 'p'))
             args.width -= 2;
         if (args.width - size_of_conversion - min > 0)
         {
@@ -65,7 +68,7 @@ void padding_right(char *buf, char *conv, t_args args, int *start)
     int min;
 
     min = 0;
-    len = ft_strlen(conv);
+    len = args.spec != 'p' ? ft_strlen(conv) : ft_strlen(conv) + 2;
     if (args.showsign || args.minus)
         min = 1;
     if (len + min + args.zero + args.space < args.prec)
