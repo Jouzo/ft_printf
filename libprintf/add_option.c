@@ -11,10 +11,10 @@ void padding_left(char *buf, t_args args, int size_of_conversion, int *start)
         args.width -= 1;
     if (args.alt && args.spec == 'x')
         args.width -= 2;
-    if (args.width - len - args.showsign > 0)
+    if (args.width - len - args.showsign - args.space > 0)
     {
-        ft_memset(buf + *start, ' ', args.width - len - args.showsign);
-        *start += args.width - len - args.showsign;
+        ft_memset(buf + *start, ' ', args.width - len - args.showsign - args.space);
+        *start += args.width - len - args.showsign - args.space;
     }
 }
 
@@ -62,12 +62,18 @@ void one_space(char *buf, int *start)
 void padding_right(char *buf, char *conv, t_args args, int *start)
 {
     int len;
+    int min;
 
+    min = 0;
     len = ft_strlen(conv);
-    if (args.width - len - args.left + args.zero > 0)
+    if (args.showsign || args.minus)
+        min = 1;
+    if (len + min + args.zero + args.space < args.prec)
+        len = args.prec;
+    if (args.width - len + args.zero - min > 0 && args.prec < args.width)
     {
-        ft_memset(buf + *start + len, ' ', args.width - len - args.left + args.zero);
-        *start += args.width - len - args.left + args.zero;
+        ft_memset(buf + *start + ft_strlen(conv), ' ', args.width - len + args.zero - min - args.space);
+        *start += args.width - len + args.zero - min - args.space;
     }
 }
 
@@ -100,7 +106,7 @@ void add_hash(char *buf, t_args args, int *start)
 
 void add_option(char *buf, t_args args, char *conv, int *start)
 {
-    if (args.space && !args.width && !args.showsign && conv[0] != '-' && !args.minus && args.spec != 'o' && args.spec != 'x')
+    if (args.space && !args.showsign && args.spec != 'o' && args.spec != 'x')
         one_space(buf, start);
     if ((args.space && args.width && !args.left && !args.zero) || (args.width && !args.zero && !args.left))
         padding_left(buf, args, ft_strlen(conv), start);
@@ -110,8 +116,8 @@ void add_option(char *buf, t_args args, char *conv, int *start)
         print_minus(buf, start);
     if (args.showsign && !args.minus && args.spec != 'o' && args.spec != 'x')
         print_sign(buf, start);
+    if (args.prec)
+        fill_prec(buf, args, ft_strlen(conv), start);
     if (args.zero && args.width && !args.left)
         fill_zero(buf, args, ft_strlen(conv), start);
-    if (args.prec && !args.left)
-        fill_prec(buf, args, ft_strlen(conv), start);
 }
