@@ -4,8 +4,8 @@
 
 int     main()
 {
-	ft_printf("%O", 0);
+	ft_printf("%5.300d", 12);
 	ft_putchar('\n');
-   	printf("%O", 0);
+   	printf("%5.300d", 12);
     return (0);
 }
