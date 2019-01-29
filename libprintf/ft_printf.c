@@ -47,6 +47,7 @@ int ft_printf(const char *format, ...)
     j = 0;
     ft_bzero(buf, BUFF_SIZE);
     va_start(ap, format);
+
     while (format[i])
     {
 
@@ -54,9 +55,12 @@ int ft_printf(const char *format, ...)
             buf[j++] = format[i++];
         if (format[i] == '%')
         {
+
             init_args(&args);
+
             i += assign(format + i, &args);
             j += conversion(buf, ap, args, &j);
+
         }
     }
     ft_printstr(buf);

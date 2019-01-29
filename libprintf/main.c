@@ -5,6 +5,8 @@
 int     main()
 {
 	int i, j;
+
+	i = 0;
 	i = ft_printf("{%s}", 0);
 	printf("\n");
    	j = printf("{%s}", 0);
