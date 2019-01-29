@@ -70,11 +70,13 @@ void padding_right(char *buf, char *conv, t_args args, int *start)
         min = 1;
     if (len + min + args.zero + args.space < args.prec)
         len = args.prec;
-    if (args.width - len + args.zero - min > 0 && args.prec < args.width)
+    if (args.width - len + args.zero - min - args.space > 0 && args.prec < args.width)
     {
         ft_memset(buf + *start + ft_strlen(conv), ' ', args.width - len + args.zero - min - args.space);
         *start += args.width - len + args.zero - min - args.space;
     }
+    // ft_memset(buf + *start, '@', 1);
+    // *start -= 3;
 }
 
 void print_sign(char *buf, int *start)
@@ -106,7 +108,7 @@ void add_hash(char *buf, t_args args, int *start)
 
 void add_option(char *buf, t_args args, char *conv, int *start)
 {
-    if (args.space && !args.showsign && args.spec != 'o' && args.spec != 'x')
+    if (args.space && !args.showsign && args.spec != 'o' && args.spec != 'x' && args.spec != '%' && !args.minus)
         one_space(buf, start);
     if ((args.space && args.width && !args.left && !args.zero) || (args.width && !args.zero && !args.left))
         padding_left(buf, args, ft_strlen(conv), start);

@@ -64,7 +64,7 @@ int conversion_string(char *buf, char *str, t_args args, int *start)
     len = ft_strlen(str);
     if (args.prec && ft_strlen(str) > (size_t)args.prec)
         len = args.prec;
-    if (!str)
+    if (!str || strcmp(str, "") == 0)
     {
         ft_memcpy(buf + *start, "(null)", 6);
         return (6);

@@ -4,8 +4,10 @@
 
 int     main()
 {
-	ft_printf("%5.300d", 12);
-	ft_putchar('\n');
-   	printf("%5.300d", 12);
+	int i, j;
+	i = ft_printf("{%s}", 0);
+	printf("\n");
+   	j = printf("{%s}", 0);
+	printf("\n\nreturn value : %i %i\n", i, j);
     return (0);
 }
