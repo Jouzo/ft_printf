@@ -27,7 +27,7 @@ void fill_zero(char *buf, t_args args, int size_of_conversion, int *start)
         padding_left(buf, args, size_of_conversion, start);
     else
     {
-        if ((args.showsign != args.minus) || (args.showsign && args.minus))
+        if (args.showsign || args.minus)
             min = 1;
         if (args.alt && args.spec == 'o')
             args.width -= 1;
