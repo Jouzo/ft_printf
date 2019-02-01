@@ -1,6 +1,7 @@
 #include "../includes/ft_printf.h"
-void	ft_printstr(char const *s)
+int		ft_printstr(char const *s, int *p_buf)
 {
 	if (s)
-		write(1, s, ft_strlen(s));
+		write(1, s, *p_buf);
+	return (*p_buf);
 }

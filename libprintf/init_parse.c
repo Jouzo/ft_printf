@@ -81,14 +81,31 @@ void check_taille(const char *str, int *i, t_args *args)
         args->is_long_double = 1;
         *i += 1;
     }
+    if (str[*i] == 'z')
+    {
+        args->is_sizet = 1;
+        args->is_long_long = 1;
+        *i += 1;
+    }
 }
 
 void check_type(const char *str, int *i, t_args *args)
 {
+   char option[18];
+
+    ft_memcpy(option, "jbcCspdDiIoOuUxXf%", 18);
+    if (ft_strchr(option, str[*i]))
+    {
     if (str[*i] == 'j')
+    {
         args->spec = 'j';
-    if (str[*i] == 'c' || str[*i] == 'C')
+        args->is_long_long = 1;
+        *i += 1;
+    }
+    if (str[*i] == 'c') 
         args->spec = 'c';
+    else if (str[*i] == 'C')
+        args->spec = 'C';
     else if (str[*i] == 's')
         args->spec = 's';
     else if (str[*i] == 'p')
@@ -109,26 +126,28 @@ void check_type(const char *str, int *i, t_args *args)
     }
     else if (str[*i] == 'u' || str[*i] == 'U')
     {
-    if (str[*i] == 'U')
+        if (str[*i] == 'U')
             args->is_long = 1;
         args->spec = 'u';
     }
-    else if (str[*i] == 'x')
+    else if (str[*i] == 'x' || str[*i] == 'X')
     {
+        if (str[*i] == 'X')
+            args->capital = 16;
         args->spec = 'x';
         args->base = 16;
-    }
-    else if (str[*i] == 'X')
-    {
-        args->spec = 'X';
-        args->base = 16;
-        args->capital = 16;
     }
     else if (str[*i] == 'f')
         args->spec = 'f';
     else if (str[*i] == '%')
         args->spec = '%';
+    else if (str[*i] == 'b')
+    {
+        args->base = 2;
+        args->spec = 'd';
+    }
     *i += 1;
+    }
 }
 
 int assign(const char *str, t_args *args)
