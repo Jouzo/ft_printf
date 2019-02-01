@@ -1,6 +1,7 @@
 void    get_sem(int *s, int *e, int *m, double number)
 {
-unsigned long long int* ptr = (unsigned long long int*)&number;
+unsigned long long int *ptr;
+ptr = (unsigned long long int*)&number;
 
 *s = *ptr >> 63;
 *e = *ptr & 0x7FF0000000000000;

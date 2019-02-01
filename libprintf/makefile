@@ -6,7 +6,7 @@
 #    By: jdescler <jdescler@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/07 18:10:13 by jdescler          #+#    #+#              #
-#    Updated: 2019/02/01 15:10:07 by jdescler         ###   ########.fr        #
+#    Updated: 2019/02/01 20:09:15 by jdescler         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,7 @@ OBJS = $(SRCS:.c=.o)
 
 CC = gcc
 
-CFLAGS = -c -Wall -Werror -Wextra -I
+CFLAGS = -c -O3 -Wall -Werror -Wextra -I
 
 all: $(NAME)
 
