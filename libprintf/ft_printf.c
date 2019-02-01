@@ -63,6 +63,7 @@ int ft_printf(const char *format, ...)
         }
     }
     va_end(ap);
+    // last check of buf -> new function;
     // return (args.len);
-    return (ft_printstr(buf));
+    return (ft_printstr(buf, &j));
 }

@@ -1,10 +1,7 @@
 #include "../includes/ft_printf.h"
-int		ft_printstr(char const *s)
+int		ft_printstr(char const *s, int *p_buf)
 {
-	int len;
-	
-	len = ft_strlen(s);
 	if (s)
-		write(1, s, len);
-	return (len);
+		write(1, s, *p_buf);
+	return (*p_buf);
 }

@@ -9,9 +9,9 @@ int     main()
 	int i, j;
 
 	i = 0;
-	i = ft_printf("%c salut", 0);
+	i = ft_printf("%#-015x", 42345345);
 	printf("\n");
-   	j = printf("%c salut", 0);
+   	j = printf("%#-015x", 42345345);
 	printf("\n\nreturn value : %i %i\n", i, j);
     return (0);
 }
