@@ -27,7 +27,6 @@ int add_toa(char *s, char *buf, int *start, t_args args)
 
 int ft_itoa_base(int n, t_args args, char *buf, int *start)
 {
-    
     int i;
     char s[31];
     char *str_base = "0123456789abcdef0123456789ABCDEF";
@@ -47,7 +46,7 @@ int ft_itoa_base(int n, t_args args, char *buf, int *start)
 int ft_ltoa_base(long n, t_args args, char *buf, int *start)
 {
     int i;
-    char s[31];
+    char s[63];
     char *str_base = "0123456789abcdef0123456789ABCDEF";
     unsigned long abs;
 
@@ -65,7 +64,7 @@ int ft_ltoa_base(long n, t_args args, char *buf, int *start)
 int ft_lltoa_base(long long n, t_args args, char *buf, int *start)
 {
     int i;
-    char s[31];
+    char s[63];
     char *str_base = "0123456789abcdef0123456789ABCDEF";
     unsigned long long abs;
 
@@ -98,7 +97,7 @@ int ft_utoa_base(unsigned int n, t_args args, char *buf, int *start)
 int ft_ultoa_base(unsigned long int n, t_args args, char *buf, int *start)
 {
     int i;
-    char s[31];
+    char s[63];
     char *str_base = "0123456789abcdef0123456789ABCDEF";
     if (n == 0)
         args.alt = 0;
@@ -113,7 +112,7 @@ int ft_ultoa_base(unsigned long int n, t_args args, char *buf, int *start)
 int ft_ulltoa_base(unsigned long long int n, t_args args, char *buf, int *start)
 {
     int i;
-    char s[31];
+    char s[63];
     char *str_base = "0123456789abcdef0123456789ABCDEF";
     if (n == 0)
         args.alt = 0;

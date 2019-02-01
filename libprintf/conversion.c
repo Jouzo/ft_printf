@@ -8,9 +8,9 @@ int conversion_int(char *buf, int nb, t_args args, int *start)
         nb = (short)nb;
     if (args.is_char)
         nb = (char)nb;
-    if (args.spec == 'c')
+    if (args.spec == 'c' || args.spec == 'C')
     {
-        ft_itoc(nb, &buf, start, args);
+        ft_itoc(nb, args, buf, start);
         if (args.left)
             padding_right(buf, "", args, start);
         len = 0 - args.left;
@@ -82,9 +82,23 @@ int conversion_string(char *buf, char *str, t_args args, int *start)
 int conversion_void(char *buf, unsigned long long ptr, t_args args, int *start)
 {
     args.alt = 1;
-    args.base = 16;
- 
+    args.base = 16; 
     return (ft_ltoa_base(ptr, args, buf, start));
+}
+
+int conversion_unicode(char *buf, wchar_t sign, t_args args, int *start)
+{
+    if (sign < 128)
+		return conversion_int(buf, sign, args, start);
+	else if (sign < 2048)
+		return (ft_uni2_to_buf(sign, args, buf, start));
+	else if (sign < 65536)
+		return (ft_uni3_to_buf(sign, args, buf, start));
+	else if (sign < 2097152)
+		return (ft_uni4_to_buf(sign, args, buf, start));
+    else
+        return (0);
+    
 }
 
 int conversion(char *buf, va_list ap, t_args args, int *start)
@@ -97,7 +111,7 @@ int conversion(char *buf, va_list ap, t_args args, int *start)
     if ((args.spec == 'd' && args.is_long) || (args.spec == 'i' && args.is_long))
         return conversion_long(buf, va_arg(ap, long), args, start);
     if ((args.spec == 'd' && args.is_long_long) || (args.spec == 'i' && args.is_long_long))
-        return conversion_long_long(buf, va_arg(ap, long), args, start);
+        return conversion_long_long(buf, va_arg(ap, long long), args, start);
     if (args.spec == 's')
         return conversion_string(buf, va_arg(ap, char *), args, start);
     if (args.spec == 'p')
@@ -112,5 +126,7 @@ int conversion(char *buf, va_list ap, t_args args, int *start)
         return conversion_float(buf, va_arg(ap, unsigned long), args, start);
     if (args.spec == '%')
         return conversion_string(buf, "%", args, start);
+    if (args.spec == 'C')
+        return conversion_unicode(buf, va_arg(ap, wchar_t), args, start);
     return (0);
 }

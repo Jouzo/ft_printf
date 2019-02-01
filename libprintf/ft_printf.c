@@ -43,6 +43,7 @@ int ft_printf(const char *format, ...)
     int i;
     int j;
 
+    args.len = 0;
     i = 0;
     j = 0;
     ft_bzero(buf, BUFF_SIZE);
@@ -51,20 +52,17 @@ int ft_printf(const char *format, ...)
         return (0);
     while (format[i])
     {
-
         while (format[i] && format[i] != '%')
             buf[j++] = format[i++];
         if (format[i] == '%')
         {
-
             init_args(&args);
-
             i += assign(format + i, &args);
             j += conversion(buf, ap, args, &j);
 
         }
     }
-    ft_printstr(buf);
     va_end(ap);
-    return (ft_strlen(buf));
+    // return (args.len);
+    return (ft_printstr(buf));
 }

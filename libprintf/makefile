@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mmovahhe <mmovahhe@student.42.fr>          +#+  +:+       +#+         #
+#    By: jdescler <jdescler@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/07 18:10:13 by jdescler          #+#    #+#              #
-#    Updated: 2019/01/28 18:21:57 by mmovahhe         ###   ########.fr        #
+#    Updated: 2019/02/01 15:10:07 by jdescler         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,8 @@ OPTION = ../includes/ft_printf.h
 
 SRCS =	add_option.c\
 		conversion.c\
+		init_parse.c\
+		unicode.c\
 		ft_bzero.c\
 		ft_itoc.c\
 		ft_memcpy.c\
@@ -25,7 +27,6 @@ SRCS =	add_option.c\
 		ft_strchr.c\
 		ft_strlen.c\
 		ft_strrev.c\
-		init_parse.c\
 		ft_printf.c\
 		ft_all_toa_base.c\
 

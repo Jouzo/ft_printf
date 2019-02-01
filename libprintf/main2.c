@@ -13,6 +13,8 @@ int main(int argc, char** argv) {
     printf("INT_MIN     :   %d\n", INT_MIN);
     printf("LONG_MAX    :   %ld\n", (long) LONG_MAX);
     printf("LONG_MIN    :   %ld\n", (long) LONG_MIN);
+    printf("LONG_LONG_MAX    :   %lld\n", (long long) LONG_LONG_MAX);
+    printf("LONG_LONG_MIN    :   %lld\n", (long long) LONG_LONG_MIN);
     printf("SCHAR_MAX   :   %d\n", SCHAR_MAX);
     printf("SCHAR_MIN   :   %d\n", SCHAR_MIN);
     printf("SHRT_MAX    :   %d\n", SHRT_MAX);
@@ -28,9 +30,7 @@ int main(int argc, char** argv) {
     printf("DBL_MAX     :   %g\n", (double) DBL_MAX);
     printf("DBL_MIN     :   %g\n", (double) DBL_MIN);
     printf("-DBL_MAX     :  %g\n", (double) -DBL_MAX);
-    printf("LONG_DBL_MAX     :   %g\n", (long double) DBL_MAX);
-    printf( "size of %i", sizeof(double));
+    printf("LONG_DBL_MAX     :   %Lf\n", (long double) DBL_MAX);
 
-    printf("long float %Lf", 1.79769e+308);
     return (EXIT_SUCCESS);
 }

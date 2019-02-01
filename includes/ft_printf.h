@@ -7,6 +7,7 @@
 #include <stdarg.h>
 #include <unistd.h>
 #include <limits.h>
+#include <string.h>
 
 /*
 ** Macros
@@ -23,6 +24,7 @@ typedef struct      s_args
     int             prec;                        /* Precision. */
     int             width;                       /* Width.  */
     char            spec;                    /* Format letter.  */
+    unsigned int    len;                    /* len to return */
     unsigned int    is_long_double : 1;     /* L flag.  */
     unsigned int    is_short : 1;           /* h flag.  */
     unsigned int    is_long : 1;            /* l flag.  */
@@ -50,7 +52,7 @@ typedef struct      s_args
 */
 
 char	*ft_strchr(const char *s, int c);
-void	ft_printstr(char const *s);
+int 	ft_printstr(char const *s);
 void	ft_putchar(char c);
 
 void	*ft_memset(void *b, int c, size_t len);
@@ -84,7 +86,7 @@ void    padding_left(char *buf, t_args args, int size_of_conversion, int *start)
 
 int     conversion(char *buf, va_list ap, t_args args, int *start);
 
-void    ft_itoc(int nb, char **conv, int *start, t_args args);
+void    ft_itoc(int nb, t_args args, char *buf, int *start);
 int     ft_itoa_base(int n, t_args args, char *buf, int *start);
 int     ft_ltoa_base(long n, t_args args, char *buf, int *start);
 int     ft_lltoa_base(long long n, t_args args, char *buf, int *start);
@@ -92,5 +94,14 @@ int     ft_lltoa_base(long long n, t_args args, char *buf, int *start);
 int     ft_utoa_base(unsigned int n, t_args args, char *buf, int *start);
 int     ft_ultoa_base(unsigned long int n, t_args args, char *buf, int *start);
 int     ft_ulltoa_base(unsigned long long int n, t_args args, char *buf, int *start);
+
+
+/*
+**  Unicode functions
+*/
+
+int ft_uni4_to_buf(wchar_t sign, t_args args, char *buf, int *start);
+int ft_uni3_to_buf(wchar_t sign, t_args args, char *buf, int *start);
+int ft_uni2_to_buf(wchar_t sign, t_args args, char *buf, int *start);
 
 #endif

@@ -91,9 +91,9 @@ void check_taille(const char *str, int *i, t_args *args)
 
 void check_type(const char *str, int *i, t_args *args)
 {
-   char option[17];
+   char option[18];
 
-    ft_memcpy(option, "jcCspdDiIoOuUxXf%", 17);
+    ft_memcpy(option, "jbcCspdDiIoOuUxXf%", 18);
     if (ft_strchr(option, str[*i]))
     {
     if (str[*i] == 'j')
@@ -102,8 +102,10 @@ void check_type(const char *str, int *i, t_args *args)
         args->is_long_long = 1;
         *i += 1;
     }
-    if (str[*i] == 'c' || str[*i] == 'C')
+    if (str[*i] == 'c') 
         args->spec = 'c';
+    else if (str[*i] == 'C')
+        args->spec = 'C';
     else if (str[*i] == 's')
         args->spec = 's';
     else if (str[*i] == 'p')
@@ -139,6 +141,11 @@ void check_type(const char *str, int *i, t_args *args)
         args->spec = 'f';
     else if (str[*i] == '%')
         args->spec = '%';
+    else if (str[*i] == 'b')
+    {
+        args->base = 2;
+        args->spec = 'd';
+    }
     *i += 1;
     }
 }
