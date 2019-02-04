@@ -60,7 +60,6 @@ int conversion_long_long_unsigned(char *buf, unsigned long long nb, t_args args,
 int conversion_string(char *buf, char *str, t_args args, int *p_buf)
 {
     int len;
-
     len = ft_strlen(str);
     if (args.prec && ft_strlen(str) > (size_t)args.prec)
         len = args.prec;
@@ -103,10 +102,13 @@ int conversion_unicode(char *buf, wchar_t sign, t_args args, int *p_buf)
 
 int conversion(char *buf, va_list ap, t_args args, int *p_buf)
 {
+    // if ((args.spec == 'x' || args.spec == 'o') && args.prec == -1)
+    //     args.spec = 0;
+    
     if (args.is_sizet)
         if (args.spec == 'd')
             args.spec = 'u';
-    if (args.spec == 'C' && args.is_long)
+    if (args.spec == 'c' && args.is_long)
         args.spec = 'C';
     if (args.spec == 'c' || (args.spec == 'd' && !args.is_long && !args.is_long_long) || (args.spec == 'i' && !args.is_long && !args.is_long_long))
         return conversion_int(buf, va_arg(ap, int), args, p_buf);
@@ -114,7 +116,7 @@ int conversion(char *buf, va_list ap, t_args args, int *p_buf)
         return conversion_long(buf, va_arg(ap, long), args, p_buf);
     if ((args.spec == 'd' && args.is_long_long) || (args.spec == 'i' && args.is_long_long))
         return conversion_long_long(buf, va_arg(ap, long long), args, p_buf);
-    if (args.spec == 's')
+    if (args.spec == 's' || args.spec == 'S')
         return conversion_string(buf, va_arg(ap, char *), args, p_buf);
     if (args.spec == 'p')
         return conversion_void(buf, va_arg(ap, unsigned long long), args, p_buf);
