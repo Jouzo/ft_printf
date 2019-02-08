@@ -78,29 +78,34 @@ int     init_parse(const char *str, t_args *args);
 **  options functions
 */
 
-void    add_option(char *buf, t_args args, char *conv, int *p_buf);
-void    padding_right(char *buf, char *conv, t_args args, int *p_buf);
-void    padding_left(char *buf, t_args args, int size_of_conversion, int *p_buf);
+void    add_option(char *buf, t_args *args, char *conv, int *p_buf);
+void    padding_right(char *buf, char *conv, t_args *args, int *p_buf);
+void    padding_left(char *buf, t_args *args, int size_of_conversion, int *p_buf);
+
+int     print_big_padding_left(char *buf, int *p_buf, t_args *args, int len);
+int     print_big_fill_zero(char *buf, int *p_buf, t_args *args, int len);
+int     print_big_padding_right(char *buf, int *p_buf, t_args *args, int len);
+int     print_big_fill_prec(char *buf, int *p_buf, t_args *args, int len);
 
 /*
 **  Conversion functions
 */
 
-int     conversion(char *buf, va_list ap, t_args args, int *p_buf);
-void    ft_itoc(int nb, t_args args, char *buf, int *p_buf);
-int     ft_itoa_base(int n, t_args args, char *buf, int *p_buf);
-int     ft_ltoa_base(long n, t_args args, char *buf, int *p_buf);
-int     ft_lltoa_base(long long n, t_args args, char *buf, int *p_buf);
-int     ft_utoa_base(unsigned int n, t_args args, char *buf, int *p_buf);
-int     ft_ultoa_base(unsigned long int n, t_args args, char *buf, int *p_buf);
-int     ft_ulltoa_base(unsigned long long int n, t_args args, char *buf, int *p_buf);
+int     conversion(char *buf, va_list ap, t_args *args, int *p_buf);
+void    ft_itoc(int nb, t_args *args, char *buf, int *p_buf);
+int     ft_itoa_base(int n, t_args *args, char *buf, int *p_buf);
+int     ft_ltoa_base(long n, t_args *args, char *buf, int *p_buf);
+int     ft_lltoa_base(long long n, t_args *args, char *buf, int *p_buf);
+int     ft_utoa_base(unsigned int n, t_args *args, char *buf, int *p_buf);
+int     ft_ultoa_base(unsigned long int n, t_args *args, char *buf, int *p_buf);
+int     ft_ulltoa_base(unsigned long long int n, t_args *args, char *buf, int *p_buf);
 
 /*
 **  Unicode functions
 */
 
-int ft_uni4_to_buf(wchar_t sign, t_args args, char *buf, int *p_buf);
-int ft_uni3_to_buf(wchar_t sign, t_args args, char *buf, int *p_buf);
-int ft_uni2_to_buf(wchar_t sign, t_args args, char *buf, int *p_buf);
+int ft_uni4_to_buf(wchar_t sign, t_args *args, char *buf, int *p_buf);
+int ft_uni3_to_buf(wchar_t sign, t_args *args, char *buf, int *p_buf);
+int ft_uni2_to_buf(wchar_t sign, t_args *args, char *buf, int *p_buf);
 
 #endif
