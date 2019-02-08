@@ -128,12 +128,16 @@ void add_hash(char *buf, t_args *args, int *p_buf)
 {
     if (args->spec == 'x' || args->spec == 'p')
     {
+        if (*p_buf + 1 == BUFF_SIZE || *p_buf == BUFF_SIZE )
+        check_buf(buf, p_buf, args);
         ft_memset(buf + *p_buf, '0', 1);
         ft_memset(buf + *p_buf + 1, 'x' - args->capital * 2, 1);
         *p_buf += 2;
     }
     else if (args->spec == 'o')
     {
+        if (*p_buf == BUFF_SIZE)
+            check_buf(buf, p_buf, args);
         ft_memset(buf + *p_buf, '0', 1);
         *p_buf += 1;
     }

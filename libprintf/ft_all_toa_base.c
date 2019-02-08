@@ -3,11 +3,15 @@
 int add_toa(char *s, char *buf, int *p_buf, t_args *args)
 {
     int len;
-  
+
     len = ft_strlen(s);
     ft_strrev(s);
     add_option(buf, args, s, p_buf);
-    ft_memcpy(buf + *p_buf, s, ft_strlen(s));
+    if (*p_buf + len > BUFF_SIZE)
+        check_buf(buf, p_buf, args);
+    ft_memcpy(buf + *p_buf, s, len);
+    if ((args->spec == 'x' || args->spec == 'o') && *s == '0' && len == 1 && args->prec == -1)
+        *p_buf -= 1;
     if (args->left)
         padding_right(buf, s, args, p_buf);
     return (len);

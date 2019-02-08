@@ -81,20 +81,20 @@ int conversion_string(char *buf, char *str, t_args *args, int *p_buf)
 int conversion_void(char *buf, unsigned long long ptr, t_args *args, int *p_buf)
 {
     args->alt = 1;
-    args->base = 16; 
+    args->base = 16;
     return (ft_ltoa_base(ptr, args, buf, p_buf));
 }
 
 int conversion_unicode(char *buf, wchar_t sign, t_args *args, int *p_buf)
 {
     if (sign < 128)
-		return conversion_int(buf, sign, args, p_buf);
-	else if (sign < 2048)
-		return (ft_uni2_to_buf(sign, args, buf, p_buf));
-	else if (sign < 65536)
-		return (ft_uni3_to_buf(sign, args, buf, p_buf));
-	else if (sign < 2097152)
-		return (ft_uni4_to_buf(sign, args, buf, p_buf));
+        return conversion_int(buf, sign, args, p_buf);
+    else if (sign < 2048)
+        return (ft_uni2_to_buf(sign, args, buf, p_buf));
+    else if (sign < 65536)
+        return (ft_uni3_to_buf(sign, args, buf, p_buf));
+    else if (sign < 2097152)
+        return (ft_uni4_to_buf(sign, args, buf, p_buf));
     else
         return (0);
 }

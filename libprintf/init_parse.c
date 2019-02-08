@@ -4,7 +4,7 @@
 void check_option(const char *str, int *i, t_args *args)
 {
     char option[5];
-
+    
     ft_memcpy(option, "-+#0 ", 5);
     while (ft_strchr(option, str[*i]))
     {
