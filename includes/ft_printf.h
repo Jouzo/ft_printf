@@ -25,9 +25,10 @@
 
 typedef struct      s_args
 {
-    int             prec;                        /* Precision. */
-    int             width;                       /* Width.  */
+    int             prec;                    /* Precision. */
+    int             width;                   /* Width.  */
     char            spec;                    /* Format letter.  */
+    int             fd;                     /* FD for dprintf */
     unsigned int    len;                    /* len to return */
     unsigned int    is_long_double : 1;     /* L flag.  */
     unsigned int    is_short : 1;           /* h flag.  */
@@ -53,7 +54,7 @@ typedef struct      s_args
 
 int     ft_printf(const char *format, ...);
 char	*ft_strchr(const char *s, int c);
-int 	ft_printstr(char const *s, int *p_buf);
+int 	ft_printstr(char const *s, int *p_buf, t_args args);
 void	ft_putchar(char c);
 void	*ft_memset(void *b, int c, size_t len);
 void	*ft_memcpy(void *dst, const void *src, size_t n);

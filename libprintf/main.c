@@ -9,9 +9,9 @@ int     main()
 	int i, j;
 	
 	i = j = 0;
-	i = ft_printf("@moulitest: %.10x %#.0x", 0, 0);
+	i = ft_printf("%-5.2s is a string", "this");
 	printf("\n");
-	j = printf("@moulitest: %.10x %#.0x", 0, 0);
+	j = printf("%-5.2s is a string", "this");
 	printf("\n\nreturn value : %i %i\n", i, j);
 
     return (0);
