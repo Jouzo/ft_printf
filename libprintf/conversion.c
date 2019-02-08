@@ -32,10 +32,8 @@ int conversion_long_long(char *buf, long nb, t_args *args, int *p_buf)
 
 int conversion_float(char *buf, double nb, t_args *args, int *p_buf)
 {
-    int len;
-
-    len = ft_dtoa(nb, args, buf, p_buf);
-    return (len);
+    return (ft_ltoa_base(nb, args, buf, p_buf));
+    //ft_dtoa(nb, args, buf, p_buf);
 }
 
 int conversion_unsigned(char *buf, unsigned int nb, t_args *args, int *p_buf)
