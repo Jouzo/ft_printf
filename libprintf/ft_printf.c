@@ -10,7 +10,6 @@ void init_args(t_args *args)
     ft_bzero(args, sizeof(args));
     args->base = 10;
     args->len = tmp;
-    printf("value of args->len %i\n", args->len);
 }
 
 int ft_printf(const char *format, ...)
@@ -36,13 +35,12 @@ int ft_printf(const char *format, ...)
         {
             init_args(&args);
             i += assign(format + i, &args);
-            j += conversion(buf, ap, args, &j);
-
+            j += conversion(buf, ap, &args, &j);
         }
     }
     va_end(ap);
-    printf("value of j a la fin %i", j);
     ft_printstr(buf, &j);
-    printf("args->len dans ft_printf %i\n\n", args.len);
+    args.len += j;
+
     return (args.len);
 }

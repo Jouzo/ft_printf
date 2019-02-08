@@ -9,9 +9,9 @@ int     main()
 	int i, j;
 	
 	i = j = 0;
-	i = ft_printf("{%600d}", 25);
+	i = ft_printf("{  %-500d}", 240);
 	printf("\n");
-	j = printf("{%600d}", 25);
+	j = printf("{  %-500d}", 240);
 	printf("\n\nreturn value : %i %i\n", i, j);
 
     return (0);

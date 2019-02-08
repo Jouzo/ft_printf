@@ -1,6 +1,6 @@
 #include "../includes/ft_printf.h"
 
-int ft_uni4_to_buf(wchar_t sign, t_args args, char *buf, int *p_buf)
+int ft_uni4_to_buf(wchar_t sign, t_args *args, char *buf, int *p_buf)
 {
     char s[4];
 
@@ -14,7 +14,7 @@ int ft_uni4_to_buf(wchar_t sign, t_args args, char *buf, int *p_buf)
     return (4);
 }
 
-int ft_uni3_to_buf(wchar_t sign, t_args args, char *buf, int *p_buf)
+int ft_uni3_to_buf(wchar_t sign, t_args *args, char *buf, int *p_buf)
 {
     char s[3];
 
@@ -27,7 +27,7 @@ int ft_uni3_to_buf(wchar_t sign, t_args args, char *buf, int *p_buf)
     return (3);
 }
 
-int ft_uni2_to_buf(wchar_t sign, t_args args, char *buf, int *p_buf)
+int ft_uni2_to_buf(wchar_t sign, t_args *args, char *buf, int *p_buf)
 {
     char s[2];
 
