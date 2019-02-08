@@ -75,8 +75,8 @@ int ft_utoa_base(unsigned int n, t_args *args, char *buf, int *p_buf)
     int i;
     char s[31];
     char *str_base = "0123456789abcdef0123456789ABCDEF";
-    if (n == 0)
-        args->alt = 0;
+    // if (n == 0)
+    //     args->alt = 0;
     i = 0;
     s[i++] = str_base[(n % args->base) + args->capital];
     while ((n /= args->base) > 0)
@@ -90,8 +90,8 @@ int ft_ultoa_base(unsigned long int n, t_args *args, char *buf, int *p_buf)
     int i;
     char s[63];
     char *str_base = "0123456789abcdef0123456789ABCDEF";
-    if (n == 0)
-        args->alt = 0;
+    // if (n == 0)
+    //     args->alt = 0;
     i = 0;
     s[i++] = str_base[(n % args->base) + args->capital];
     while ((n /= args->base) > 0)
@@ -105,8 +105,8 @@ int ft_ulltoa_base(unsigned long long int n, t_args *args, char *buf, int *p_buf
     int i;
     char s[63];
     char *str_base = "0123456789abcdef0123456789ABCDEF";
-    if (n == 0)
-        args->alt = 0;
+    // if (n == 0)
+    //     args->alt = 0;
     i = 0;
     s[i++] = str_base[(n % args->base) + args->capital];
     while ((n /= args->base) > 0)

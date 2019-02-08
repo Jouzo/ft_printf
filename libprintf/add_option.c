@@ -26,7 +26,10 @@ void fill_zero(char *buf, t_args *args, int size_of_conversion, int *p_buf)
 {
     int min;
     int i;
+    int len;
 
+    printf("FILL ZERO\n");
+    len = 0;
     i = 0;
     min = 0;
     if (args->spec == '%')
@@ -52,17 +55,28 @@ void fill_zero(char *buf, t_args *args, int size_of_conversion, int *p_buf)
 void fill_prec(char *buf, t_args *args, int size_of_conversion, int *p_buf)
 {
     int i;
-
+    printf("JE RENTRE DANS FILL PREC\n");
     i = 0;
+    if (args->prec < size_of_conversion && args->spec == 'd')
+        args->prec = 0;
     if (args->spec != 's' && args->spec != '%')
     {
         if (args->prec - size_of_conversion > 0 && args->spec != 'f')
         {
-            if (args->prec - size_of_conversion > BUFF_SIZE)
-                i = print_big_fill_prec(buf, p_buf, args, args->prec - size_of_conversion);
+            if (args->width - args->prec > BUFF_SIZE * i){
+            i = print_big_fill_prec(buf, p_buf, args, args->width - args->prec);
+            ft_memset(buf + *p_buf, ' ', args->width - args->prec - BUFF_SIZE * i);
+            *p_buf += args->width - args->prec - BUFF_SIZE * i;
+            }
+            if (args->prec - size_of_conversion > BUFF_SIZE * i)
+                i += print_big_fill_prec(buf, p_buf, args, args->prec - size_of_conversion);
             ft_memset(buf + *p_buf, '0', args->prec - size_of_conversion - BUFF_SIZE * i);
             *p_buf += args->prec - size_of_conversion - BUFF_SIZE * i;
         }
+        else if (!args->zero)
+            padding_left(buf, args, args->width + size_of_conversion, p_buf);
+        else
+            padding_left(buf, args, size_of_conversion, p_buf);
     }
 }
 
@@ -159,6 +173,6 @@ void add_option(char *buf, t_args *args, char *conv, int *p_buf)
         print_sign(buf, p_buf, args);
     if (args->prec)
         fill_prec(buf, args, ft_strlen(conv), p_buf);
-    if (args->zero && args->width && !args->left)
+    else if (args->zero && args->width && !args->left)
         fill_zero(buf, args, ft_strlen(conv), p_buf);
 }

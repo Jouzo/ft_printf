@@ -9,9 +9,9 @@ int     main()
 	int i, j;
 	
 	i = j = 0;
-	i = ft_printf("%.0U", 0);
+	i = ft_printf("{%10.20000d}", 204353);
 	printf("\n");
-	j = printf("%.0U", 0);
+	j = printf("{%10.200000d}", 204353);
 	printf("\n\nreturn value : %i %i\n", i, j);
     return (0);
 }
