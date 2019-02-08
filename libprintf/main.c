@@ -9,9 +9,9 @@ int     main()
 	int i, j;
 	
 	i = j = 0;
-	i = ft_printf("{  %-500d}", 240);
+	i = ft_printf("@moulitest: %.10x %#.0x", 0, 0);
 	printf("\n");
-	j = printf("{  %-500d}", 240);
+	j = printf("@moulitest: %.10x %#.0x", 0, 0);
 	printf("\n\nreturn value : %i %i\n", i, j);
 
     return (0);
