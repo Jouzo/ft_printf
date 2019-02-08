@@ -13,6 +13,9 @@
 ** Macros
 */
 
+# define ABS(x) (((x)<0) ? -(x) : (x))
+# define MAX(a, b) b & ((a - b) >> 31) | a & (~(a - b) >> 31)
+# define MIN(a, b) a & ((a - b) >> 31) | b & (~(a - b) >> 31)
 # define BUFF_SIZE 256
 
 /*

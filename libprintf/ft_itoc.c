@@ -2,6 +2,8 @@
 
 void    ft_itoc(int nb, t_args args, char *buf, int *p_buf)
 {
+    if (!nb)
+        args.prec = 0;
     add_option(buf, args, "1", p_buf);
     ft_memset(buf + *p_buf, nb, 1);
     *p_buf += 1;
