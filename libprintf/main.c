@@ -7,12 +7,12 @@
 int     main()
 {
 	int i, j;
-
 	i = 0;
-	i = ft_printf("%C", 128044);
+	j = 0;
 
-	printf("%lc", 128044);
+	i = ft_printf("%8.6s", "asas");
 	printf("\n");
+	j = printf("%8.6s", "asas");
 	printf("\n\nreturn value : %i %i\n", i, j);
     return (0);
 }
