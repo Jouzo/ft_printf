@@ -3,20 +3,12 @@
 int add_toa(char *s, char *buf, int *p_buf, t_args args)
 {
     int len;
-    // int hole_len;
     int min;
 
     min = 0;
     if (args.minus || args.showsign)
         min = 1;
     len = ft_strlen(s);
-    // hole_len = len > args.width ? (len > args.prec ? len : args.prec) : (args.width > args.prec ? args.width : args.prec);
-    // if (BUFF_SIZE - *p_buf - hole_len - args.space - min > 0)
-    // {
-    //     printf("dede\n");
-    //     printf("%s\n", buf);
-    //     *p_buf = 0;
-    // }
     ft_strrev(s);
     add_option(buf, args, s, p_buf);
     ft_memcpy(buf + *p_buf, s, ft_strlen(s));

@@ -3,11 +3,10 @@
 void padding_left(char *buf, t_args args, int size_of_conversion, int *p_buf)
 {
     int len;
+    int i;
 
-    if (args.spec != 's')
-        len = MAX(args.prec, size_of_conversion);
-    else
-        len = MAX(args.prec, size_of_conversion);
+    i = 0;
+    len = MAX(args.prec, size_of_conversion);
     if (args.minus)
         len++;
     if (args.alt && args.spec == 'o')
@@ -16,8 +15,21 @@ void padding_left(char *buf, t_args args, int size_of_conversion, int *p_buf)
         args.width -= 2;
     if (args.width - len - args.showsign - args.space > 0)
     {
-        ft_memset(buf + *p_buf, ' ', args.width - len - args.showsign - args.space);
-        *p_buf += args.width - len - args.showsign - args.space;
+        if (args.width - len - args.showsign - args.space > BUFF_SIZE)
+        {
+            while (args.width - len - args.showsign - args.space - BUFF_SIZE * i > BUFF_SIZE)
+            {
+                printf("DEDE\n");
+                printf("%i\n", BUFF_SIZE * i);
+                printf("value of args.width - len - args.showsign - args.space - BUFF_SIZE * i %i \n", args.width - len - args.showsign - args.space - BUFF_SIZE * i);
+                ft_memset(buf + *p_buf, ' ', BUFF_SIZE - *p_buf);
+                *p_buf += BUFF_SIZE - *p_buf;
+                check_buf(buf, p_buf, &args);
+                i++;
+            }
+        }
+        ft_memset(buf + *p_buf, ' ', args.width - len - args.showsign - args.space - BUFF_SIZE * i);
+        *p_buf += args.width - len - args.showsign - args.space - BUFF_SIZE * i;
     }
 }
 
@@ -26,7 +38,7 @@ void fill_zero(char *buf, t_args args, int size_of_conversion, int *p_buf)
     int min;
 
     min = 0;
-    if (/*args.spec == 's' || */args.spec == '%')
+    if (args.spec == '%')
         padding_left(buf, args, size_of_conversion, p_buf);
     else
     {
@@ -36,7 +48,6 @@ void fill_zero(char *buf, t_args args, int size_of_conversion, int *p_buf)
             args.width -= 1;
         if (args.alt && (args.spec == 'x' || args.spec == 'p'))
             args.width -= 2;
-        // args.width = args.width > args.prec ? args.prec : args.width;
         if (args.width - size_of_conversion - min > 0)
         {
             ft_memset(buf + *p_buf, '0', args.width - size_of_conversion - min);
@@ -57,8 +68,10 @@ void fill_prec(char *buf, t_args args, int size_of_conversion, int *p_buf)
     }
 }
 
-void one_space(char *buf, int *p_buf)
+void one_space(char *buf, int *p_buf, t_args args)
 {
+    if (*p_buf == BUFF_SIZE)
+        check_buf(buf, p_buf, &args);
     ft_memset(buf + *p_buf, ' ', 1);
     *p_buf += 1;
 }
@@ -90,14 +103,18 @@ void padding_right(char *buf, char *conv, t_args args, int *p_buf)
     // printf("\nvalue of *p_buf %i\n", *p_buf);
 }
 
-void print_sign(char *buf, int *p_buf)
+void print_sign(char *buf, int *p_buf, t_args args)
 {
+    if (*p_buf == BUFF_SIZE)
+        check_buf(buf, p_buf, &args);
     ft_memset(buf + *p_buf, '+', 1);
     *p_buf += 1;
 }
 
-void print_minus(char *buf, int *p_buf)
+void print_minus(char *buf, int *p_buf, t_args args)
 {
+    if (*p_buf == BUFF_SIZE)
+        check_buf(buf, p_buf, &args);
     ft_memset(buf + *p_buf, '-', 1);
     *p_buf += 1;
 }
@@ -120,15 +137,15 @@ void add_hash(char *buf, t_args args, int *p_buf)
 void add_option(char *buf, t_args args, char *conv, int *p_buf)
 {
     if (args.space && !args.showsign && args.spec == 'd' && !args.minus)
-        one_space(buf, p_buf);
+        one_space(buf, p_buf, args);
     if ((args.space && args.width && !args.left && !args.zero) || (args.width && !args.zero && !args.left))
         padding_left(buf, args, ft_strlen(conv), p_buf);
     if (args.alt == 1 && (args.spec == 'x' || args.spec == 'o' || args.spec == 'p'))
         add_hash(buf, args, p_buf);
     if (args.minus)
-        print_minus(buf, p_buf);
+        print_minus(buf, p_buf, args);
     if (args.showsign && !args.minus && args.spec != 'o' && args.spec != 'x' && args.spec != 'c' && args.spec != 'C')
-        print_sign(buf, p_buf);
+        print_sign(buf, p_buf, args);
     if (args.prec)
         fill_prec(buf, args, ft_strlen(conv), p_buf);
     if (args.zero && args.width && !args.left)

@@ -102,9 +102,7 @@ int conversion_unicode(char *buf, wchar_t sign, t_args args, int *p_buf)
 
 int conversion(char *buf, va_list ap, t_args args, int *p_buf)
 {
-    // if ((args.spec == 'x' || args.spec == 'o') && args.prec == -1)
-    //     args.spec = 0;
-    
+
     if (args.is_sizet)
         if (args.spec == 'd')
             args.spec = 'u';
