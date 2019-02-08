@@ -10,6 +10,8 @@ int conversion_int(char *buf, int nb, t_args *args, int *p_buf)
         nb = (char)nb;
     if (args->spec == 'c' || args->spec == 'C')
     {
+        if (*p_buf == BUFF_SIZE)
+            check_buf(buf, p_buf, args);
         ft_itoc(nb, args, buf, p_buf);
         if (args->left)
             padding_right(buf, "", args, p_buf);
@@ -65,12 +67,16 @@ int conversion_string(char *buf, char *str, t_args *args, int *p_buf)
         len = args->prec;
     if (!str)
     {
+        if (*p_buf + 6 > BUFF_SIZE)
+            check_buf(buf, p_buf, args);
         ft_memcpy(buf + *p_buf, "(null)", 6);
         return (6);
     }
     else
     {
         add_option(buf, args, str, p_buf);
+        if (*p_buf + len > BUFF_SIZE)
+            check_buf(buf, p_buf, args);
         ft_memcpy(buf + *p_buf, str, len);
         if (args->left)
             padding_right(buf, str, args, p_buf);

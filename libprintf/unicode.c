@@ -10,6 +10,8 @@ int ft_uni4_to_buf(wchar_t sign, t_args *args, char *buf, int *p_buf)
     s[3] = ((sign & 0x003F) + 0x80);
 
     add_option(buf, args, "1", p_buf);
+    if (*p_buf + 4 > BUFF_SIZE)
+        check_buf(buf, p_buf, args);
     ft_memcpy(buf + *p_buf, s, 4);
     return (4);
 }
@@ -23,6 +25,8 @@ int ft_uni3_to_buf(wchar_t sign, t_args *args, char *buf, int *p_buf)
     s[2] = ((sign & 0x003F) + 0x80);
 
     add_option(buf, args, "1", p_buf);
+    if (*p_buf + 3 > BUFF_SIZE)
+        check_buf(buf, p_buf, args);
     ft_memcpy(buf + *p_buf, s, 3);
     return (3);
 }
@@ -35,6 +39,8 @@ int ft_uni2_to_buf(wchar_t sign, t_args *args, char *buf, int *p_buf)
     s[1] = ((sign & 0x003F) + 0x80);
 
     add_option(buf, args, "1", p_buf);
+    if (*p_buf + 2 > BUFF_SIZE)
+        check_buf(buf, p_buf, args);
     ft_memcpy(buf + *p_buf, s, 2);
     return (2);
 }
