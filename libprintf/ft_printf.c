@@ -22,18 +22,8 @@ void init_args(t_args *args)
     args->extra = 0;          /* For special use.  */
     args->base = 10;          /* base */
     args->capital = 0;        /* capital base for X and O */
-    args->wide = 0;           /* Nonzero for wide character streams.  */
-    args->i18n = 0;           /* I flag.  */
-    args->is_binary128 = 0;   /* Floating-argument is ABI-compatible */
-    // args->pad = 0;                /* Padding character.  */
 }
 
-// t_value get_value(va_list ap, char type) {
-
-//     if (type == 'c') {
-//             return va_arg(ap, char);
-//     }
-// }
 
 int ft_printf(const char *format, ...)
 {
@@ -46,6 +36,7 @@ int ft_printf(const char *format, ...)
     args.len = 0;
     i = 0;
     j = 0;
+   
     ft_bzero(buf, BUFF_SIZE);
     va_start(ap, format);
     if (format[0] == '%' && ft_strlen(format) == 1)
@@ -58,12 +49,11 @@ int ft_printf(const char *format, ...)
         {
             init_args(&args);
             i += assign(format + i, &args);
-            j += conversion(buf, ap, args, &j);
-
+            j += conversion(buf, ap, &args, &j);
         }
     }
     va_end(ap);
-    // last check of buf -> new function;
-    // return (args.len);
-    return (ft_printstr(buf, &j));
+    ft_printstr(buf, &j);
+    args.len += j;
+    return (args.len);
 }
