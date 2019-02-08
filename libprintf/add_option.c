@@ -99,11 +99,11 @@ void padding_right(char *buf, char *conv, t_args *args, int *p_buf)
     {
         if (args->width - len - min - args->space > BUFF_SIZE)
         {
-            *p_buf += ft_strlen(conv);            
+            *p_buf += len;
             i = print_big_padding_right(buf, p_buf, args, args->width - len - min - args->space);
         }
         ft_memset(buf + *p_buf, ' ', args->width - len - min - args->space - BUFF_SIZE * i);
-        *p_buf += args->width - len - min - args->space - BUFF_SIZE * i - ft_strlen(conv);
+        *p_buf += args->width - len - min - args->space - BUFF_SIZE * i - len;
     }
     // printf("\nvalue of *p_buf %i\n", *p_buf);
 }
