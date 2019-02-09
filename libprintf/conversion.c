@@ -65,6 +65,12 @@ int conversion_string(char *buf, char *str, t_args *args, int *p_buf)
     len = ft_strlen(str);
     if (args->prec && ft_strlen(str) > (size_t)args->prec)
         len = args->prec;
+    if (args->prec == -1)
+    {
+        len = 0;
+        *p_buf -= 1;
+    }
+    printf("value of len %i\n", len);
     if (!str)
     {
         if (*p_buf + 6 > BUFF_SIZE)

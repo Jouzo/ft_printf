@@ -89,6 +89,8 @@ int     print_big_padding_left(char *buf, int *p_buf, t_args *args, int len);
 int     print_big_fill_zero(char *buf, int *p_buf, t_args *args, int len);
 int     print_big_padding_right(char *buf, int *p_buf, t_args *args, int len);
 int     print_big_fill_prec(char *buf, int *p_buf, t_args *args, int len);
+int     print_big_fill_prec_string(char *buf, int *p_buf, t_args *args, int len);
+
 
 void    padding_left_string(char *buf, t_args *args, int size_of_conversion, int *p_buf);
 void    fill_prec_string(char *buf, t_args *args, int size_of_conversion, int *p_buf);

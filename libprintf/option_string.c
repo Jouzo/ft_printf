@@ -26,7 +26,7 @@ void fill_prec_string(char *buf, t_args *args, int size_of_conversion, int *p_bu
     if (args->width - len > 0)
         {
             if (args->width - len > BUFF_SIZE)
-                i = print_big_fill_prec(buf, p_buf, args, args->width - len);
+                i = print_big_fill_prec_string(buf, p_buf, args, args->width - len);
             ft_memset(buf + *p_buf, ' ', args->width - len - BUFF_SIZE * i);
             *p_buf += args->width - len - BUFF_SIZE * i;
         }

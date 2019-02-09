@@ -8,9 +8,9 @@ int     main()
 	int i, j;
 	
 	i = j = 0;
-	i = ft_printf("%50.15d", 42);
+	i = ft_printf("chaine -> %.s\n", "je m'appel corentin et je suis moche");
 	printf("\n");
-	j = printf("%50.15d", 42);
+	j = printf("chaine -> %.s\n", "je m'appel corentin et je suis moche");
 	printf("\n\nreturn value : %i %i\n", i, j);
     return (0);
 }
