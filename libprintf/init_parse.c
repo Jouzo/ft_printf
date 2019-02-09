@@ -42,7 +42,6 @@ void check_larg_mini(const char *str, int *i, t_args *args)
 void check_prec(const char *str, int *i, t_args *args)
 {
     int res;
-
     res = 0;
     if (str[*i] == '.')
     {

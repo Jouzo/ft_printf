@@ -88,6 +88,10 @@ int     print_big_fill_zero(char *buf, int *p_buf, t_args *args, int len);
 int     print_big_padding_right(char *buf, int *p_buf, t_args *args, int len);
 int     print_big_fill_prec(char *buf, int *p_buf, t_args *args, int len);
 
+void padding_left_string(char *buf, t_args *args, int size_of_conversion, int *p_buf);
+void fill_prec_string(char *buf, t_args *args, int size_of_conversion, int *p_buf);
+void padding_right_string(char *buf, char *conv, t_args *args, int *p_buf);
+
 /*
 **  Conversion functions
 */

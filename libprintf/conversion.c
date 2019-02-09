@@ -78,8 +78,8 @@ int conversion_string(char *buf, char *str, t_args *args, int *p_buf)
         if (*p_buf + len > BUFF_SIZE)
             check_buf(buf, p_buf, args);
         ft_memcpy(buf + *p_buf, str, len);
-        if (args->left)
-            padding_right(buf, str, args, p_buf);
+        if (args->left && args->width)
+            padding_right_string(buf, str, args, p_buf);
         return (len);
     }
 }
