@@ -18,9 +18,8 @@ void init_args(t_args *args)
     args->space = 0;          /* Space flag.  */
     args->left = 0;           /* - flag.  */
     args->showsign = 0;       /* + flag.  */
+    args->zero = 0;
     args->minus = 0;          /* if param is negatif  */
-    args->group = 0;          /* ' flag.  */
-    args->extra = 0;          /* For special use.  */
     args->base = 10;          /* base */
     args->capital = 0;        /* capital base for X and O */
 }
@@ -53,7 +52,6 @@ int     dprintf(int fd, const char *format, ...)
         }
     }
     va_end(ap);
-
     ft_printstr(buf, &j, args);
     args.len += j;
     return (args.len);
@@ -86,8 +84,7 @@ int     ft_printf(const char *format, ...)
         }
     }
     va_end(ap);
-    printf("VALUE OF P BUF %i\n", j);
-
+    // printf("VALUE OF P BUF %i\n", j);
     ft_printstr(buf, &j, args);
     args.len += j;
     return (args.len);

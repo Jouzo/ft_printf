@@ -42,8 +42,6 @@ typedef struct      s_args
     unsigned int    showsign : 1;           /* + flag.  */
     unsigned int    minus : 1;              /* if param is negatif  */
     unsigned int    zero : 1;                /* 0 flag.  */
-    unsigned int    group : 1;              /* ' flag.  */
-    unsigned int    extra : 1;              /* For special use.  */
     unsigned int    base : 5;               /* base */
     unsigned int    capital : 5;            /* capital base for X and O */
 }                   t_args;

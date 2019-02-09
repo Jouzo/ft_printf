@@ -6,7 +6,7 @@ void padding_left(char *buf, t_args *args, int size_of_conversion, int *p_buf)
     int i;
 
     i = 0;
-    printf("padding_left : value of p_buf %i\n", *p_buf);
+    // printf("padding_left : value of p_buf %i\n", *p_buf);
 
     len = MAX(args->prec, size_of_conversion);
     if (args->minus)
@@ -34,7 +34,8 @@ void fill_zero(char *buf, t_args *args, int size_of_conversion, int *p_buf)
     i = 0;
     min = 0;
     // printf("fill_zero : value of p_buf %i\n", *p_buf);
-
+    if (args->showsign && !args->minus && args->spec == 'd')
+            print_sign(buf, p_buf, args);
     if (args->spec == '%')
         padding_left(buf, args, size_of_conversion, p_buf);
     else
