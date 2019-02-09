@@ -6,7 +6,7 @@
 #    By: jdescler <jdescler@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/07 18:10:13 by jdescler          #+#    #+#              #
-#    Updated: 2019/02/08 20:03:03 by jdescler         ###   ########.fr        #
+#    Updated: 2019/02/09 16:55:41 by jdescler         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,7 @@ SRCS =	add_option.c\
 		unicode.c\
 		check_buf.c\
 		big_option.c\
+		option_string.c\
 		ft_bzero.c\
 		ft_itoc.c\
 		ft_memcpy.c\
