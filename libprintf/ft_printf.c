@@ -53,6 +53,7 @@ int     dprintf(int fd, const char *format, ...)
         }
     }
     va_end(ap);
+
     ft_printstr(buf, &j, args);
     args.len += j;
     return (args.len);
@@ -85,6 +86,8 @@ int     ft_printf(const char *format, ...)
         }
     }
     va_end(ap);
+    printf("VALUE OF P BUF %i\n", j);
+
     ft_printstr(buf, &j, args);
     args.len += j;
     return (args.len);

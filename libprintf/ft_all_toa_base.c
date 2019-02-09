@@ -18,6 +18,7 @@ int add_toa(char *s, char *buf, int *p_buf, t_args *args)
         *p_buf -= 1;
     if (args->left && args->width > args->prec)
         padding_right(buf, s, args, p_buf);
+    printf("VALUE OF P BUF fin de add_toa %i\n", *p_buf);
     return (len);
 }
 
