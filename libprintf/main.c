@@ -9,10 +9,9 @@ int     main()
 	int i, j;
 	
 	i = j = 0;
-	i = ft_printf("%-5.2s is a string", "this");
+	i = ft_printf("%015.6d}", INT_MAX);
 	printf("\n");
-	j = printf("%-5.2s is a string", "this");
+	j = printf("%015.6d}", INT_MAX);
 	printf("\n\nreturn value : %i %i\n", i, j);
-
     return (0);
 }

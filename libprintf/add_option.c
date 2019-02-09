@@ -58,8 +58,18 @@ void fill_prec(char *buf, t_args *args, int size_of_conversion, int *p_buf)
     {
         if (args->prec - size_of_conversion > 0 && args->spec != 'f')
         {
+            // if (args->width > args->prec)
+            // {
+            //     printf("choukroute\n");
+            //     i = print_big_fill_prec(buf, p_buf, args, args->width - args->prec - size_of_conversion);
+            //     ft_memset(buf + *p_buf, ' ', args->width - args->prec - size_of_conversion - BUFF_SIZE * i);
+            //     *p_buf += args->width - args->prec - size_of_conversion - BUFF_SIZE * i;
+            // }
             if (args->prec - size_of_conversion > BUFF_SIZE)
+            {
+                printf("choux\n");
                 i = print_big_fill_prec(buf, p_buf, args, args->prec - size_of_conversion);
+            }
             ft_memset(buf + *p_buf, '0', args->prec - size_of_conversion - BUFF_SIZE * i);
             *p_buf += args->prec - size_of_conversion - BUFF_SIZE * i;
         }
@@ -101,9 +111,11 @@ void padding_right(char *buf, char *conv, t_args *args, int *p_buf)
         {
             *p_buf += len;
             i = print_big_padding_right(buf, p_buf, args, args->width - len - min - args->space);
+            ft_memset(buf + *p_buf, ' ', args->width - len - min - args->space - BUFF_SIZE * i);
+            *p_buf += args->width - len - min - args->space - BUFF_SIZE * i - len;
         }
-        ft_memset(buf + *p_buf, ' ', args->width - len - min - args->space - BUFF_SIZE * i);
-        *p_buf += args->width - len - min - args->space - BUFF_SIZE * i - len;
+        ft_memset(buf + *p_buf + len, ' ', args->width - len - min - args->space - BUFF_SIZE * i);
+        *p_buf += args->width - len - min - args->space;
     }
     // printf("\nvalue of *p_buf %i\n", *p_buf);
 }
