@@ -83,16 +83,16 @@ void    add_option(char *buf, t_args *args, char *conv, int *p_buf);
 void    padding_right(char *buf, char *conv, t_args *args, int *p_buf);
 void    padding_left(char *buf, t_args *args, int size_of_conversion, int *p_buf);
 void    print_sign(char *buf, int *p_buf, t_args *args);
-
+void    width_over_prec(char *buf, t_args *args, int size_of_conversion, int *p_buf);
 
 int     print_big_padding_left(char *buf, int *p_buf, t_args *args, int len);
 int     print_big_fill_zero(char *buf, int *p_buf, t_args *args, int len);
 int     print_big_padding_right(char *buf, int *p_buf, t_args *args, int len);
 int     print_big_fill_prec(char *buf, int *p_buf, t_args *args, int len);
 
-void padding_left_string(char *buf, t_args *args, int size_of_conversion, int *p_buf);
-void fill_prec_string(char *buf, t_args *args, int size_of_conversion, int *p_buf);
-void padding_right_string(char *buf, char *conv, t_args *args, int *p_buf);
+void    padding_left_string(char *buf, t_args *args, int size_of_conversion, int *p_buf);
+void    fill_prec_string(char *buf, t_args *args, int size_of_conversion, int *p_buf);
+void    padding_right_string(char *buf, char *conv, t_args *args, int *p_buf);
 
 /*
 **  Conversion functions

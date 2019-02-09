@@ -4,7 +4,7 @@ void padding_left(char *buf, t_args *args, int size_of_conversion, int *p_buf)
 {
     int len;
     int i;
-    
+
     i = 0;
     len = MAX(args->prec, size_of_conversion);
     if (args->minus)
@@ -53,6 +53,28 @@ void fill_zero(char *buf, t_args *args, int size_of_conversion, int *p_buf)
     }
 }
 
+void width_over_prec(char *buf, t_args *args, int size_of_conversion, int *p_buf)
+{
+    int i;
+    int min;
+
+    i = 0;
+    min = 0;
+    // printf("size of conv : %i\n", size_of_conversion);
+    // printf("fill prec : value of p_buf %i\n", *p_buf);
+    if (args->prec <= size_of_conversion && (args->spec == 'd' || args->spec == 'o') && args->prec != -1)
+        args->prec = 0;
+    if (args->showsign || args->minus || args->space)
+        min = 1;
+    if (args->width - size_of_conversion - min >= 0 && !args->left)
+    {
+        if (args->width - size_of_conversion - min > BUFF_SIZE * i)
+            i += print_big_fill_prec(buf, p_buf, args, args->width - size_of_conversion - min);
+        ft_memset(buf + *p_buf, ' ', args->width - size_of_conversion - min - BUFF_SIZE * i);
+        *p_buf += args->width - size_of_conversion - min - BUFF_SIZE * i;
+    }
+}
+
 void fill_prec(char *buf, t_args *args, int size_of_conversion, int *p_buf)
 {
     int i;
@@ -70,12 +92,12 @@ void fill_prec(char *buf, t_args *args, int size_of_conversion, int *p_buf)
     {
         if (args->width - args->prec - min >= 0 && !args->left)
         {
-            i = print_big_fill_prec(buf, p_buf, args, args->width - args->prec - min );
-            ft_memset(buf + *p_buf, ' ', args->width - args->prec - min  - BUFF_SIZE * i);
-            *p_buf += args->width - args->prec - min  - BUFF_SIZE * i;
+            i = print_big_fill_prec(buf, p_buf, args, args->width - args->prec - min);
+            ft_memset(buf + *p_buf, ' ', args->width - args->prec - min - BUFF_SIZE * i);
+            *p_buf += args->width - args->prec - min - BUFF_SIZE * i;
         }
         if (args->showsign && !args->minus && args->spec == 'd')
-                print_sign(buf, p_buf, args);
+            print_sign(buf, p_buf, args);
         if (args->prec - size_of_conversion > BUFF_SIZE * i)
             i += print_big_fill_prec(buf, p_buf, args, args->prec - size_of_conversion);
         ft_memset(buf + *p_buf, '0', args->prec - size_of_conversion - BUFF_SIZE * i);
@@ -86,7 +108,6 @@ void fill_prec(char *buf, t_args *args, int size_of_conversion, int *p_buf)
     else
         padding_left(buf, args, size_of_conversion, p_buf);
     // printf("fill prec : value of p_buf %i\n", *p_buf);
-    
 }
 
 void one_space(char *buf, int *p_buf, t_args *args)
@@ -109,7 +130,6 @@ void padding_right(char *buf, char *conv, t_args *args, int *p_buf)
     *p_buf = args->spec == 'o' && args->alt ? *p_buf -= 1 : *p_buf;
     // printf("VALUE OF P BUF %i\n", *p_buf);
     // printf("VALUE OF len %i\n", len);
-
     if (args->showsign || args->minus || args->space)
         min = 1;
     *p_buf += len;
@@ -165,7 +185,7 @@ void add_option(char *buf, t_args *args, char *conv, int *p_buf)
 {
     if (((args->space && args->width && !args->left && !args->zero) || (args->width && !args->zero && !args->left)) && args->spec != 's' && args->prec == 0)
         padding_left(buf, args, ft_strlen(conv), p_buf);
-    if (args->space && !args->showsign && args->spec == 'd' && !args->minus && args->prec > args->width)
+    if (args->space && !args->showsign && args->spec == 'd' && !args->minus && args->prec >= args->width)
         one_space(buf, p_buf, args);
     if (args->alt == 1 && (args->spec == 'x' || args->spec == 'o' || args->spec == 'p'))
         add_hash(buf, args, p_buf);
@@ -177,8 +197,10 @@ void add_option(char *buf, t_args *args, char *conv, int *p_buf)
         padding_left_string(buf, args, ft_strlen(conv), p_buf);
     if (args->prec && args->spec == 's' && !args->left)
         fill_prec_string(buf, args, ft_strlen(conv), p_buf);
-    else if (args->prec != 0 && args->spec != 's' && args->spec != 'p')
+    else if (args->prec != 0 && args->spec != 's' && args->spec != 'p' && args->prec >= args->width)
         fill_prec(buf, args, ft_strlen(conv), p_buf);
+    else if (args->prec != 0 && args->spec != 's' && args->spec != 'p' && args->prec < args->width)
+        width_over_prec(buf, args, ft_strlen(conv), p_buf);
     else if (args->zero && args->width && !args->left)
         fill_zero(buf, args, ft_strlen(conv), p_buf);
 }
