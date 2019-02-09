@@ -8,9 +8,9 @@ int     main()
 	int i, j;
 	
 	i = j = 0;
-	i = ft_printf("%5.1d", 42);
+	i = ft_printf("%50.15d", 42);
 	printf("\n");
-	j = printf("%5.1d", 42);
+	j = printf("%50.15d", 42);
 	printf("\n\nreturn value : %i %i\n", i, j);
     return (0);
 }

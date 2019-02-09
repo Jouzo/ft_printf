@@ -66,14 +66,21 @@ void width_over_prec(char *buf, t_args *args, int size_of_conversion, int *p_buf
         args->prec = 0;
     if (args->showsign || args->minus || args->space)
         min = 1;
-    if (args->width - size_of_conversion - min >= 0 && !args->left)
+    if (args->width - args->prec - min >= 0 && !args->left)
     {
-        if (args->width - size_of_conversion - min > BUFF_SIZE * i)
-            i += print_big_fill_prec(buf, p_buf, args, args->width - size_of_conversion - min);
-        ft_memset(buf + *p_buf, ' ', args->width - size_of_conversion - min - BUFF_SIZE * i);
-        *p_buf += args->width - size_of_conversion - min - BUFF_SIZE * i;
+        if (args->width - args->prec - min > BUFF_SIZE * i)
+            i += print_big_fill_prec(buf, p_buf, args, args->width - args->prec - min);
+        ft_memset(buf + *p_buf, ' ', args->width - args->prec - min - BUFF_SIZE * i);
+        *p_buf += args->width - args->prec - min - BUFF_SIZE * i;
     }
+    if (args->showsign && !args->minus && args->spec == 'd')
+            print_sign(buf, p_buf, args);
+    if (args->prec - size_of_conversion > BUFF_SIZE * i)
+            i += print_big_fill_prec(buf, p_buf, args, args->prec - size_of_conversion);
+    ft_memset(buf + *p_buf, '0', args->prec - size_of_conversion - BUFF_SIZE * i);
+    *p_buf += args->prec - size_of_conversion - BUFF_SIZE * i;
 }
+
 
 void fill_prec(char *buf, t_args *args, int size_of_conversion, int *p_buf)
 {
