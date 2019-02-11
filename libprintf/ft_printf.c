@@ -53,7 +53,7 @@ int     dprintf(int fd, const char *format, ...)
         }
     }
     va_end(ap);
-    ft_printstr(buf, &j, args);
+    ft_printstr(buf, j, args);
     args.len += j;
     return (args.len);
 }
@@ -62,14 +62,15 @@ int     ft_printf(const char *format, ...)
 {
     va_list ap;
     t_args args;
-    char buf[BUFF_SIZE];
+    char buf[BUFF_SIZE + 1];
     int i;
     int j;
 
     args.len = 0;
+    args.fd = 1;
     i = 0;
     j = 0;
-    ft_bzero(buf, BUFF_SIZE);
+    ft_bzero(buf, BUFF_SIZE + 1);
     va_start(ap, format);
     if (format[0] == '%' && ft_strlen(format) == 1)
         return (0);
@@ -85,7 +86,5 @@ int     ft_printf(const char *format, ...)
         }
     }
     va_end(ap);
-    ft_printstr(buf, &j, args);
-    args.len += j;
-    return (args.len);
+    return (args.len += ft_printstr(buf, j, args));
 }
