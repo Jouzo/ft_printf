@@ -12,12 +12,18 @@ int add_toa(char *s, char *buf, int *p_buf, t_args *args)
     if (*p_buf + len > BUFF_SIZE)
         check_buf(buf, p_buf, args);
     // printf("add_toa avant memcpy: value of p_buf %i\n", *p_buf);    
+        // printf("buffer : %s\n", buf);
+
     ft_memcpy(buf + *p_buf, s, len);
+        // printf("buffer : %s\n", buf);
+
     // printf("add_toa apres memcpy: value of p_buf %i\n", *p_buf);
     if ((args->spec == 'x' || args->spec == 'o' || args->spec == 'd' || args->spec == 'u') && *s == '0' && len == 1 && args->prec == -1)
         *p_buf -= 1;
     if (args->left && args->width > args->prec)
         padding_right(buf, s, args, p_buf);
+    
+    // printf("VALUE OF P BUF fin de add_toa %i\n", *p_buf);
     return (len);
 }
 

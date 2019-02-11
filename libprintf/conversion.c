@@ -3,7 +3,6 @@
 int conversion_int(char *buf, int nb, t_args *args, int *p_buf)
 {
     int len;
-
     if (args->is_short)
         nb = (short)nb;
     if (args->is_char)
@@ -70,7 +69,7 @@ int conversion_string(char *buf, char *str, t_args *args, int *p_buf)
         len = 0;
         *p_buf -= 1;
     }
-    printf("value of len %i\n", len);
+    // printf("value of len %i\n", len);
     if (!str)
     {
         if (*p_buf + 6 > BUFF_SIZE)

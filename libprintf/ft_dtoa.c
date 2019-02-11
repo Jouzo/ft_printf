@@ -21,6 +21,19 @@ int add_toa(char *s, char *buf, int *p_buf, t_args *args)
     return (len);
 }
 
+
+int size_of_double(long double n)
+{
+    int i;
+
+    i = 0;
+    while (n > 0)
+    {
+        i--;
+        n /= 10;
+    }
+}
+
 int ft_dtoa(long double n, t_args *args, char *buf, int *p_buf)
 {
     int i;

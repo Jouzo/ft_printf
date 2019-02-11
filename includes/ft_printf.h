@@ -42,8 +42,6 @@ typedef struct      s_args
     unsigned int    showsign : 1;           /* + flag.  */
     unsigned int    minus : 1;              /* if param is negatif  */
     unsigned int    zero : 1;                /* 0 flag.  */
-    unsigned int    group : 1;              /* ' flag.  */
-    unsigned int    extra : 1;              /* For special use.  */
     unsigned int    base : 5;               /* base */
     unsigned int    capital : 5;            /* capital base for X and O */
 }                   t_args;
@@ -83,6 +81,7 @@ void    add_option(char *buf, t_args *args, char *conv, int *p_buf);
 void    padding_right(char *buf, char *conv, t_args *args, int *p_buf);
 void    padding_left(char *buf, t_args *args, int size_of_conversion, int *p_buf);
 void    print_sign(char *buf, int *p_buf, t_args *args);
+void    one_space(char *buf, int *p_buf, t_args *args);
 void    width_over_prec(char *buf, t_args *args, int size_of_conversion, int *p_buf);
 
 int     print_big_padding_left(char *buf, int *p_buf, t_args *args, int len);
