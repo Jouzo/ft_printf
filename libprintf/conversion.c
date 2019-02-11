@@ -31,12 +31,9 @@ int conversion_long_long(char *buf, long nb, t_args *args, int *p_buf)
     return (ft_lltoa_base(nb, args, buf, p_buf));
 }
 
-int conversion_float(char *buf, double nb, t_args *args, int *p_buf)
+int conversion_double(char *buf, long double nb, t_args *args, int *p_buf)
 {
-    int len;
-
-    len = ft_itoa_base(nb, args, buf, p_buf);
-    return (len);
+    return (ft_dtoa(nb, args, buf, p_buf));
 }
 
 int conversion_unsigned(char *buf, unsigned int nb, t_args *args, int *p_buf)
@@ -134,8 +131,10 @@ int conversion(char *buf, va_list ap, t_args *args, int *p_buf)
         return conversion_long_unsigned(buf, va_arg(ap, unsigned long int), args, p_buf);
     if ((args->spec == 'u' || args->spec == 'o' || args->spec == 'x') && args->is_long_long)
         return conversion_long_long_unsigned(buf, va_arg(ap, unsigned long long int), args, p_buf);
-    if (args->spec == 'f')
-        return conversion_float(buf, va_arg(ap, unsigned long), args, p_buf);
+    if (args->spec == 'f' && !args->is_long_double)
+        return conversion_double(buf, va_arg(ap, double), args, p_buf);
+     if (args->spec == 'f' && args->is_long_double)
+        return conversion_double(buf, va_arg(ap, long double), args, p_buf);
     if (args->spec == '%')
         return conversion_string(buf, "%", args, p_buf);
     if (args->spec == 'C')
