@@ -103,8 +103,7 @@ void padding_dright(char *buf, char *conv, t_args *args, int *p_buf)
 
     i = 0;
     min = 0;
-    len = args->spec != 'p' ? ft_strlen(conv) : ft_strlen(conv) + 2;
-    *p_buf = args->spec == 'o' && args->alt ? *p_buf -= 1 : *p_buf;
+    len = 0;
     if (args->showsign || args->minus || args->space)
         min = 1;
     if (len + min + args->space < args->prec)

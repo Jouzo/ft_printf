@@ -28,9 +28,9 @@ int     main()
 	// 	printf("double cast to long %lu\n", (unsigned long)test2);
 	// 	printf("get digit sur decimal %lu\n", (unsigned long)test2 % 10);
 	// }
-	i = ft_printf("%#-08x", 42);
+	i = ft_printf("@moulitest: %#.x %#.0x", 0, 0);
 	printf("\n");
-	// j = printf("%#-08x", 42);
+	j = printf("@moulitest: %#.x %#.0x", 0, 0);
 	printf("\n\nreturn value : %i %i\n", i, j);
     return (0);
 }

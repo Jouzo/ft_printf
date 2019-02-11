@@ -63,6 +63,8 @@ void width_over_prec(char *buf, t_args *args, int size_of_conversion, int *p_buf
 
     i = 0;
     min = 0;
+    // printf("DEDE\n");
+
     // printf("size of conv : %i\n", size_of_conversion);
     // printf("fill prec : value of p_buf %i\n", *p_buf);
     if (args->prec <= size_of_conversion && (args->spec == 'd' || args->spec == 'o') && args->prec != -1)
@@ -202,7 +204,7 @@ void add_option(char *buf, t_args *args, char *conv, int *p_buf)
         padding_left_string(buf, args, ft_strlen(conv), p_buf);
     if (args->prec && args->spec == 's' && !args->left)
         fill_prec_string(buf, args, ft_strlen(conv), p_buf);
-    else if (args->prec != 0 && args->spec != 's' && args->spec != 'p' && args->prec >= args->width)
+    else if ((args->prec != 0 && args->spec != 's' && args->spec != 'p' && args->prec >= args->width) || (args->prec == -1 && args->spec != 's' && args->spec != 'p'))
         fill_prec(buf, args, ft_strlen(conv), p_buf);
     else if (args->prec != 0 && args->spec != 's' && args->spec != 'p' && args->prec < args->width)
         width_over_prec(buf, args, ft_strlen(conv), p_buf);

@@ -9,6 +9,7 @@ int add_toa(char *s, char *buf, int *p_buf, t_args *args)
     if (*s == '0' && len == 1)
         args->alt = 0;
     add_option(buf, args, s, p_buf);
+    printf("DEDE\n");
     if (*p_buf + len > BUFF_SIZE)
         check_buf(buf, p_buf, args);
     // printf("add_toa avant memcpy: value of p_buf %i\n", *p_buf);    
