@@ -62,8 +62,9 @@ void	check_type3(const char *str, int *i, t_args *args)
 
 void	check_type(const char *str, int *i, t_args *args)
 {
-	char option[18];
+	char option[20];
 
+	ft_bzero(option, 20);
 	ft_memcpy(option, "jbcCsSpdDiIoOuUxXf%", 19);
 	if (ft_strchr(option, str[*i]))
 	{
@@ -89,8 +90,9 @@ void	check_type(const char *str, int *i, t_args *args)
 
 void	check_option(const char *str, int *i, t_args *args)
 {
-	char option[5];
+	char option[6];
 
+	ft_bzero(option, 6);
 	ft_memcpy(option, "-+#0 ", 5);
 	while (ft_strchr(option, str[*i]))
 	{

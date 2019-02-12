@@ -3,13 +3,10 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <math.h>
 #include <stdarg.h>
 #include <unistd.h>
-#include <limits.h>
+#include <wchar.h>
 #include <string.h>
-#include <stdint.h>
-
 /*
 ** Macros
 */
