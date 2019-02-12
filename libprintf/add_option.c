@@ -93,9 +93,11 @@ void fill_prec(char *buf, t_args *args, int size_of_conversion, int *p_buf)
 {
 	int i;
 	int min;
+
 	i = 0;
 	min = 0;
-	// printf("size of conv : %i\n", size_of_conversion);
+	// printf("fill prec : value of buf %s\n", buf);
+	printf("size of conv : %i\n", size_of_conversion);
 	// printf("fill prec : value of p_buf %i\n", *p_buf);
 	if (args->prec <= size_of_conversion && (args->spec == 'd' || args->spec == 'o') && args->prec != -1)
 		args->prec = 0;
@@ -115,12 +117,13 @@ void fill_prec(char *buf, t_args *args, int size_of_conversion, int *p_buf)
 			i += print_big_fill_prec(buf, p_buf, args, args->prec - size_of_conversion);
 		ft_memset(buf + *p_buf, '0', args->prec - size_of_conversion - BUFF_SIZE * i);
 		*p_buf += args->prec - size_of_conversion - BUFF_SIZE * i;
+		// printf("size of conv %d\n", size_of_conversion);
 	}
 	else if (!args->zero)
 		padding_left(buf, args, args->width + size_of_conversion, p_buf);
 	else
 		padding_left(buf, args, size_of_conversion, p_buf);
-	// printf("fill prec : value of p_buf %i\n", *p_buf);
+	//  printf("fill prec : value of buf %s\n", buf);
 }
 
 void one_space(char *buf, int *p_buf, t_args *args)
@@ -195,6 +198,7 @@ void add_hash(char *buf, t_args *args, int *p_buf)
 
 void add_option(char *buf, t_args *args, char *conv, int *p_buf)
 {
+	printf("conv %s :\n", conv);
 	if (((args->space && args->width && !args->left && !args->zero) || (args->width && !args->zero && !args->left)) && args->spec != 's' && args->prec == 0)
 		padding_left(buf, args, ft_strlen(conv), p_buf);
 	if (args->space && !args->showsign && args->spec == 'd' && !args->minus)

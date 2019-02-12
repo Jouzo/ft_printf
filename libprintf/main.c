@@ -8,16 +8,13 @@ int     main()
 
 	i = j = 0;
 
-	printf("\n");
-	i = ft_printf("%#o", 0);
-	printf("\n");
-	j = printf("%#o", 0);
-	printf("--------------------------\n");
-	printf("--------------------------\n");
+// "test%#.4o et %02o %0#14.0o!!", 012, 036, 12587499
 
-	printf("return value : %i %i\n", i, j);
-	printf("--------------------------\n");
-	printf("--------------------------\n");
-
+	printf("\n");
+	i = ft_printf("test%#.4x", 12);
+	printf("\n");
+	j = printf("test%#.4x", 12);
+	printf("\n");
+	printf("return values : %d et %d\n", i, j);
 	return (0);
 }
