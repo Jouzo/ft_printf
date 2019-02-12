@@ -6,10 +6,9 @@ int		add_toa(char *s, char *buf, int *p_buf, t_args *args)
 
 	len = ft_strlen(s);
     // printf("add_toa : value of len %i\n", len);
-	
-	ft_strrev(s);
-	if (*s == '0' && len == 1 && args->spec != 'o')
+	if (*s == '0' && len == 1)
 		args->alt = 0;
+	ft_strrev(s);
 	// printf("value of args->alt and args->spec and args->prec %i %c %i\n\n", args->alt, args->spec, args->prec);
 	add_option(buf, args, s, p_buf);
 	if (*p_buf + len > BUFF_SIZE)

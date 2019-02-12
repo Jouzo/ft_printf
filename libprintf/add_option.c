@@ -63,7 +63,6 @@ void width_over_prec(char *buf, t_args *args, int size_of_conversion, int *p_buf
 
 	i = 0;
 	min = 0;
-	// printf("DEDE\n");
 	if (args->prec <= size_of_conversion && (args->spec == 'd' || args->spec == 'o') && args->prec != -1)
 		args->prec = 0;
 	len = args->prec < size_of_conversion ? size_of_conversion : args->prec;
@@ -184,7 +183,7 @@ void add_hash(char *buf, t_args *args, int *p_buf)
 		ft_memset(buf + *p_buf + 1, 'x' - args->capital * 2, 1);
 		*p_buf += 2;
 	}
-	else if (args->spec == 'o' && args->prec != -1)
+	else if (args->spec == 'o')
 	{
 		// printf("DEDE\n");
 		if (*p_buf == BUFF_SIZE)
@@ -210,7 +209,7 @@ void add_option(char *buf, t_args *args, char *conv, int *p_buf)
 		padding_left_string(buf, args, ft_strlen(conv), p_buf);
 	if (args->prec && args->spec == 's' && !args->left)
 		fill_prec_string(buf, args, ft_strlen(conv), p_buf);
-	else if ((args->prec != 0 && args->spec != 's' && args->spec != 'p' && args->prec >= args->width) || (args->prec == -1 && args->spec != 's' && args->spec != 'p'))
+	else if ((args->prec != 0 && args->spec != 's' && args->spec != 'p' && args->prec >= args->width))
 		fill_prec(buf, args, ft_strlen(conv), p_buf);
 	else if (args->prec != 0 && args->spec != 's' && args->spec != 'p' && args->prec < args->width)
 		width_over_prec(buf, args, ft_strlen(conv), p_buf);

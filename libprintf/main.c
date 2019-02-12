@@ -2,8 +2,6 @@
 #include <stdio.h>
 #include "../includes/ft_printf.h"
 
-
-
 int     main()
 {
 	int i, j;
@@ -11,9 +9,9 @@ int     main()
 	i = j = 0;
 
 	printf("\n");
-	j = printf("%zd", -1);
+	i = ft_printf("%#o", 0);
 	printf("\n");
-	i = ft_printf("%zd", -1);
+	j = printf("%#o", 0);
 	printf("--------------------------\n");
 	printf("--------------------------\n");
 

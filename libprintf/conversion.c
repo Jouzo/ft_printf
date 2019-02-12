@@ -112,7 +112,7 @@ int conversion(char *buf, va_list ap, t_args *args, int *p_buf)
 
 	if (args->is_sizet)
 		if (args->spec == 'd')
-			return conversion_long_long_unsigned(buf, (size_t)va_arg(ap, unsigned long long int), args, p_buf);
+			return conversion_long_long_unsigned(buf, (ssize_t)va_arg(ap, unsigned long long int), args, p_buf);
 	if (args->spec == 'c' && args->is_long)
 		args->spec = 'C';
 	if (args->spec == 'c' || (args->spec == 'd' && !args->is_long && !args->is_long_long) || (args->spec == 'i' && !args->is_long && !args->is_long_long))
