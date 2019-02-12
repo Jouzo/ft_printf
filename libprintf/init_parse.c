@@ -69,7 +69,7 @@ void	check_taille(const char *str, int *i, t_args *args)
 	if (str[*i] == 'z')
 	{
 		args->is_sizet = 1;
-		args->is_long_long = 1;
+		args->is_long = 1;
 		*i += 1;
 	}
 }
