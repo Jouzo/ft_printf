@@ -3,13 +3,10 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <math.h>
 #include <stdarg.h>
 #include <unistd.h>
-#include <limits.h>
+#include <wchar.h>
 #include <string.h>
-#include <stdint.h>
-
 /*
 ** Macros
 */
@@ -53,7 +50,7 @@ typedef struct      s_args
 
 int     ft_printf(const char *format, ...);
 char	*ft_strchr(const char *s, int c);
-int 	ft_printstr(char const *s, int *p_buf, t_args args);
+int 	ft_printstr(char const *s, int p_buf, t_args args);
 void	ft_putchar(char c);
 void	*ft_memset(void *b, int c, size_t len);
 void	*ft_memcpy(void *dst, const void *src, size_t n);
@@ -71,6 +68,8 @@ void    check_buf(char *buf, int *p_buf, t_args *args);
 **  parsing functions
 */
 
+void	check_type(const char *str, int *i, t_args *args);
+void    check_option(const char *str, int *i, t_args *args);
 int     assign(const char *str, t_args *args);
 int     init_parse(const char *str, t_args *args);
 
@@ -91,6 +90,8 @@ int     print_big_padding_left(char *buf, int *p_buf, t_args *args, int len);
 int     print_big_fill_zero(char *buf, int *p_buf, t_args *args, int len);
 int     print_big_padding_right(char *buf, int *p_buf, t_args *args, int len);
 int     print_big_fill_prec(char *buf, int *p_buf, t_args *args, int len);
+int     print_big_fill_prec_string(char *buf, int *p_buf, t_args *args, int len);
+
 
 void    padding_left_string(char *buf, t_args *args, int size_of_conversion, int *p_buf);
 void    fill_prec_string(char *buf, t_args *args, int size_of_conversion, int *p_buf);
@@ -112,6 +113,7 @@ int     ft_ultoa_base(unsigned long int n, t_args *args, char *buf, int *p_buf);
 int     ft_ulltoa_base(unsigned long long int n, t_args *args, char *buf, int *p_buf);
 
 int     ft_dtoa(long double n, t_args *args, char *buf, int *p_buf);
+int		add_toa(char *s, char *buf, int *p_buf, t_args *args);
 
 
 /*
@@ -124,8 +126,8 @@ long    get_decimal_digit(long decimal, long double n, int i);
 **  Unicode functions
 */
 
-int ft_uni4_to_buf(wchar_t sign, t_args *args, char *buf, int *p_buf);
-int ft_uni3_to_buf(wchar_t sign, t_args *args, char *buf, int *p_buf);
-int ft_uni2_to_buf(wchar_t sign, t_args *args, char *buf, int *p_buf);
+int     ft_uni4_to_buf(wchar_t sign, t_args *args, char *buf, int *p_buf);
+int     ft_uni3_to_buf(wchar_t sign, t_args *args, char *buf, int *p_buf);
+int     ft_uni2_to_buf(wchar_t sign, t_args *args, char *buf, int *p_buf);
 
 #endif
