@@ -7,6 +7,8 @@ void	ft_itoc(int nb, t_args *args, char *buf, int *p_buf)
 	if (*p_buf == BUFF_SIZE)
 		check_buf(buf, p_buf, args);
 	add_option(buf, args, "1", p_buf);
+	// printf("value of nb %c\n", nb);
+	// printf("value of *p_buf %i\n", *p_buf);
 	ft_memset(buf + *p_buf, nb, 1);
 	*p_buf += 1;
 }

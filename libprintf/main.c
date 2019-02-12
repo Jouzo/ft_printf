@@ -7,19 +7,19 @@ int     main()
 	int i, j;
 
 	i = j = 0;
-	printf("our  printf \n");
-	i = ft_printf("%.0s", "coco et ti");
+	ft_printf("our  printf : \n");
+	i = ft_printf("%5.2s is a string", "");
 	printf("\n");
 	printf("--------------------------\n");
 	printf("--------------------------\n");
-	printf("real printf \n");
-	j = printf("%.0s", "coco et ti");
+	printf("real printf : \n");
+	j = printf("%5.2s is a string", "");
+	printf("\n");
 	printf("--------------------------\n");
 	printf("--------------------------\n");
 	printf("our  printf return value : %i\n", i);
 	printf("real printf return value : %i\n", j);
 	printf("--------------------------\n");
 	printf("--------------------------\n");
-
 	return (0);
 }
