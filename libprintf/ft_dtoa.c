@@ -21,8 +21,7 @@ long double ft_powl(long double n, long double pow)
 
 unsigned long ft_pow(unsigned long n, long pow)
 {
-	// printf("value of n * ft_pow(n, pow - 1) %lu\n", n * ft_pow(n, pow - 1));
-	return (pow > 0 ? n * ft_pow(n, pow - 1) : 1);
+    return (pow > 0 ? n * ft_pow(n, pow - 1) : 1);
 }
 
 int  get_size_int_part(long double n)

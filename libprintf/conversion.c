@@ -61,10 +61,13 @@ int conversion_string(char *buf, char *str, t_args *args, int *p_buf)
 	len = ft_strlen(str);
 	if (args->prec && ft_strlen(str) > (size_t)args->prec)
 		len = args->prec;
-	if (args->prec == -1 && args->prec == 's')
+	// printf("value of *p_buf %i\n", *p_buf);
+	
+	// printf("value of args->prec %i\n", args->prec);
+	if (args->prec == -1 && args->spec == 's')
 	{
 		len = 0;
-		*p_buf -= 1;
+		*p_buf = *p_buf > 0 ? *p_buf - 1 : *p_buf;
 	}
 	// printf("value of len %i\n", len);
 	if (!str)
@@ -76,7 +79,8 @@ int conversion_string(char *buf, char *str, t_args *args, int *p_buf)
 	}
 	else
 	{
-		add_option(buf, args, str, p_buf);
+		// printf("value of *p_buf %i\n", *p_buf);
+		add_option_string(buf, args, str, p_buf);
 		if (*p_buf + len > BUFF_SIZE)
 			check_buf(buf, p_buf, args);
 		ft_memcpy(buf + *p_buf, str, len);
@@ -90,7 +94,7 @@ int conversion_void(char *buf, unsigned long long ptr, t_args *args, int *p_buf)
 {
 	args->alt = 1;
 	args->base = 16;
-	return (ft_ltoa_base(ptr, args, buf, p_buf));
+	return (ft_lltoa_base(ptr, args, buf, p_buf));
 }
 
 int conversion_unicode(char *buf, wchar_t sign, t_args *args, int *p_buf)
