@@ -56,12 +56,9 @@ void padding_right_string(char *buf, char *conv, t_args *args, int *p_buf)
 	if (args->prec && len > args->prec)
 		len = args->prec;
 	// printf("value of args->prec %i\n", args->prec);
-	if (ft_strcmp(conv, "(null)") == 0 && args->prec == 0)
-	{
-		len = 0;
-		min = 1;
-		}
-	// printf("value of conv %s\n", conv);
+	 if (ft_strcmp(conv, "(null)") == 0 && args->prec == 0)
+        len = 0;
+	// // printf("value of conv %s\n", conv);
 
 	// printf("value of len %i\n", len);
 	*p_buf += len + min;
