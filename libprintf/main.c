@@ -7,13 +7,11 @@ int     main()
 	int i, j;
 
 	i = j = 0;
-	ft_printf("our  printf : \n");
-	i = ft_printf("%15.4d", -42);
+
 	printf("\n");
-	printf("--------------------------\n");
-	printf("--------------------------\n");
-	printf("real printf : \n");
-	j = printf("%15.4d", -42);
+	i = ft_printf("@moulitest: %5.d %5.0d", 0, 0);
+	printf("\n");
+	j = printf("@moulitest: %5.d %5.0d", 0, 0);
 	printf("\n");
 	printf("return values : %d et %d\n", i, j);
 	// ft_printf("mien %#.1o\n", 0);
