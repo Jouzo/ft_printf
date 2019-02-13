@@ -8,12 +8,12 @@ int     main()
 
 	i = j = 0;
 	ft_printf("our  printf : \n");
-	i = ft_printf("%5.2s is a string", "");
+	i = ft_printf("Coucou %.0s\n%s%---12s", "hi", "coco", NULL);
 	printf("\n");
 	printf("--------------------------\n");
 	printf("--------------------------\n");
 	printf("real printf : \n");
-	j = printf("%5.2s is a string", "");
+	j = printf("Coucou %.0s\n%s%---12s", "hi", "coco", NULL);
 	printf("\n");
 	printf("--------------------------\n");
 	printf("--------------------------\n");

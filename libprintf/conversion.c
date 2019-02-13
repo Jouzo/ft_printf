@@ -75,13 +75,19 @@ int conversion_string(char *buf, char *str, t_args *args, int *p_buf)
 	// printf("value of len %i\n", len);
 	if (!str)
 	{
-		args->prec = args->prec == 0 ? 6: args->prec;
+		if (args->prec == 0)
+			args->prec = 6;
+		if (args->prec == -1)
+			args->prec = 0;
 		if (*p_buf + 6 > BUFF_SIZE)
 			check_buf(buf, p_buf, args);
 		add_option_string(buf, args, "(null)", p_buf);	
 		ft_memcpy(buf + *p_buf, "(null)", args->prec);
+		if (args->left && args->width)
+			padding_right_string(buf, "(null)", args, p_buf);
 		return (args->prec);
 	}
+
 	else
 	{
 		// printf("value of *p_buf %i\n", *p_buf);
