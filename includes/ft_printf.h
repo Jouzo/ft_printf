@@ -66,6 +66,7 @@ int					ft_strcmp(const char *s1, const char *s2);
 */
 
 void				check_buf(char *buf, int *p, t_args *a);
+int					fill_buff(char *buf, int *p_buf, t_args *args, int len);
 
 /*
 **  parsing functions
@@ -156,8 +157,10 @@ int					add_toa(char *s, char *buf, int *p, t_args *a);
 /*
 **  Dtoa functions
 */
-
+unsigned long		get_deci(long double n, int i);
+unsigned long		get_digit(long double n, int i);
 long				get_decimal_digit(long decimal, long double n, int i);
+unsigned long		ft_pow(unsigned long n, long pow);
 
 /*
 **  Unicode functions

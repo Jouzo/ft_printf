@@ -2,26 +2,38 @@
 #include <stdio.h>
 #include "../includes/ft_printf.h"
 
-void init_args(t_args *args)
+int		fill_buff(char *buf, int *p_buf, t_args *args, int len)
 {
-	args->prec = 0;           /* Precision. */
-	args->width = 0;          /* Width.  */
-	args->spec = 0;           /* Format letter.  */
-	args->conv = 0;			   /* to select conv function */
-	args->is_long_double = 0; /* L flag.  */
-	args->is_short = 0;       /* h flag.  */
-	args->is_long = 0;        /* l flag.  */
-	args->is_long_long = 0;   /* ll flag.  */
-	args->is_char = 0;        /* hh flag.  */
-	args->is_sizet = 0;       /* z flag */
-	args->alt = 0;            /* # flag.  */
-	args->space = 0;          /* Space flag.  */
-	args->left = 0;           /* - flag.  */
-	args->showsign = 0;       /* + flag.  */
+	int i;
+
+	i = 0;
+	if (len > BUFF_SIZE)
+			i = big_fill_zero(buf, p_buf, args, len);
+	ft_memset(buf + *p_buf, '0', len - BUFF_SIZE * i);
+	*p_buf += len - BUFF_SIZE * i;
+	return (i);
+}
+
+void	init_args(t_args *args)
+{
+	args->prec = 0;
+	args->width = 0;
+	args->spec = 0;
+	args->conv = 0;
+	args->is_long_double = 0;
+	args->is_short = 0;
+	args->is_long = 0;
+	args->is_long_long = 0;
+	args->is_char = 0;
+	args->is_sizet = 0;
+	args->alt = 0;
+	args->space = 0;
+	args->left = 0;
+	args->showsign = 0;
 	args->zero = 0;
-	args->minus = 0;          /* if param is negatif  */
-	args->base = 10;          /* base */
-	args->capital = 0;        /* capital base for X and O */
+	args->minus = 0;
+	args->base = 10;
+	args->capital = 0;
 }
 
 int     dprintf(int fd, const char *format, ...)

@@ -6,7 +6,7 @@
 #    By: jdescler <jdescler@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/07 18:10:13 by jdescler          #+#    #+#              #
-#    Updated: 2019/02/13 20:51:00 by jdescler         ###   ########.fr        #
+#    Updated: 2019/02/13 22:13:31 by jdescler         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,7 @@ NAME = libftprintf.a
 OPTION = ../includes/ft_printf.h
 
 SRCS =	add_option.c\
+		add_option2.c\
 		conversion.c\
 		init_parse.c\
 		init_parse2.c\
@@ -29,7 +30,6 @@ SRCS =	add_option.c\
 		ft_memcpy.c\
 		ft_memset.c\
 		ft_printstr.c\
-		ft_putchar.c\
 		ft_strchr.c\
 		ft_strlen.c\
 		ft_strrev.c\
@@ -38,6 +38,7 @@ SRCS =	add_option.c\
 		ft_all_toa_base.c\
 		ft_all_toa_base2.c\
 		ft_dtoa.c\
+		ft_dtoa2.c\
 
 OBJS = $(SRCS:.c=.o)
 

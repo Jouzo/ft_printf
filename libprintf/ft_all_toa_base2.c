@@ -1,6 +1,6 @@
 #include "../includes/ft_printf.h"
 
-int		ft_ultoa_base(unsigned long int n, t_args *args, char *buf, int *p_buf)
+int			ft_ultoa_base(unsigned long n, t_args *args, char *buf, int *p_buf)
 {
 	int		i;
 	char	s[63];
@@ -15,7 +15,7 @@ int		ft_ultoa_base(unsigned long int n, t_args *args, char *buf, int *p_buf)
 	return (add_toa(s, buf, p_buf, args));
 }
 
-int		ft_ulltoa_base(unsigned long long int n, t_args *ar, char *bf, int *p_b)
+int			ft_ulltoa_base(unsigned long long n, t_args *ar, char *bf, int *p_b)
 {
 	int		i;
 	char	s[63];

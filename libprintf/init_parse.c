@@ -1,4 +1,3 @@
-#include <stdio.h>
 #include "../includes/ft_printf.h"
 
 void	check_larg_mini(const char *str, int *i, t_args *args)
