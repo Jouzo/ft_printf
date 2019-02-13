@@ -44,11 +44,7 @@ void	check_type2(const char *str, int *i, t_args *args)
 		args->base = 8;
 		args->conv = 4;
 	}
-}
-
-void	check_type3(const char *str, int *i, t_args *args)
-{
-	if (str[*i] == 'u' || str[*i] == 'U')
+	else if (str[*i] == 'u' || str[*i] == 'U')
 	{
 		if (str[*i] == 'U')
 			args->is_long = 1;
@@ -56,7 +52,11 @@ void	check_type3(const char *str, int *i, t_args *args)
 		args->showsign = 0;
 		args->conv = 4;
 	}
-	else if (str[*i] == 'x' || str[*i] == 'X')
+}
+
+void	check_type3(const char *str, int *i, t_args *args)
+{
+	if (str[*i] == 'x' || str[*i] == 'X')
 	{
 		if (str[*i] == 'X')
 			args->capital = 16;
@@ -96,11 +96,11 @@ void	check_type(const char *str, int *i, t_args *args)
 				|| str[*i] == 'S' || str[*i] == 'p')
 			check_type1(str, i, args);
 		else if (str[*i] == 'd' || str[*i] == 'i' || str[*i] == 'D'
-				|| str[*i] == 'I' || str[*i] == 'o' || str[*i] == 'O')
+				|| str[*i] == 'I' || str[*i] == 'o' || str[*i] == 'O'
+				|| str[*i] == 'u' || str[*i] == 'U')
 			check_type2(str, i, args);
-		else if (str[*i] == 'u' || str[*i] == 'U' || str[*i] == 'x'
-				|| str[*i] == 'X' || str[*i] == 'f' || str[*i] == '%'
-				|| str[*i] == 'b')
+		else if (str[*i] == 'x' || str[*i] == 'X'
+				|| str[*i] == 'f' || str[*i] == '%' || str[*i] == 'b')
 			check_type3(str, i, args);
 		*i += 1;
 	}
