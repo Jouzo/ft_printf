@@ -1,10 +1,26 @@
 #include "../includes/ft_printf.h"
 
-int conversion_int(char *buf, int nb, t_args *args, int *p_buf)
+int (*conversions[10])(char *, va_list, t_args*, int*) =
 {
+	&conversion_int,
+	&conversion_long,
+	&conversion_long_long,
+	&conversion_double,
+	&conversion_unsigned,
+	&conversion_long_unsigned,
+	&conversion_long_long_unsigned,
+	&conversion_string,
+	&conversion_void,
+	&conversion_unicode
+};
+
+int conversion_int(char *buf, va_list ap, t_args *args, int *p_buf)
+{
+	int nb;
 	int len;
 
 	len = 0;
+	nb = va_arg(ap, int);
 	if (args->is_short)
 		nb = (short)nb;
 	if (args->is_char)
@@ -23,23 +39,38 @@ int conversion_int(char *buf, int nb, t_args *args, int *p_buf)
 	return (len);
 }
 
-int conversion_long(char *buf, long nb, t_args *args, int *p_buf)
+int conversion_long(char *buf, va_list ap, t_args *args, int *p_buf)
 {
+	long nb;
+
+	nb = va_arg(ap, long);
 	return (ft_ltoa_base(nb, args, buf, p_buf));
 }
 
-int conversion_long_long(char *buf, long nb, t_args *args, int *p_buf)
+int conversion_long_long(char *buf, va_list ap, t_args *args, int *p_buf)
 {
+	long long nb;
+
+	nb = va_arg(ap, long long);
 	return (ft_lltoa_base(nb, args, buf, p_buf));
 }
 
-int conversion_double(char *buf, long double nb, t_args *args, int *p_buf)
+int conversion_double(char *buf, va_list ap, t_args *args, int *p_buf)
 {
+	long double nb;
+
+	if (args->is_long_double)
+		nb = va_arg(ap, long double);
+	else
+		nb = va_arg(ap, double);
 	return (ft_dtoa(nb, args, buf, p_buf));
 }
 
-int conversion_unsigned(char *buf, unsigned int nb, t_args *args, int *p_buf)
+int conversion_unsigned(char *buf, va_list ap, t_args *args, int *p_buf)
 {
+	unsigned int nb;
+
+	nb = va_arg(ap, unsigned int);
 	if (args->is_short)
 		nb = (unsigned short)nb;
 	if (args->is_char)
@@ -47,31 +78,34 @@ int conversion_unsigned(char *buf, unsigned int nb, t_args *args, int *p_buf)
 	return (ft_utoa_base(nb, args, buf, p_buf));
 }
 
-int conversion_long_unsigned(char *buf, unsigned long nb, t_args *args, int *p_buf)
+int conversion_long_unsigned(char *buf, va_list ap, t_args *args, int *p_buf)
 {
+	unsigned long nb;
+
+	nb = va_arg(ap, unsigned long int);
 	return (ft_ultoa_base(nb, args, buf, p_buf));
 }
 
-int conversion_long_long_unsigned(char *buf, unsigned long long nb, t_args *args, int *p_buf)
+int conversion_long_long_unsigned(char *buf, va_list ap, t_args *args, int *p_buf)
 {
+	unsigned long long nb;
+
+	if (args->is_sizet)
+		if (args->spec == 'd')
+			nb = (ssize_t)va_arg(ap, unsigned long long int);
+	nb = va_arg(ap, unsigned long long int);
 	return (ft_ulltoa_base(nb, args, buf, p_buf));
 }
 
-int conversion_string(char *buf, char *str, t_args *args, int *p_buf)
+int conversion_string(char *buf, va_list ap, t_args *args, int *p_buf)
 {
+	char *str;
+
+	str = va_arg(ap, char *);
 	if ((!args->prec || args->prec > (int)ft_strlen(str)) && str)
 		args->prec = ft_strlen(str);
 	if (args->prec == -1 && str)
 		args->prec = 0;
-	// printf("value of *p_buf %i\n", *p_buf);
-	
-	// printf("value of args->prec %i\n", args->prec);
-	// if (args->prec == -1 && args->spec == 's')
-	// {
-	// 	len = 0;
-	// 	*p_buf = *p_buf > 0 ? *p_buf - 1 : *p_buf;
-	// }
-	// printf("value of len %i\n", len);
 	if (!str)
 	{
 		if (args->prec == 0)
@@ -88,7 +122,6 @@ int conversion_string(char *buf, char *str, t_args *args, int *p_buf)
 	}
 	else
 	{
-		// printf("value of *p_buf %i\n", *p_buf);
 		add_option_string(buf, args, str, p_buf);
 		if (*p_buf + args->prec > BUFF_SIZE)
 			check_buf(buf, p_buf, args);
@@ -102,7 +135,7 @@ int conversion_string(char *buf, char *str, t_args *args, int *p_buf)
 int conversion_percent(char *buf, char *str, t_args *args, int *p_buf)
 {
 	int len;
-	
+
 	len = ft_strlen(str);
 	if (args->prec && ft_strlen(str) > (size_t)args->prec)
 		len = args->prec;
@@ -127,17 +160,23 @@ int conversion_percent(char *buf, char *str, t_args *args, int *p_buf)
 		return (len);
 	}
 }
-int conversion_void(char *buf, unsigned long long ptr, t_args *args, int *p_buf)
+int conversion_void(char *buf, va_list ap, t_args *args, int *p_buf)
 {
+	unsigned long long ptr;
+
+	ptr = va_arg(ap, unsigned long long);
 	args->alt = 1;
 	args->base = 16;
 	return (ft_lltoa_base(ptr, args, buf, p_buf));
 }
 
-int conversion_unicode(char *buf, wchar_t sign, t_args *args, int *p_buf)
+int conversion_unicode(char *buf, va_list ap, t_args *args, int *p_buf)
 {
+	wchar_t sign;
+
+	sign = va_arg(ap, wchar_t);
 	if (sign < 128)
-		return conversion_int(buf, sign, args, p_buf);
+		return ft_uni_to_buf((int)sign, args, buf, p_buf);
 	else if (sign < 2048)
 		return (ft_uni2_to_buf(sign, args, buf, p_buf));
 	else if (sign < 65536)
@@ -150,35 +189,11 @@ int conversion_unicode(char *buf, wchar_t sign, t_args *args, int *p_buf)
 
 int conversion(char *buf, va_list ap, t_args *args, int *p_buf)
 {
+	int (*conv)(char *, va_list, t_args*, int*);
 
-	if (args->is_sizet)
-		if (args->spec == 'd')
-			return conversion_long_long_unsigned(buf, (ssize_t)va_arg(ap, unsigned long long int), args, p_buf);
-	if (args->spec == 'c' && args->is_long)
-		args->spec = 'C';
-	if (args->spec == 'c' || (args->spec == 'd' && !args->is_long && !args->is_long_long) || (args->spec == 'i' && !args->is_long && !args->is_long_long))
-		return conversion_int(buf, va_arg(ap, int), args, p_buf);
-	if ((args->spec == 'd' && args->is_long) || (args->spec == 'i' && args->is_long))
-		return conversion_long(buf, va_arg(ap, long), args, p_buf);
-	if ((args->spec == 'd' && args->is_long_long) || (args->spec == 'i' && args->is_long_long))
-		return conversion_long_long(buf, va_arg(ap, long long), args, p_buf);
-	if (args->spec == 's' || args->spec == 'S')
-		return conversion_string(buf, va_arg(ap, char *), args, p_buf);
-	if (args->spec == 'p')
-		return conversion_void(buf, va_arg(ap, unsigned long long), args, p_buf);
-	if ((args->spec == 'u' || args->spec == 'o' || args->spec == 'x') && !args->is_long && !args->is_long_long)
-		return conversion_unsigned(buf, va_arg(ap, unsigned int), args, p_buf);
-	if ((args->spec == 'u' || args->spec == 'o' || args->spec == 'x') && args->is_long)
-		return conversion_long_unsigned(buf, va_arg(ap, unsigned long int), args, p_buf);
-	if ((args->spec == 'u' || args->spec == 'o' || args->spec == 'x') && args->is_long_long)
-		return conversion_long_long_unsigned(buf, va_arg(ap, unsigned long long int), args, p_buf);
-	if (args->spec == 'f' && !args->is_long_double)
-		return conversion_double(buf, va_arg(ap, double), args, p_buf);
-	if (args->spec == 'f' && args->is_long_double)
-		return conversion_double(buf, va_arg(ap, long double), args, p_buf);
+	conv = conversions[args->conv + args->is_long + args->is_long_long];
 	if (args->spec == '%')
 		return conversion_percent(buf, "%", args, p_buf);
-	if (args->spec == 'C')
-		return conversion_unicode(buf, va_arg(ap, wchar_t), args, p_buf);
-	return (0);
+	else
+		return ((*conv)(buf, ap, args, p_buf));
 }

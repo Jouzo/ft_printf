@@ -1,6 +1,6 @@
 #include "../includes/ft_printf.h"
 
-int print_big_padding_left(char *buf, int *p_buf, t_args *args, int len)
+int big_padding_left(char *buf, int *p_buf, t_args *args, int len)
 {
 	int i;
 
@@ -16,7 +16,7 @@ int print_big_padding_left(char *buf, int *p_buf, t_args *args, int len)
 	return (i);
 }
 
-int print_big_fill_zero(char *buf, int *p_buf, t_args *args, int len)
+int big_fill_zero(char *buf, int *p_buf, t_args *args, int len)
 {
 	int i;
 
@@ -32,7 +32,7 @@ int print_big_fill_zero(char *buf, int *p_buf, t_args *args, int len)
 	return (i);
 }
 
-int print_big_fill_prec(char *buf, int *p_buf, t_args *args, int len)
+int big_fill_prec(char *buf, int *p_buf, t_args *args, int len)
 {
 	int i;
 
@@ -48,7 +48,7 @@ int print_big_fill_prec(char *buf, int *p_buf, t_args *args, int len)
 	return (i);
 }
 
-int print_big_fill_prec_string(char *buf, int *p_buf, t_args *args, int len)
+int big_fill_prec_string(char *buf, int *p_buf, t_args *args, int len)
 {
 	int i;
 
@@ -64,7 +64,7 @@ int print_big_fill_prec_string(char *buf, int *p_buf, t_args *args, int len)
 	return (i);
 }
 
-int print_big_padding_right(char *buf, int *p_buf, t_args *args, int len)
+int big_padding_right(char *buf, int *p_buf, t_args *args, int len)
 {
 	int i;
 

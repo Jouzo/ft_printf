@@ -1,12 +1,13 @@
 #ifndef FT_PRINTF_H
-#define FT_PRINTF_H
+# define FT_PRINTF_H
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdarg.h>
-#include <unistd.h>
-#include <wchar.h>
-#include <string.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <stdarg.h>
+# include <unistd.h>
+# include <wchar.h>
+# include <string.h>
+
 /*
 ** Macros
 */
@@ -21,118 +22,150 @@
 ** Structures
 */
 
-typedef struct      s_args
+typedef struct		s_args
 {
-    int             prec;                    /* Precision. */
-    int             width;                   /* Width.  */
-    char            spec;                    /* Format letter.  */
-    int             fd;                     /* FD for dprintf */
-    unsigned int    len;                    /* len to return */
-    unsigned int    is_long_double : 1;     /* L flag.  */
-    unsigned int    is_short : 1;           /* h flag.  */
-    unsigned int    is_long : 1;            /* l flag.  */
-    unsigned int    is_long_long : 1;       /* ll flag.  */
-    unsigned int    is_char : 1;            /* hh flag.  */
-    unsigned int    is_sizet : 1;           /* z flag */
-    unsigned int    alt : 1;                /* # flag.  */
-    unsigned int    space : 1;              /* Space flag.  */
-    unsigned int    left : 1;               /* - flag.  */
-    unsigned int    showsign : 1;           /* + flag.  */
-    unsigned int    minus : 1;              /* if param is negatif  */
-    unsigned int    zero : 1;                /* 0 flag.  */
-    unsigned int    base : 5;               /* base */
-    unsigned int    capital : 5;            /* capital base for X and O */
-}                   t_args;
+	int				prec;
+	int				width;
+	char			spec;
+	int				fd;
+	unsigned int	len;
+	unsigned int	conv : 5;
+	unsigned int	is_long_double : 1;
+	unsigned int	is_short : 1;
+	unsigned int	is_long : 1;
+	unsigned int	is_long_long : 2;
+	unsigned int	is_char : 1;
+	unsigned int	is_sizet : 1;
+	unsigned int	alt : 1;
+	unsigned int	space : 1;
+	unsigned int	left : 1;
+	unsigned int	showsign : 1;
+	unsigned int	minus : 1;
+	unsigned int	zero : 1;
+	unsigned int	base : 5;
+	unsigned int	capital : 5;
+}					t_args;
 
 /*
 ** Lib Functions
 */
 
-int     ft_printf(const char *format, ...);
-char	*ft_strchr(const char *s, int c);
-int 	ft_printstr(char const *s, int p_buf, t_args args);
-void	ft_putchar(char c);
-void	*ft_memset(void *b, int c, size_t len);
-void	*ft_memcpy(void *dst, const void *src, size_t n);
-void	ft_bzero(void *s, size_t n);
-size_t	ft_strlen(char const *s);
-char	*ft_strrev(char *s);
-int     ft_strcmp(const char *s1, const char *s2);
+int					ft_printf(const char *format, ...);
+char				*ft_strchr(const char *s, int c);
+int					ft_printstr(char const *s, int p_buf, t_args args);
+void				ft_putchar(char c);
+void				*ft_memset(void *b, int c, size_t len);
+void				*ft_memcpy(void *dst, const void *src, size_t n);
+void				ft_bzero(void *s, size_t n);
+size_t				ft_strlen(char const *s);
+char				*ft_strrev(char *s);
+int					ft_strcmp(const char *s1, const char *s2);
 
 /*
 ** Buffer function
 */
 
-void    check_buf(char *buf, int *p_buf, t_args *args);
+void				check_buf(char *buf, int *p, t_args *a);
 
 /*
 **  parsing functions
 */
 
-void	check_type(const char *str, int *i, t_args *args);
-void    check_option(const char *str, int *i, t_args *args);
-int     assign(const char *str, t_args *args);
-int     init_parse(const char *str, t_args *args);
+void				check_type(const char *str, int *i, t_args *a);
+void				check_option(const char *str, int *i, t_args *a);
+int					assign(const char *str, t_args *a);
+int					init_parse(const char *str, t_args *a);
 
 /*
 **  options functions
 */
 
-void    add_option(char *buf, t_args *args, char *conv, int *p_buf);
-void    padding_right(char *buf, char *conv, t_args *args, int *p_buf);
-void    padding_left(char *buf, t_args *args, int size_of_conversion, int *p_buf);
-void    width_over_prec(char *buf, t_args *args, int size_of_conversion, int *p_buf);
-void    fill_zero(char *buf, t_args *args, int size_of_conversion, int *p_buf);
-
-void    print_sign(char *buf, int *p_buf, t_args *args);
-void    one_space(char *buf, int *p_buf, t_args *args);
-void    print_minus(char *buf, int *p_buf, t_args *args);
-
-int     print_big_padding_left(char *buf, int *p_buf, t_args *args, int len);
-int     print_big_fill_zero(char *buf, int *p_buf, t_args *args, int len);
-int     print_big_padding_right(char *buf, int *p_buf, t_args *args, int len);
-int     print_big_fill_prec(char *buf, int *p_buf, t_args *args, int len);
-int     print_big_fill_prec_string(char *buf, int *p_buf, t_args *args, int len);
-
-void    add_option_string(char *buf, t_args *args, char *conv, int *p_buf);
-void    padding_left_string(char *buf, t_args *args, int size_of_conversion, int *p_buf);
-void    fill_prec_string(char *buf, t_args *args, int size_of_conversion, int *p_buf);
-void    padding_right_string(char *buf, char *conv, t_args *args, int *p_buf);
-
-void padding_right_char(char *buf, char *conv, t_args *args, int *p_buf);
-
-void    add_option_double(char *buf, t_args *args, char *conv, int *p_buf);
-void    padding_dright(char *buf, char *conv, t_args *args, int *p_buf);
-void    add_hash(char *buf, t_args *args, int *p_buf);
+void				add_option(char *buf, t_args *a, char *conv, int *p);
+void				padding_right(char *buf, char *conv,
+									t_args *a, int *p);
+void				padding_left(char *buf, t_args *a,
+									int size_of_conversion, int *p);
+void				width_over_prec(char *buf, t_args *a,
+									int size_of_conversion, int *p);
+void				fill_zero(char *buf, t_args *a,
+									int size_of_conversion, int *p);
+void				print_sign(char *buf, int *p, t_args *a);
+void				one_space(char *buf, int *p, t_args *a);
+void				print_minus(char *buf, int *p, t_args *a);
+void				add_hash(char *buf, t_args *args, int *p_buf);
+int					big_padding_left(char *buf, int *p,
+										t_args *a, int len);
+int					big_fill_zero(char *buf, int *p,
+										t_args *a, int len);
+int					big_padding_right(char *buf, int *p,
+										t_args *a, int len);
+int					big_fill_prec(char *buf, int *p,
+										t_args *a, int len);
+int					big_fill_prec_string(char *buf, int *p,
+										t_args *a, int len);
+void				add_option_string(char *buf, t_args *a,
+										char *conv, int *p);
+void				padding_left_string(char *buf, t_args *a,
+										int size_of_conversion, int *p);
+void				fill_prec_string(char *buf, t_args *a,
+										int size_of_conversion, int *p);
+void				padding_right_string(char *buf, char *conv,
+										t_args *a, int *p);
+void				padding_right_char(char *buf, char *conv,
+										t_args *a, int *p);
+void				add_option_double(char *buf, t_args *a,
+										char *conv, int *p);
+void				padding_dright(char *buf, char *conv,
+										t_args *a, int *p);
 /*
 **  Conversion functions
 */
 
-int     conversion(char *buf, va_list ap, t_args *args, int *p_buf);
-void    ft_itoc(int nb, t_args *args, char *buf, int *p_buf);
-int     ft_itoa_base(int n, t_args *args, char *buf, int *p_buf);
-int     ft_ltoa_base(long n, t_args *args, char *buf, int *p_buf);
-int     ft_lltoa_base(long long n, t_args *args, char *buf, int *p_buf);
-int     ft_utoa_base(unsigned int n, t_args *args, char *buf, int *p_buf);
-int     ft_ultoa_base(unsigned long int n, t_args *args, char *buf, int *p_buf);
-int     ft_ulltoa_base(unsigned long long int n, t_args *args, char *buf, int *p_buf);
-
-int     ft_dtoa(long double n, t_args *args, char *buf, int *p_buf);
-int		add_toa(char *s, char *buf, int *p_buf, t_args *args);
-
+int					conversion(char *buf, va_list ap, t_args *a, int *p);
+int					conversion_int(char *buf, va_list ap, t_args *a, int *p);
+int					conversion_long(char *buf, va_list ap, t_args *a, int *p);
+int					conversion_long_long(char *buf, va_list ap,
+										t_args *a, int *p);
+int					conversion_double(char *buf, va_list ap,
+										t_args *a, int *p);
+int					conversion_unsigned(char *buf, va_list ap,
+										t_args *a, int *p);
+int					conversion_long_unsigned(char *buf, va_list ap,
+										t_args *a, int *p);
+int					conversion_long_long_unsigned(char *buf, va_list ap,
+										t_args *a, int *p);
+int					conversion_string(char *buf, va_list ap, t_args *a, int *p);
+int					conversion_void(char *buf, va_list ap,
+										t_args *a, int *p);
+int					conversion_unicode(char *buf, va_list ap,
+										t_args *a, int *p);
+int					conversion_percent(char *buf, char *str, t_args *a, int *p);
+void				ft_itoc(int nb, t_args *a, char *buf, int *p);
+int					ft_itoa_base(int n, t_args *a, char *buf, int *p);
+int					ft_ltoa_base(long n, t_args *a, char *buf, int *p);
+int					ft_lltoa_base(long long n, t_args *a, char *buf, int *p);
+int					ft_utoa_base(unsigned int n, t_args *a,
+											char *buf, int *p);
+int					ft_ultoa_base(unsigned long int n, t_args *a,
+											char *buf, int *p);
+int					ft_ulltoa_base(unsigned long long int n, t_args *a,
+											char *buf, int *p);
+int					ft_dtoa(long double n, t_args *a, char *buf, int *p);
+int					add_toa(char *s, char *buf, int *p, t_args *a);
 
 /*
 **  Dtoa functions
 */
 
-long    get_decimal_digit(long decimal, long double n, int i);
-// unsigned long    get_digit(long double n, int i);
+long				get_decimal_digit(long decimal, long double n, int i);
+
 /*
 **  Unicode functions
 */
 
-int     ft_uni4_to_buf(wchar_t sign, t_args *args, char *buf, int *p_buf);
-int     ft_uni3_to_buf(wchar_t sign, t_args *args, char *buf, int *p_buf);
-int     ft_uni2_to_buf(wchar_t sign, t_args *args, char *buf, int *p_buf);
+int					ft_uni4_to_buf(wchar_t sign, t_args *a, char *buf, int *p);
+int					ft_uni3_to_buf(wchar_t sign, t_args *a, char *buf, int *p);
+int					ft_uni2_to_buf(wchar_t sign, t_args *a, char *buf, int *p);
+int					ft_uni_to_buf(wchar_t sign, t_args *a, char *buf, int *p);
 
 #endif
