@@ -27,7 +27,7 @@ void fill_prec_string(char *buf, t_args *args, int size_of_conversion, int *p_bu
 
 	// printf("value of len  in fill prec %i\n", len);
 	// printf("value of prec %i\n", args->prec);
-	
+
 	if (args->prec && len > args->prec)
 		len = args->prec;
 	if (args->prec - size_of_conversion > 0)
@@ -56,8 +56,8 @@ void padding_right_string(char *buf, char *conv, t_args *args, int *p_buf)
 	if (args->prec && len > args->prec)
 		len = args->prec;
 	// printf("value of args->prec %i\n", args->prec);
-	 if (ft_strcmp(conv, "(null)") == 0 && args->prec == 0)
-        len = 0;
+	if (ft_strcmp(conv, "(null)") == 0 && args->prec == 0)
+		len = 0;
 	// // printf("value of conv %s\n", conv);
 
 	// printf("value of len %i\n", len);
@@ -127,7 +127,7 @@ void width_over_prec_string(char *buf, t_args *args, char *conv, int *p_buf)
 	if (ft_strcmp(conv, "") == 0)
 		len = 0;
 	// printf("value of width %i\n", args->width);
-	
+
 	if (args->width - len >= 0 && !args->left)
 	{
 		// printf("buffer : %s\n", buf);
@@ -141,10 +141,10 @@ void width_over_prec_string(char *buf, t_args *args, char *conv, int *p_buf)
 
 void add_option_string(char *buf, t_args *args, char *conv, int *p_buf)
 {
-// 	// printf("DEDE\n");
-// 	printf("the string %s\n", conv);
-// printf("args prec %i\n", args->prec);
-// printf("args left %i\n", args->left);
+	// 	// printf("DEDE\n");
+	// 	printf("the string %s\n", conv);
+	// printf("args prec %i\n", args->prec);
+	// printf("args left %i\n", args->left);
 	if (args->zero && args->width && !args->left && args->spec == '%')
 		fill_zero_string(buf, args, ft_strlen(conv), p_buf);
 	if ((args->prec && !args->left && args->width < args->prec) || args->prec == -1)

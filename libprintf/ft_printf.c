@@ -7,6 +7,7 @@ void init_args(t_args *args)
 	args->prec = 0;           /* Precision. */
 	args->width = 0;          /* Width.  */
 	args->spec = 0;           /* Format letter.  */
+	args->conv = 0;			   /* to select conv function */
 	args->is_long_double = 0; /* L flag.  */
 	args->is_short = 0;       /* h flag.  */
 	args->is_long = 0;        /* l flag.  */

@@ -44,3 +44,13 @@ int ft_uni2_to_buf(wchar_t sign, t_args *args, char *buf, int *p_buf)
 	ft_memcpy(buf + *p_buf, s, 2);
 	return (2);
 }
+
+int ft_uni_to_buf(int sign, t_args *args, char *buf, int *p_buf)
+{
+	if (*p_buf == BUFF_SIZE)
+		check_buf(buf, p_buf, args);
+	ft_itoc(sign, args, buf, p_buf);
+	if (args->left)
+		padding_right_char(buf, "", args, p_buf);
+	return (0);
+}
