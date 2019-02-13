@@ -8,14 +8,19 @@ int     main()
 
 	i = j = 0;
 
-// "test%#.4o et %02o %0#14.0o!!", 012, 036, 12587499
-//"coco et %-#-#--24O titi%#012o", 12, -874
+//"%0#10.0x", 0
+//"%0#10.0x %0#x", 12345, 0
+//"toto %##.0xet %#.X%###.1x", 0, 0, 0
+
+char *a = "dede";
 
 	printf("\n");
-	i = ft_printf("toto %###.0o%#.O", 0, 0);
+	i = ft_printf("@moulitest: %5.o %5.0o", 0, 0);
 	printf("\n");
-	j = printf("toto %###.0o%#.O", 0, 0);
+	j = printf("@moulitest: %5.o %5.0o", 0, 0);
 	printf("\n");
 	printf("return values : %d et %d\n", i, j);
+	// ft_printf("mien %#.1o\n", 0);
+	// printf("vrai %#.1o\n", 0);
 	return (0);
 }

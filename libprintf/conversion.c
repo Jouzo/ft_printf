@@ -16,8 +16,7 @@ int conversion_int(char *buf, int nb, t_args *args, int *p_buf)
 		ft_itoc(nb, args, buf, p_buf);
 		// printf("value of args->left %i\n", args->left);
 		if (args->left)
-			padding_right(buf, "", args, p_buf);
-		len = nb != 0 ? 0 - args->left : 0;
+			padding_right_char(buf, "", args, p_buf);
 	}
 	else
 		len = ft_itoa_base(nb, args, buf, p_buf);
@@ -60,18 +59,18 @@ int conversion_long_long_unsigned(char *buf, unsigned long long nb, t_args *args
 
 int conversion_string(char *buf, char *str, t_args *args, int *p_buf)
 {
-	int len;
-	len = ft_strlen(str);
-	if (args->prec && ft_strlen(str) > (size_t)args->prec)
-		len = args->prec;
+	if ((!args->prec || args->prec > (int)ft_strlen(str)) && str)
+		args->prec = ft_strlen(str);
+	if (args->prec == -1 && str)
+		args->prec = 0;
 	// printf("value of *p_buf %i\n", *p_buf);
 	
 	// printf("value of args->prec %i\n", args->prec);
-	if (args->prec == -1 && args->spec == 's')
-	{
-		len = 0;
-		*p_buf = *p_buf > 0 ? *p_buf - 1 : *p_buf;
-	}
+	// if (args->prec == -1 && args->spec == 's')
+	// {
+	// 	len = 0;
+	// 	*p_buf = *p_buf > 0 ? *p_buf - 1 : *p_buf;
+	// }
 	// printf("value of len %i\n", len);
 	if (!str)
 	{
@@ -87,7 +86,35 @@ int conversion_string(char *buf, char *str, t_args *args, int *p_buf)
 			padding_right_string(buf, "(null)", args, p_buf);
 		return (args->prec);
 	}
+	else
+	{
+		// printf("value of *p_buf %i\n", *p_buf);
+		add_option_string(buf, args, str, p_buf);
+		if (*p_buf + args->prec > BUFF_SIZE)
+			check_buf(buf, p_buf, args);
+		ft_memcpy(buf + *p_buf, str, args->prec);
+		if (args->left && args->width)
+			padding_right_string(buf, str, args, p_buf);
+		return (args->prec);
+	}
+}
 
+int conversion_percent(char *buf, char *str, t_args *args, int *p_buf)
+{
+	int len;
+	
+	len = ft_strlen(str);
+	if (args->prec && ft_strlen(str) > (size_t)args->prec)
+		len = args->prec;
+	if (!str)
+	{
+		args->prec = args->prec == 0 ? 6: args->prec;
+		if (*p_buf + 6 > BUFF_SIZE)
+			check_buf(buf, p_buf, args);
+		add_option_string(buf, args, "(null)", p_buf);	
+		ft_memcpy(buf + *p_buf, "(null)", args->prec);
+		return (args->prec);
+	}
 	else
 	{
 		// printf("value of *p_buf %i\n", *p_buf);
@@ -100,7 +127,6 @@ int conversion_string(char *buf, char *str, t_args *args, int *p_buf)
 		return (len);
 	}
 }
-
 int conversion_void(char *buf, unsigned long long ptr, t_args *args, int *p_buf)
 {
 	args->alt = 1;
@@ -151,7 +177,7 @@ int conversion(char *buf, va_list ap, t_args *args, int *p_buf)
 	if (args->spec == 'f' && args->is_long_double)
 		return conversion_double(buf, va_arg(ap, long double), args, p_buf);
 	if (args->spec == '%')
-		return conversion_string(buf, "%", args, p_buf);
+		return conversion_percent(buf, "%", args, p_buf);
 	if (args->spec == 'C')
 		return conversion_unicode(buf, va_arg(ap, wchar_t), args, p_buf);
 	return (0);

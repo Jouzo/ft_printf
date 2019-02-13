@@ -65,7 +65,7 @@ void width_over_prec(char *buf, t_args *args, int size_of_conversion, int *p_buf
 	if (args->showsign || args->minus || args->space)
 		min = 1;
 	if (args->alt == 1 && (args->spec == 'x' || args->spec == 'o' || args->spec == 'p'))
-		min++; // a modifier pck que tester avec 'o'
+		min += args->spec == 'o' ? 1 : 2;
 	if (args->width - len - min >= 0 && !args->left)
 	{
 		// printf("buffer : %s\n", buf);
@@ -179,8 +179,7 @@ void print_minus(char *buf, int *p_buf, t_args *args)
 void add_hash(char *buf, t_args *args, int *p_buf)
 {
 	// printf("value of args->alt and args->spec and args->prec %i %c %i\n\n", args->alt, args->spec, args->prec);
-
-	if ((args->spec == 'x' || args->spec == 'p') && args->prec != -1)
+	if (args->spec == 'x' || args->spec == 'p')
 	{
 		if (*p_buf + 1 == BUFF_SIZE || *p_buf == BUFF_SIZE)
 			check_buf(buf, p_buf, args);
