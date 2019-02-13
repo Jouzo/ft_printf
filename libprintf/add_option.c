@@ -112,13 +112,11 @@ void fill_prec(char *buf, t_args *args, int size, int *p_buf)
 			i += big_fill_prec(buf, p_buf, args, args->prec - size);
 		ft_memset(buf + *p_buf, '0', args->prec - size - BUFF_SIZE * i);
 		*p_buf += args->prec - size - BUFF_SIZE * i;
-		// printf("nb de '0'  %d\n", args->prec - size_of_conversion - BUFF_SIZE * i);
 	}
 	else if (!args->zero)
 		padding_left(buf, args, args->width + size, p_buf);
 	else
 		padding_left(buf, args, size, p_buf);
-	// printf("fill prec : value of p_buf %i\n", *p_buf);
 }
 
 void one_space(char *buf, int *p_buf, t_args *args)
@@ -171,7 +169,6 @@ void	print_minus(char *buf, int *p_buf, t_args *args)
 
 void add_hash(char *buf, t_args *args, int *p_buf)
 {
-	// printf("value of args->alt and args->spec and args->prec %i %c %i\n\n", args->alt, args->spec, args->prec);
 	if (args->spec == 'x' || args->spec == 'p')
 	{
 		if (*p_buf + 1 == BUFF_SIZE || *p_buf == BUFF_SIZE)
@@ -182,7 +179,6 @@ void add_hash(char *buf, t_args *args, int *p_buf)
 	}
 	else if (args->spec == 'o')
 	{
-		// printf("DEDE\n");
 		if (*p_buf == BUFF_SIZE)
 			check_buf(buf, p_buf, args);
 		ft_memset(buf + *p_buf, '0', 1);

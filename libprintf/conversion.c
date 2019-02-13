@@ -1,6 +1,6 @@
 #include "../includes/ft_printf.h"
 
-int (*conversions[10])(char *, va_list, t_args*, int*) =
+int		(*conversions[10])(char *, va_list, t_args*, int*) =
 {
 	&conversion_int,
 	&conversion_long,
@@ -14,7 +14,7 @@ int (*conversions[10])(char *, va_list, t_args*, int*) =
 	&conversion_unicode
 };
 
-int conversion_int(char *buf, va_list ap, t_args *args, int *p_buf)
+int		conversion_int(char *buf, va_list ap, t_args *args, int *p_buf)
 {
 	int nb;
 	int len;
@@ -30,7 +30,6 @@ int conversion_int(char *buf, va_list ap, t_args *args, int *p_buf)
 		if (*p_buf == BUFF_SIZE)
 			check_buf(buf, p_buf, args);
 		ft_itoc(nb, args, buf, p_buf);
-		// printf("value of args->left %i\n", args->left);
 		if (args->left)
 			padding_right_char(buf, "", args, p_buf);
 	}
@@ -39,7 +38,7 @@ int conversion_int(char *buf, va_list ap, t_args *args, int *p_buf)
 	return (len);
 }
 
-int conversion_long(char *buf, va_list ap, t_args *args, int *p_buf)
+int		conversion_long(char *buf, va_list ap, t_args *args, int *p_buf)
 {
 	long nb;
 
@@ -47,7 +46,7 @@ int conversion_long(char *buf, va_list ap, t_args *args, int *p_buf)
 	return (ft_ltoa_base(nb, args, buf, p_buf));
 }
 
-int conversion_long_long(char *buf, va_list ap, t_args *args, int *p_buf)
+int		conversion_long_long(char *buf, va_list ap, t_args *args, int *p_buf)
 {
 	long long nb;
 
@@ -55,7 +54,7 @@ int conversion_long_long(char *buf, va_list ap, t_args *args, int *p_buf)
 	return (ft_lltoa_base(nb, args, buf, p_buf));
 }
 
-int conversion_double(char *buf, va_list ap, t_args *args, int *p_buf)
+int		conversion_double(char *buf, va_list ap, t_args *args, int *p_buf)
 {
 	long double nb;
 
@@ -66,7 +65,7 @@ int conversion_double(char *buf, va_list ap, t_args *args, int *p_buf)
 	return (ft_dtoa(nb, args, buf, p_buf));
 }
 
-int conversion_unsigned(char *buf, va_list ap, t_args *args, int *p_buf)
+int		conversion_unsigned(char *buf, va_list ap, t_args *args, int *p_buf)
 {
 	unsigned int nb;
 
@@ -78,7 +77,7 @@ int conversion_unsigned(char *buf, va_list ap, t_args *args, int *p_buf)
 	return (ft_utoa_base(nb, args, buf, p_buf));
 }
 
-int conversion_long_unsigned(char *buf, va_list ap, t_args *args, int *p_buf)
+int		conversion_long_unsigned(char *buf, va_list ap, t_args *args, int *p_buf)
 {
 	unsigned long nb;
 
@@ -86,7 +85,7 @@ int conversion_long_unsigned(char *buf, va_list ap, t_args *args, int *p_buf)
 	return (ft_ultoa_base(nb, args, buf, p_buf));
 }
 
-int conversion_long_long_unsigned(char *buf, va_list ap, t_args *args, int *p_buf)
+int		conversion_long_long_unsigned(char *buf, va_list ap, t_args *args, int *p_buf)
 {
 	unsigned long long nb;
 
@@ -97,7 +96,9 @@ int conversion_long_long_unsigned(char *buf, va_list ap, t_args *args, int *p_bu
 	return (ft_ulltoa_base(nb, args, buf, p_buf));
 }
 
-int conversion_string(char *buf, va_list ap, t_args *args, int *p_buf)
+
+
+int		conversion_string(char *buf, va_list ap, t_args *args, int *p_buf)
 {
 	char *str;
 
@@ -132,7 +133,7 @@ int conversion_string(char *buf, va_list ap, t_args *args, int *p_buf)
 	}
 }
 
-int conversion_percent(char *buf, char *str, t_args *args, int *p_buf)
+int		conversion_percent(char *buf, char *str, t_args *args, int *p_buf)
 {
 	int len;
 
@@ -150,7 +151,6 @@ int conversion_percent(char *buf, char *str, t_args *args, int *p_buf)
 	}
 	else
 	{
-		// printf("value of *p_buf %i\n", *p_buf);
 		add_option_string(buf, args, str, p_buf);
 		if (*p_buf + len > BUFF_SIZE)
 			check_buf(buf, p_buf, args);
@@ -160,7 +160,7 @@ int conversion_percent(char *buf, char *str, t_args *args, int *p_buf)
 		return (len);
 	}
 }
-int conversion_void(char *buf, va_list ap, t_args *args, int *p_buf)
+int		conversion_void(char *buf, va_list ap, t_args *args, int *p_buf)
 {
 	unsigned long long ptr;
 
@@ -170,7 +170,7 @@ int conversion_void(char *buf, va_list ap, t_args *args, int *p_buf)
 	return (ft_lltoa_base(ptr, args, buf, p_buf));
 }
 
-int conversion_unicode(char *buf, va_list ap, t_args *args, int *p_buf)
+int		conversion_unicode(char *buf, va_list ap, t_args *args, int *p_buf)
 {
 	wchar_t sign;
 
@@ -187,7 +187,7 @@ int conversion_unicode(char *buf, va_list ap, t_args *args, int *p_buf)
 		return (0);
 }
 
-int conversion(char *buf, va_list ap, t_args *args, int *p_buf)
+int		conversion(char *buf, va_list ap, t_args *args, int *p_buf)
 {
 	int (*conv)(char *, va_list, t_args*, int*);
 
