@@ -3,15 +3,10 @@
 int add_toa(char *s, char *buf, int *p_buf, t_args *args)
 {
     int len;
-    int prec_for_o = 1;
-
-    if (args->prec == -1)
-        if (args->spec == 'o')
-            prec_for_o = 0;
 
     len = ft_strlen(s);
     ft_strrev(s);
-    if (*s == '0' && len == 1 && args->spec != 'p' && prec_for_o)
+    if (*s == '0' && len == 1 && args->spec != 'p' && !(args->prec == -1 && args->spec == 'o'))
         args->alt = 0;
     add_option(buf, args, s, p_buf);
     if (*p_buf + len > BUFF_SIZE)
@@ -19,7 +14,7 @@ int add_toa(char *s, char *buf, int *p_buf, t_args *args)
     // printf("add_toa avant memcpy: value of p_buf %i\n", *p_buf);
     //if (args->spec == 'x' && *s == '0' && len == 1 && args->prec == -1)
    //     ft_memset(s, ' ', 1);
-    if ((args->spec == 'x' || args->spec == 'o') && *s == '0' && len == 1 && args->prec == -1 && args->width)
+    if ((args->spec == 'x' || args->spec == 'o' || args->spec == 'd') && *s == '0' && len == 1 && args->prec == -1 && args->width)
         ft_memset(s, ' ', 1);
     ft_memcpy(buf + *p_buf, s, len);
     // printf("add_toa apres memcpy: value of p_buf %i\n", *p_buf);
