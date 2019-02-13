@@ -1,6 +1,6 @@
 #include "../includes/ft_printf.h"
 
-void padding_right_string(char *buf, char *conv, t_args *args, int *p_buf)
+void	padding_right_string(char *buf, char *conv, t_args *args, int *p_buf)
 {
 	int len;
 	int i;
@@ -23,7 +23,7 @@ void padding_right_string(char *buf, char *conv, t_args *args, int *p_buf)
 	}
 }
 
-void padding_right_char(char *buf, char *conv, t_args *args, int *p_buf)
+void	padding_right_char(char *buf, char *conv, t_args *args, int *p_buf)
 {
 	int len;
 	int min;
@@ -40,13 +40,15 @@ void padding_right_char(char *buf, char *conv, t_args *args, int *p_buf)
 	if (args->width - len > 0)
 	{
 		if (args->width - len > BUFF_SIZE)
-			i = big_padding_right(buf + ft_strlen(conv), p_buf, args, args->width - len);
-		ft_memset(buf + *p_buf + ft_strlen(conv), ' ', args->width - len - BUFF_SIZE * i);
+			i = big_padding_right(buf + ft_strlen(conv),
+					p_buf, args, args->width - len);
+		ft_memset(buf + *p_buf + ft_strlen(conv),
+					' ', args->width - len - BUFF_SIZE * i);
 		*p_buf += args->width - len - BUFF_SIZE * i;
 	}
 }
 
-void fill_zero_string(char *buf, t_args *args, int size, int *p_buf)
+void	fill_zero_string(char *buf, t_args *args, int size, int *p_buf)
 {
 	int min;
 	int i;
@@ -64,7 +66,7 @@ void fill_zero_string(char *buf, t_args *args, int size, int *p_buf)
 	}
 }
 
-void width_over_prec_string(char *buf, t_args *args, char *conv, int *p_buf)
+void	width_over_prec_string(char *buf, t_args *args, char *conv, int *p_buf)
 {
 	int i;
 	int len;
@@ -82,14 +84,16 @@ void width_over_prec_string(char *buf, t_args *args, char *conv, int *p_buf)
 	}
 }
 
-void add_option_string(char *buf, t_args *args, char *conv, int *p_buf)
+void	add_option_string(char *buf, t_args *args, char *conv, int *p_buf)
 {
 	if (args->zero && args->width && !args->left && args->spec == '%')
 		fill_zero_string(buf, args, ft_strlen(conv), p_buf);
-	if ((args->prec && !args->left && args->width < args->prec) || args->prec == -1)
+	if ((args->prec && !args->left && args->width
+				< args->prec) || args->prec == -1)
 		fill_prec_string(buf, args, ft_strlen(conv), p_buf);
 	else if (args->prec && args->width && args->width > args->prec)
 		width_over_prec_string(buf, args, conv, p_buf);
-	else if ((!args->prec && !args->left && !args->zero && args->width) || ft_strcmp(conv, "(null)") == 0)
+	else if ((!args->prec && !args->left && !args->zero && args->width)
+				|| ft_strcmp(conv, "(null)") == 0)
 		padding_left_string(buf, args, ft_strlen(conv), p_buf);
 }
