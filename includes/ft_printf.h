@@ -88,11 +88,9 @@ void				width_over_prec(char *buf, t_args *a,
 									int size_of_conversion, int *p);
 void				fill_zero(char *buf, t_args *a,
 									int size_of_conversion, int *p);
-
 void				print_sign(char *buf, int *p, t_args *a);
 void				one_space(char *buf, int *p, t_args *a);
 void				print_minus(char *buf, int *p, t_args *a);
-
 int					print_big_padding_left(char *buf, int *p,
 										t_args *a, int len);
 int					print_big_fill_zero(char *buf, int *p,
@@ -103,7 +101,6 @@ int					print_big_fill_prec(char *buf, int *p,
 										t_args *a, int len);
 int					print_big_fill_prec_string(char *buf, int *p,
 										t_args *a, int len);
-
 void				add_option_string(char *buf, t_args *a,
 										char *conv, int *p);
 void				padding_left_string(char *buf, t_args *a,
@@ -112,7 +109,6 @@ void				fill_prec_string(char *buf, t_args *a,
 										int size_of_conversion, int *p);
 void				padding_right_string(char *buf, char *conv,
 										t_args *a, int *p);
-
 void				padding_right_char(char *buf, char *conv,
 										t_args *a, int *p);
 void				add_option_double(char *buf, t_args *a,
