@@ -16,8 +16,7 @@ int conversion_int(char *buf, int nb, t_args *args, int *p_buf)
 		ft_itoc(nb, args, buf, p_buf);
 		// printf("value of args->left %i\n", args->left);
 		if (args->left)
-			padding_right(buf, "", args, p_buf);
-		len = nb != 0 ? 0 - args->left : 0;
+			padding_right_char(buf, "", args, p_buf);
 	}
 	else
 		len = ft_itoa_base(nb, args, buf, p_buf);

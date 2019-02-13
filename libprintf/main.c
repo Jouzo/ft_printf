@@ -8,12 +8,12 @@ int     main()
 
 	i = j = 0;
 	ft_printf("our  printf : \n");
-	i = ft_printf("s %-1.s\n ", NULL);
+	i = ft_printf("hello ca%----4c ??", '\0');
 	printf("\n");
 	printf("--------------------------\n");
 	printf("--------------------------\n");
 	printf("real printf : \n");
-	j = printf("s %-1.s\n ", NULL);
+	j = printf("hello ca%----4c ??", '\0');
 	printf("\n");
 	printf("--------------------------\n");
 	printf("--------------------------\n");

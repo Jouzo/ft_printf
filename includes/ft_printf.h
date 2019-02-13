@@ -99,6 +99,8 @@ void    padding_left_string(char *buf, t_args *args, int size_of_conversion, int
 void    fill_prec_string(char *buf, t_args *args, int size_of_conversion, int *p_buf);
 void    padding_right_string(char *buf, char *conv, t_args *args, int *p_buf);
 
+void padding_right_char(char *buf, char *conv, t_args *args, int *p_buf);
+
 void    add_option_double(char *buf, t_args *args, char *conv, int *p_buf);
 void    padding_dright(char *buf, char *conv, t_args *args, int *p_buf);
 /*

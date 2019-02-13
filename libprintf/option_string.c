@@ -71,6 +71,29 @@ void padding_right_string(char *buf, char *conv, t_args *args, int *p_buf)
 	}
 }
 
+void padding_right_char(char *buf, char *conv, t_args *args, int *p_buf)
+{
+	int len;
+	int min;
+	int i;
+
+	i = 0;
+	min = 0;
+	len = ft_strlen(conv) > 0 ? ft_strlen(conv) : 1;
+	if (args->showsign || args->minus || args->space)
+		min = 1;
+	len += min;
+	if (len <= args->prec && args->prec)
+		len = args->prec + min;
+	if (args->width - len > 0)
+	{
+		if (args->width - len > BUFF_SIZE)
+			i = print_big_padding_right(buf + ft_strlen(conv), p_buf, args, args->width - len);
+		ft_memset(buf + *p_buf + ft_strlen(conv), ' ', args->width - len - BUFF_SIZE * i);
+		*p_buf += args->width - len - BUFF_SIZE * i;
+	}
+}
+
 void fill_zero_string(char *buf, t_args *args, int size_of_conversion, int *p_buf)
 {
 	int min;
