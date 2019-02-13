@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mmovahhe <mmovahhe@student.42.fr>          +#+  +:+       +#+         #
+#    By: jdescler <jdescler@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/07 18:10:13 by jdescler          #+#    #+#              #
-#    Updated: 2019/02/11 18:37:28 by mmovahhe         ###   ########.fr        #
+#    Updated: 2019/02/12 20:54:58 by jdescler         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,7 @@ SRCS =	add_option.c\
 		ft_strchr.c\
 		ft_strlen.c\
 		ft_strrev.c\
+		ft_strcmp.c\
 		ft_printf.c\
 		ft_all_toa_base.c\
 		ft_all_toa_base2.c\

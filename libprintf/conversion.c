@@ -3,6 +3,8 @@
 int conversion_int(char *buf, int nb, t_args *args, int *p_buf)
 {
 	int len;
+
+	len = 0;
 	if (args->is_short)
 		nb = (short)nb;
 	if (args->is_char)
@@ -12,9 +14,10 @@ int conversion_int(char *buf, int nb, t_args *args, int *p_buf)
 		if (*p_buf == BUFF_SIZE)
 			check_buf(buf, p_buf, args);
 		ft_itoc(nb, args, buf, p_buf);
+		// printf("value of args->left %i\n", args->left);
 		if (args->left)
 			padding_right(buf, "", args, p_buf);
-		len = 0 - args->left;
+		len = nb != 0 ? 0 - args->left : 0;
 	}
 	else
 		len = ft_itoa_base(nb, args, buf, p_buf);
@@ -72,10 +75,12 @@ int conversion_string(char *buf, char *str, t_args *args, int *p_buf)
 	// printf("value of len %i\n", len);
 	if (!str)
 	{
+		args->prec = args->prec == 0 ? 6: args->prec;
 		if (*p_buf + 6 > BUFF_SIZE)
 			check_buf(buf, p_buf, args);
-		ft_memcpy(buf + *p_buf, "(null)", 6);
-		return (6);
+		add_option_string(buf, args, "(null)", p_buf);	
+		ft_memcpy(buf + *p_buf, "(null)", args->prec);
+		return (args->prec);
 	}
 	else
 	{
