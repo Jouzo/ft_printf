@@ -8,18 +8,15 @@ int     main()
 
 	i = j = 0;
 	ft_printf("our  printf : \n");
-	i = ft_printf("%C", 0x11ffff);
+	i = ft_printf("%15.4d", -42);
 	printf("\n");
 	printf("--------------------------\n");
 	printf("--------------------------\n");
 	printf("real printf : \n");
-	j = printf("%C", 0x11ffff);
+	j = printf("%15.4d", -42);
 	printf("\n");
-	printf("--------------------------\n");
-	printf("--------------------------\n");
-	printf("our  printf return value : %i\n", i);
-	printf("real printf return value : %i\n", j);
-	printf("--------------------------\n");
-	printf("--------------------------\n");
+	printf("return values : %d et %d\n", i, j);
+	// ft_printf("mien %#.1o\n", 0);
+	// printf("vrai %#.1o\n", 0);
 	return (0);
 }

@@ -35,6 +35,7 @@ typedef struct		s_args
 	unsigned int	is_long : 1;
 	unsigned int	is_long_long : 2;
 	unsigned int	is_char : 1;
+	unsigned int	is_sizet : 1;
 	unsigned int	alt : 1;
 	unsigned int	space : 1;
 	unsigned int	left : 1;
@@ -91,15 +92,16 @@ void				fill_zero(char *buf, t_args *a,
 void				print_sign(char *buf, int *p, t_args *a);
 void				one_space(char *buf, int *p, t_args *a);
 void				print_minus(char *buf, int *p, t_args *a);
-int					print_big_padding_left(char *buf, int *p,
+void				add_hash(char *buf, t_args *args, int *p_buf);
+int					big_padding_left(char *buf, int *p,
 										t_args *a, int len);
-int					print_big_fill_zero(char *buf, int *p,
+int					big_fill_zero(char *buf, int *p,
 										t_args *a, int len);
-int					print_big_padding_right(char *buf, int *p,
+int					big_padding_right(char *buf, int *p,
 										t_args *a, int len);
-int					print_big_fill_prec(char *buf, int *p,
+int					big_fill_prec(char *buf, int *p,
 										t_args *a, int len);
-int					print_big_fill_prec_string(char *buf, int *p,
+int					big_fill_prec_string(char *buf, int *p,
 										t_args *a, int len);
 void				add_option_string(char *buf, t_args *a,
 										char *conv, int *p);
