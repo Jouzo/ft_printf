@@ -5,6 +5,8 @@ void padding_left_string(char *buf, t_args *args, int size_of_conversion, int *p
 	int i;
 
 	// printf("DEDDE\n");
+	// printf("value of prec in padding left %i\n", args->prec);
+
 	i = 0;
 	if (args->width - size_of_conversion > 0)
 	{
@@ -23,7 +25,9 @@ void fill_prec_string(char *buf, t_args *args, int size_of_conversion, int *p_bu
 	i = 0;
 	len = size_of_conversion;
 
-	// printf("value of len %i\n", len);
+	// printf("value of len  in fill prec %i\n", len);
+	// printf("value of prec %i\n", args->prec);
+	
 	if (args->prec && len > args->prec)
 		len = args->prec;
 	if (args->prec - size_of_conversion > 0)
@@ -36,6 +40,8 @@ void fill_prec_string(char *buf, t_args *args, int size_of_conversion, int *p_bu
 			*p_buf += args->width - len - BUFF_SIZE * i;
 		}
 	}
+	if (args->prec == -1)
+		padding_left_string(buf, args, size_of_conversion, p_buf);
 }
 
 void padding_right_string(char *buf, char *conv, t_args *args, int *p_buf)
@@ -100,6 +106,8 @@ void width_over_prec_string(char *buf, t_args *args, char *conv, int *p_buf)
 	// printf("value of len %i\n", len);
 	if (ft_strcmp(conv, "") == 0)
 		len = 0;
+	// printf("value of width %i\n", args->width);
+	
 	if (args->width - len >= 0 && !args->left)
 	{
 		// printf("buffer : %s\n", buf);
@@ -119,10 +127,10 @@ void add_option_string(char *buf, t_args *args, char *conv, int *p_buf)
 // printf("args left %i\n", args->left);
 	if (args->zero && args->width && !args->left && args->spec == '%')
 		fill_zero_string(buf, args, ft_strlen(conv), p_buf);
-	if (args->prec && args->width && args->width > args->prec)
-		width_over_prec_string(buf, args, conv, p_buf);
-	if (args->prec && !args->left && args->width < args->prec)
+	if ((args->prec && !args->left && args->width < args->prec) || args->prec == -1)
 		fill_prec_string(buf, args, ft_strlen(conv), p_buf);
+	else if (args->prec && args->width && args->width > args->prec)
+		width_over_prec_string(buf, args, conv, p_buf);
 	else if ((!args->prec && !args->left && !args->zero && args->width) || ft_strcmp(conv, "(null)") == 0)
 		padding_left_string(buf, args, ft_strlen(conv), p_buf);
 }
