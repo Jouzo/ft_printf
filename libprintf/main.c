@@ -7,17 +7,13 @@ int     main()
 	int i, j;
 
 	i = j = 0;
-
-//"%0#10.0x", 0
-//"%0#10.0x %0#x", 12345, 0
-//"toto %##.0xet %#.X%###.1x", 0, 0, 0
-
-char *a = "dede";
-
+	ft_printf("our  printf : \n");
+	i = ft_printf("%15.4d", -42);
 	printf("\n");
-	i = ft_printf("@moulitest: %5.o %5.0o", 0, 0);
-	printf("\n");
-	j = printf("@moulitest: %5.o %5.0o", 0, 0);
+	printf("--------------------------\n");
+	printf("--------------------------\n");
+	printf("real printf : \n");
+	j = printf("%15.4d", -42);
 	printf("\n");
 	printf("return values : %d et %d\n", i, j);
 	// ft_printf("mien %#.1o\n", 0);

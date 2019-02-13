@@ -37,7 +37,7 @@ void	check_taille2(const char *str, int *i, t_args *args)
 	{
 		if (str[*i + 1] == 'l')
 		{
-			args->is_long_long = 1;
+			args->is_long_long = 2;
 			*i += 1;
 		}
 		else
@@ -84,5 +84,15 @@ int		assign(const char *str, t_args *args)
 	check_prec(str, &i, args);
 	check_taille(str, &i, args);
 	check_type(str, &i, args);
+	if (args->spec == 'c' && args->is_long)
+	{
+		args->spec = 'C';
+		args->conv = 9;
+	}
+	if (args->conv == 9)
+	{
+		args->is_long = 0;
+		args->is_long_long = 0;
+	}
 	return (i);
 }
