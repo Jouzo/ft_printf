@@ -2,19 +2,19 @@
 #include <stdio.h>
 #include "../includes/ft_printf.h"
 
-int		fill_buff(char *buf, int *p_buf, t_args *args, int len)
+int			fill_buff(char *buf, int *p_buf, t_args *args, int len)
 {
-	int i;
+	int		i;
 
 	i = 0;
 	if (len > BUFF_SIZE)
-			i = big_fill_zero(buf, p_buf, args, len);
+		i = big_fill_zero(buf, p_buf, args, len);
 	ft_memset(buf + *p_buf, '0', len - BUFF_SIZE * i);
 	*p_buf += len - BUFF_SIZE * i;
 	return (i);
 }
 
-void	init_args(t_args *args)
+void		init_args(t_args *args)
 {
 	args->prec = 0;
 	args->width = 0;
@@ -36,20 +36,24 @@ void	init_args(t_args *args)
 	args->capital = 0;
 }
 
-int     dprintf(int fd, const char *format, ...)
+void		let_there_bprintf(int fd, char *buf, t_args *args)
 {
-	va_list ap;
-	t_args args;
-	char buf[BUFF_SIZE];
-	int i;
-	int j;
+	args->fd = fd;
+	args->len = 0;
+	ft_bzero(buf, BUFF_SIZE + 1);
+}
 
-	args.fd = fd;
-	args.len = 0;
+int			dprintf(int fd, const char *format, ...)
+{
+	va_list	ap;
+	t_args	args;
+	char	buf[BUFF_SIZE + 1];
+	int		i;
+	int		j;
+
 	i = 0;
 	j = 0;
-
-	ft_bzero(buf, BUFF_SIZE);
+	let_there_bprintf(args.fd, buf, &args);
 	va_start(ap, format);
 	if (format[0] == '%' && ft_strlen(format) == 1)
 		return (0);
@@ -68,19 +72,17 @@ int     dprintf(int fd, const char *format, ...)
 	return (args.len += ft_printstr(buf, j, args));
 }
 
-int     ft_printf(const char *format, ...)
+int			ft_printf(const char *format, ...)
 {
-	va_list ap;
-	t_args args;
-	char buf[BUFF_SIZE];
-	int i;
-	int j;
+	va_list	ap;
+	t_args	args;
+	char	buf[BUFF_SIZE + 1];
+	int		i;
+	int		j;
 
-	args.len = 0;
-	args.fd = 1;
 	i = 0;
 	j = 0;
-	ft_bzero(buf, BUFF_SIZE);
+	let_there_bprintf(1, buf, &args);
 	va_start(ap, format);
 	if (format[0] == '%' && ft_strlen(format) == 1)
 		return (0);
