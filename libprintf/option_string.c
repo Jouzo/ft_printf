@@ -22,6 +22,8 @@ void fill_prec_string(char *buf, t_args *args, int size_of_conversion, int *p_bu
 
 	i = 0;
 	len = size_of_conversion;
+
+	// printf("value of len %i\n", len);
 	if (args->prec && len > args->prec)
 		len = args->prec;
 	if (args->prec - size_of_conversion > 0)
@@ -40,12 +42,23 @@ void padding_right_string(char *buf, char *conv, t_args *args, int *p_buf)
 {
 	int len;
 	int i;
+	int min;
 
+	min = 0;
 	i = 0;
 	len = ft_strlen(conv);
 	if (args->prec && len > args->prec)
 		len = args->prec;
-	*p_buf += len;
+	// printf("value of args->prec %i\n", args->prec);
+	if (ft_strcmp(conv, "(null)") == 0 && args->prec == 0)
+	{
+		len = 0;
+		min = 1;
+		}
+	// printf("value of conv %s\n", conv);
+
+	// printf("value of len %i\n", len);
+	*p_buf += len + min;
 	if (args->width - len > 0 && len < args->width)
 	{
 		if (args->width - len > BUFF_SIZE)
@@ -82,11 +95,14 @@ void width_over_prec_string(char *buf, t_args *args, char *conv, int *p_buf)
 
 	i = 0;
 	len = args->prec ? args->prec : ft_strlen(conv);
+	// printf("value of conv %s\n", conv);
+
+	// printf("value of len %i\n", len);
 	if (ft_strcmp(conv, "") == 0)
 		len = 0;
 	if (args->width - len >= 0 && !args->left)
 	{
-		printf("buffer : %s\n", buf);
+		// printf("buffer : %s\n", buf);
 		if (args->width - len > BUFF_SIZE * i)
 			i += print_big_fill_prec(buf, p_buf, args, args->width - len);
 		ft_memset(buf + *p_buf, ' ', args->width - len - BUFF_SIZE * i);

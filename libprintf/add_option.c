@@ -64,8 +64,8 @@ void width_over_prec(char *buf, t_args *args, int size_of_conversion, int *p_buf
 	len = args->prec < size_of_conversion ? size_of_conversion : args->prec;
 	if (args->showsign || args->minus || args->space)
 		min = 1;
-	// if (args->alt == 1 && (args->spec == 'x' || args->spec == 'o' || args->spec == 'p'))
-	// 	min++; // a modifier pck que tester avec 'o'
+	if (args->alt == 1 && (args->spec == 'x' || args->spec == 'o' || args->spec == 'p'))
+		min++; // a modifier pck que tester avec 'o'
 	if (args->width - len - min >= 0 && !args->left)
 	{
 		// printf("buffer : %s\n", buf);
@@ -73,10 +73,10 @@ void width_over_prec(char *buf, t_args *args, int size_of_conversion, int *p_buf
 			i += print_big_fill_prec(buf, p_buf, args, args->width - len - min);
 		ft_memset(buf + *p_buf, ' ', args->width - len - min - BUFF_SIZE * i);
 		*p_buf += args->width - len - min - BUFF_SIZE * i;
-		// printf("value of ' ' %d\n", args->width - len - min - BUFF_SIZE * i);
+		//  printf("value of ' ' %d\n", args->width - len - min - BUFF_SIZE * i);
 	}
-	// if (args->alt == 1 && (args->spec == 'x' || args->spec == 'o' || args->spec == 'p'))
-	// 	add_hash(buf, args, p_buf);
+	if (args->alt == 1 && (args->spec == 'x' || args->spec == 'o' || args->spec == 'p'))
+		add_hash(buf, args, p_buf);
 	if (args->showsign && !args->minus && args->spec == 'd')
 		print_sign(buf, p_buf, args);
 	if (args->prec - size_of_conversion > 0)
@@ -95,6 +95,7 @@ void fill_prec(char *buf, t_args *args, int size_of_conversion, int *p_buf)
 
 	i = 0;
 	min = 0;
+
 	// printf("fill prec : value of buf %s\n", buf);
 	// printf("size of conv : %i\n", size_of_conversion);
 	// printf("fill prec : value of p_buf %i\n", *p_buf);
@@ -203,7 +204,7 @@ void add_option(char *buf, t_args *args, char *conv, int *p_buf)
 		padding_left(buf, args, ft_strlen(conv), p_buf);
 	if (args->space && !args->showsign && args->spec == 'd' && !args->minus)
 		one_space(buf, p_buf, args);
-	if (args->alt == 1 && (args->spec == 'x' || args->spec == 'o' || args->spec == 'p') && args->prec >= args->width)
+	if (args->alt == 1 && (args->spec == 'x' || args->spec == 'o' || args->spec == 'p') && !(args->prec != 0 && args->prec < args->width))
 		add_hash(buf, args, p_buf);
 	if (args->minus)
 		print_minus(buf, p_buf, args);

@@ -6,7 +6,8 @@ int add_toa(char *s, char *buf, int *p_buf, t_args *args)
 
     len = ft_strlen(s);
     ft_strrev(s);
-    if (*s == '0' && len == 1 && args->spec != 'p')
+
+    if (*s == '0' && len == 1 && args->spec != 'p' && args->spec != 'o')
         args->alt = 0;
     add_option(buf, args, s, p_buf);
     if (*p_buf + len > BUFF_SIZE)
@@ -28,6 +29,7 @@ int ft_itoa_base(int n, t_args *args, char *buf, int *p_buf)
     char s[31];
     char *str_base = "0123456789abcdef0123456789ABCDEF";
     unsigned int abs;
+
     abs = ABS(n);
     i = 0;
     s[i++] = str_base[(abs % args->base) + args->capital];
