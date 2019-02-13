@@ -6,7 +6,7 @@
 #    By: jdescler <jdescler@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/07 18:10:13 by jdescler          #+#    #+#              #
-#    Updated: 2019/02/09 16:55:41 by jdescler         ###   ########.fr        #
+#    Updated: 2019/02/12 20:54:58 by jdescler         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,10 +17,12 @@ OPTION = ../includes/ft_printf.h
 SRCS =	add_option.c\
 		conversion.c\
 		init_parse.c\
+		init_parse2.c\
 		unicode.c\
 		check_buf.c\
 		big_option.c\
 		option_string.c\
+		option_double.c\
 		ft_bzero.c\
 		ft_itoc.c\
 		ft_memcpy.c\
@@ -30,8 +32,11 @@ SRCS =	add_option.c\
 		ft_strchr.c\
 		ft_strlen.c\
 		ft_strrev.c\
+		ft_strcmp.c\
 		ft_printf.c\
 		ft_all_toa_base.c\
+		ft_all_toa_base2.c\
+		ft_dtoa.c\
 
 OBJS = $(SRCS:.c=.o)
 

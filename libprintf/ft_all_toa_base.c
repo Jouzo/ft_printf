@@ -3,19 +3,31 @@
 int add_toa(char *s, char *buf, int *p_buf, t_args *args)
 {
     int len;
+    int prec_for_o = 1;
+
+    if (args->prec == -1)
+        if (args->spec == 'o')
+            prec_for_o = 0;
 
     len = ft_strlen(s);
     ft_strrev(s);
-    if (*s == '0' && len == 1)
+    if (*s == '0' && len == 1 && args->spec != 'p' && prec_for_o)
         args->alt = 0;
     add_option(buf, args, s, p_buf);
     if (*p_buf + len > BUFF_SIZE)
         check_buf(buf, p_buf, args);
+    // printf("add_toa avant memcpy: value of p_buf %i\n", *p_buf);
+    //if (args->spec == 'x' && *s == '0' && len == 1 && args->prec == -1)
+   //     ft_memset(s, ' ', 1);
+    if ((args->spec == 'x' || args->spec == 'o') && *s == '0' && len == 1 && args->prec == -1 && args->width)
+        ft_memset(s, ' ', 1);
     ft_memcpy(buf + *p_buf, s, len);
-    if ((args->spec == 'x' || args->spec == 'o' || args->spec == 'd' || args->spec == 'u') && *s == '0' && len == 1 && args->prec == -1)
-        *p_buf -= 1;
-    if (args->left)
+    // printf("add_toa apres memcpy: value of p_buf %i\n", *p_buf);
+   if ((args->spec == 'x' ||args->spec == 'o' || args->spec == 'd' || args->spec == 'u') && *s == '0' && len == 1 && args->prec == -1 && !args->width)
+       *p_buf -= 1;
+    if (args->left && args->width > args->prec)
         padding_right(buf, s, args, p_buf);
+    // printf("VALUE OF P BUF fin de add_toa %i\n", *p_buf);
     return (len);
 }
 
@@ -25,6 +37,7 @@ int ft_itoa_base(int n, t_args *args, char *buf, int *p_buf)
     char s[31];
     char *str_base = "0123456789abcdef0123456789ABCDEF";
     unsigned int abs;
+
     abs = ABS(n);
     i = 0;
     s[i++] = str_base[(abs % args->base) + args->capital];
