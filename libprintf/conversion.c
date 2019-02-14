@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   conversion.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mmovahhe <mmovahhe@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/02/14 18:41:44 by mmovahhe          #+#    #+#             */
+/*   Updated: 2019/02/14 19:04:53 by mmovahhe         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/ft_printf.h"
 
-int		(*conversions[10])(char *, va_list, t_args*, int*) =
+int		(*g_conversions[10])(char *, va_list, t_args*, int*) =
 {
 	&conversion_int,
 	&conversion_long,
@@ -49,7 +61,7 @@ int		conversion(char *buf, va_list ap, t_args *args, int *p_buf)
 {
 	int (*conv)(char *, va_list, t_args*, int*);
 
-	conv = conversions[args->conv + args->is_long + args->is_long_long];
+	conv = g_conversions[args->conv + args->is_long + args->is_long_long];
 	if (args->spec == '%')
 		return (conversion_percent(buf, "%", args, p_buf));
 	else

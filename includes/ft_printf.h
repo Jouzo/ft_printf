@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mmovahhe <mmovahhe@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/02/14 18:41:32 by mmovahhe          #+#    #+#             */
+/*   Updated: 2019/02/14 19:04:57 by mmovahhe         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
@@ -16,7 +28,6 @@
 # define MIN(a, b) a <= b ? a : b
 # define ABS(a) a < 0 ? -a : a
 # define BUFF_SIZE 128
-# define DINT_MAX 18446744073709550591U
 
 /*
 ** Structures
@@ -118,6 +129,9 @@ void				add_option_double(char *buf, t_args *a,
 										char *conv, int *p);
 void				padding_dright(char *buf, char *conv,
 										t_args *a, int *p);
+void				fill_prec(char *buf, t_args *args, int size,
+										int *p_buf);
+
 /*
 **  Conversion functions
 */
@@ -153,10 +167,12 @@ int					ft_ulltoa_base(unsigned long long int n, t_args *a,
 											char *buf, int *p);
 int					ft_dtoa(long double n, t_args *a, char *buf, int *p);
 int					add_toa(char *s, char *buf, int *p, t_args *a);
+int					add_utoa(char *s, char *buf, int *p_buf, t_args *args);
 
 /*
 **  Dtoa functions
 */
+void				get_sign(long double f, t_args *args);
 unsigned long		get_deci(long double n, int i);
 unsigned long		get_digit(long double n, int i);
 long				get_decimal_digit(long decimal, long double n, int i);

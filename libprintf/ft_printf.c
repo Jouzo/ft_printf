@@ -1,18 +1,16 @@
-#include <stdarg.h>
-#include <stdio.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mmovahhe <mmovahhe@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/02/14 18:43:42 by mmovahhe          #+#    #+#             */
+/*   Updated: 2019/02/14 19:06:32 by mmovahhe         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/ft_printf.h"
-
-int			fill_buff(char *buf, int *p_buf, t_args *args, int len)
-{
-	int		i;
-
-	i = 0;
-	if (len > BUFF_SIZE)
-		i = big_fill_zero(buf, p_buf, args, len);
-	ft_memset(buf + *p_buf, '0', len - BUFF_SIZE * i);
-	*p_buf += len - BUFF_SIZE * i;
-	return (i);
-}
 
 void		init_args(t_args *args)
 {
