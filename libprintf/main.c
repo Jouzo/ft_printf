@@ -4,10 +4,8 @@
 
 int     main()
 {
-	
-		ft_printf("%#13.0o", 0);
-		printf("\n");
-		printf("%#13.0o", 0);
-
+	ft_printf("%p", NULL);
+	printf("\n");
+	printf("%p", NULL);
 	return (0);
 }

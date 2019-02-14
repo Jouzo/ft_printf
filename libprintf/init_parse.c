@@ -93,5 +93,8 @@ int		assign(const char *str, t_args *args)
 		args->is_long = 0;
 		args->is_long_long = 0;
 	}
+	if ((args->spec != 'x' && args->spec != 'o' && args->spec != 'p')
+		&& args->alt)
+		args->alt = 0;
 	return (i);
 }

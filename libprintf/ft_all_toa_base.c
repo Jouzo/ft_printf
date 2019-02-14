@@ -6,18 +6,41 @@ int						add_toa(char *s, char *buf, int *p_buf, t_args *args)
 
 	len = ft_strlen(s);
 	ft_strrev(s);
-	if (*s == '0' && len == 1 && args->spec != 'p'
-		&& !(args->prec == -1 && args->spec == 'o'))
+	if (*s == '0' && len == 1)
 		args->alt = 0;
 	add_option(buf, args, s, p_buf);
 	if (*p_buf + len > BUFF_SIZE)
 		check_buf(buf, p_buf, args);
-	if ((args->spec == 'x' || args->spec == 'o' || args->spec == 'd')
+	if (args->spec == 'd' && *s == '0' && len == 1 && args->prec == -1 && args->width)
+		ft_memset(s, ' ', 1);
+	ft_memcpy(buf + *p_buf, s, len);
+	if (args->spec == 'd' && *s == '0' && len == 1
+			&& args->prec == -1 && !args->width)
+		*p_buf -= 1;
+	if (args->left && args->width > args->prec)
+		padding_right(buf, s, args, p_buf);
+	return (len);
+}
+
+int						add_utoa(char *s, char *buf, int *p_buf, t_args *args)
+{
+	int					len;
+
+	len = ft_strlen(s);
+	ft_strrev(s);
+	if (args->alt && args->spec == 'o' && args->prec == 0)
+		args->prec += 1;
+	if ((*s == '0' && len == 1 && args->spec != 'p'
+		&& !(args->prec == -1 && args->spec == 'o')))
+		args->alt = 0;
+	add_option(buf, args, s, p_buf);
+	if (*p_buf + len > BUFF_SIZE)
+		check_buf(buf, p_buf, args);
+	if ((args->spec == 'x' || args->spec == 'o')
 		&& *s == '0' && len == 1 && args->prec == -1 && args->width)
 		ft_memset(s, ' ', 1);
 	ft_memcpy(buf + *p_buf, s, len);
-	if ((args->spec == 'x' || args->spec == 'o' || args->spec == 'd'
-			|| args->spec == 'u') && *s == '0' && len == 1
+	if (args->spec != 'p' && *s == '0' && len == 1
 			&& args->prec == -1 && !args->width)
 		*p_buf -= 1;
 	if (args->left && args->width > args->prec)
@@ -97,5 +120,5 @@ int						ft_utoa_base(unsigned int n,
 	while ((n /= args->base) > 0)
 		s[i++] = str_base[(n % args->base) + args->capital];
 	s[i] = '\0';
-	return (add_toa(s, buf, p_buf, args));
+	return (add_utoa(s, buf, p_buf, args));
 }

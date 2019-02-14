@@ -7,7 +7,7 @@ int		conversion_void(char *buf, va_list ap, t_args *args, int *p_buf)
 	ptr = va_arg(ap, unsigned long long);
 	args->alt = 1;
 	args->base = 16;
-	return (ft_lltoa_base(ptr, args, buf, p_buf));
+	return (ft_ulltoa_base(ptr, args, buf, p_buf));
 }
 
 int		conversion_unicode(char *buf, va_list ap, t_args *args, int *p_buf)
