@@ -6,7 +6,7 @@
 /*   By: mmovahhe <mmovahhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 18:41:55 by mmovahhe          #+#    #+#             */
-/*   Updated: 2019/02/14 18:41:56 by mmovahhe         ###   ########.fr       */
+/*   Updated: 2019/02/14 19:18:28 by mmovahhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ int					get_size_int_part(long double n)
 	int				size;
 
 	size = 0;
+	if ((n >= 0 && n <= 1) || (n <= 0 && n >= -1))
+		return (1);
 	while (n > 1)
 	{
 		n /= 10;
@@ -68,6 +70,7 @@ int					ft_dtoa(long double n, t_args *args, char *buf, int *p_buf)
 	prec = args->prec == -1 ? 0 : prec;
 	i = 0;
 	get_sign(n, args);
+	n = n < 0.0 ? -n : n;
 	decimal = get_deci(n, prec);
 	while (i < get_size_int_part(n))
 	{

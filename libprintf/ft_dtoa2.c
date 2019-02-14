@@ -6,7 +6,7 @@
 /*   By: mmovahhe <mmovahhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 18:41:50 by mmovahhe          #+#    #+#             */
-/*   Updated: 2019/02/14 18:42:29 by mmovahhe         ###   ########.fr       */
+/*   Updated: 2019/02/14 19:18:29 by mmovahhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void				get_sign(long double f, t_args *args)
 	z = 128;
 	ft_memcpy(data, &f, sizeof(f));
 	ft_memcpy(&g, data, sizeof(g));
-	args->minus = (data[9] & z);
+	args->minus = (data[9] & z) ? 1 : 0;
 }
 
 unsigned long		get_deci(long double n, int i)
