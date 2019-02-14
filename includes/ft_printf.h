@@ -131,9 +131,9 @@ int					conversion_double(char *buf, va_list ap,
 										t_args *a, int *p);
 int					conversion_unsigned(char *buf, va_list ap,
 										t_args *a, int *p);
-int					conversion_long_unsigned(char *buf, va_list ap,
+int					conversion_l_u(char *buf, va_list ap,
 										t_args *a, int *p);
-int					conversion_long_long_unsigned(char *buf, va_list ap,
+int					conversion_l_l_u(char *buf, va_list ap,
 										t_args *a, int *p);
 int					conversion_string(char *buf, va_list ap, t_args *a, int *p);
 int					conversion_void(char *buf, va_list ap,

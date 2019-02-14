@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jdescler <jdescler@student.42.fr>          +#+  +:+       +#+         #
+#    By: mmovahhe <mmovahhe@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/07 18:10:13 by jdescler          #+#    #+#              #
-#    Updated: 2019/02/13 22:13:31 by jdescler         ###   ########.fr        #
+#    Updated: 2019/02/14 12:01:56 by mmovahhe         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,8 @@ OPTION = ../includes/ft_printf.h
 SRCS =	add_option.c\
 		add_option2.c\
 		conversion.c\
+		conversion2.c\
+		conversion3.c\
 		init_parse.c\
 		init_parse2.c\
 		unicode.c\
