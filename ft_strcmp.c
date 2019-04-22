@@ -1,33 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrev.c                                        :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmovahhe <mmovahhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/14 18:44:11 by mmovahhe          #+#    #+#             */
-/*   Updated: 2019/02/14 18:44:11 by mmovahhe         ###   ########.fr       */
+/*   Created: 2018/11/07 19:11:04 by jdescler          #+#    #+#             */
+/*   Updated: 2019/04/22 20:02:35 by mmovahhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_printf.h"
+#include "./includes/ft_printf.h"
 
-char	*ft_strrev(char *s)
+int		ft_strcmp(const char *s1, const char *s2)
 {
-	int i;
-	int len;
-	int tmp;
+	int	i;
 
-	tmp = 0;
 	i = 0;
-	len = ft_strlen(s);
-	while (i < len)
-	{
-		tmp = s[i];
-		s[i] = s[len - 1];
-		s[len - 1] = tmp;
+	while (s1[i] && s2[i] && s1[i] == s2[i])
 		i++;
-		len--;
-	}
-	return (s);
+	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 }

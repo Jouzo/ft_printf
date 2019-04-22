@@ -1,23 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcmp.c                                        :+:      :+:    :+:   */
+/*   check_buf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmovahhe <mmovahhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/07 19:11:04 by jdescler          #+#    #+#             */
-/*   Updated: 2019/02/14 18:43:55 by mmovahhe         ###   ########.fr       */
+/*   Created: 2019/02/14 18:42:51 by mmovahhe          #+#    #+#             */
+/*   Updated: 2019/04/22 20:02:35 by mmovahhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_printf.h"
+#include "./includes/ft_printf.h"
 
-int		ft_strcmp(const char *s1, const char *s2)
+void	check_buf(char *buf, int *p_buf, t_args *args)
 {
-	int	i;
-
-	i = 0;
-	while (s1[i] && s2[i] && s1[i] == s2[i])
-		i++;
-	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+	args->len += ft_printstr(buf, *p_buf, *args);
+	ft_bzero(buf, *p_buf);
+	*p_buf = 0;
 }

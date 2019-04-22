@@ -6,7 +6,7 @@
 /*   By: mmovahhe <mmovahhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 18:41:32 by mmovahhe          #+#    #+#             */
-/*   Updated: 2019/02/14 19:04:57 by mmovahhe         ###   ########.fr       */
+/*   Updated: 2019/04/22 19:54:41 by mmovahhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ void				fill_zero(char *buf, t_args *a,
 void				print_sign(char *buf, int *p, t_args *a);
 void				one_space(char *buf, int *p, t_args *a);
 void				print_minus(char *buf, int *p, t_args *a);
-void				add_hash(char *buf, t_args *args, int *p_buf);
+void				add_hash(char *buf, t_args *args, int *p_buf, int size);
 int					big_padding_left(char *buf, int *p,
 										t_args *a, int len);
 int					big_fill_zero(char *buf, int *p,

@@ -6,11 +6,11 @@
 /*   By: mmovahhe <mmovahhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 18:44:16 by mmovahhe          #+#    #+#             */
-/*   Updated: 2019/02/14 18:44:16 by mmovahhe         ###   ########.fr       */
+/*   Updated: 2019/04/22 20:02:35 by mmovahhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_printf.h"
+#include "./includes/ft_printf.h"
 
 void	check_larg_mini(const char *str, int *i, t_args *args)
 {
@@ -100,7 +100,8 @@ int		assign(const char *str, t_args *args)
 		args->spec = 'C';
 		args->conv = 9;
 	}
-	if (args->conv == 9)
+	if (args->conv == 9 || args->conv == 3
+		|| args->conv == 7 || args->conv == 8)
 	{
 		args->is_long = 0;
 		args->is_long_long = 0;

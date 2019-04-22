@@ -6,11 +6,11 @@
 /*   By: mmovahhe <mmovahhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 18:42:19 by mmovahhe          #+#    #+#             */
-/*   Updated: 2019/02/14 18:42:19 by mmovahhe         ###   ########.fr       */
+/*   Updated: 2019/04/22 20:02:35 by mmovahhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_printf.h"
+#include "./includes/ft_printf.h"
 
 void	padding_left(char *buf, t_args *args, int size, int *p_buf)
 {
@@ -48,7 +48,12 @@ void	fill_zero(char *buf, t_args *args, int size, int *p_buf)
 	if (args->showsign || args->minus || args->space)
 		min = 1;
 	if (args->alt && args->spec == 'o')
+	{
+		printf("dede\n");
 		args->width -= 1;
+		if (args->width > args->prec && args->prec > size)
+			args->width -= 1;
+	}
 	if (args->alt && (args->spec == 'x' || args->spec == 'p'))
 		args->width -= 2;
 	if (args->width - size - min > 0)
@@ -68,7 +73,7 @@ void	add_option(char *buf, t_args *args, char *conv, int *p_buf)
 	if (args->space && !args->showsign && args->spec == 'd' && !args->minus)
 		one_space(buf, p_buf, args);
 	if (args->alt == 1 && !(args->prec != 0 && args->prec < args->width))
-		add_hash(buf, args, p_buf);
+			add_hash(buf, args, p_buf, ft_strlen(conv));
 	if (args->minus && ((args->prec >= args->width)
 		|| (args->width && !args->prec)))
 		print_minus(buf, p_buf, args);

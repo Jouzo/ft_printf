@@ -6,13 +6,13 @@
 #    By: mmovahhe <mmovahhe@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/07 18:10:13 by jdescler          #+#    #+#              #
-#    Updated: 2019/02/14 13:55:48 by mmovahhe         ###   ########.fr        #
+#    Updated: 2019/04/22 20:02:35 by mmovahhe         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
 
-OPTION = ../includes/ft_printf.h
+OPTION = ./includes/ft_printf.h
 
 SRCS =	add_option.c\
 		add_option2.c\

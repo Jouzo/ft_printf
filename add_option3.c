@@ -6,11 +6,11 @@
 /*   By: mmovahhe <mmovahhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 18:42:15 by mmovahhe          #+#    #+#             */
-/*   Updated: 2019/02/14 18:42:16 by mmovahhe         ###   ########.fr       */
+/*   Updated: 2019/04/22 20:02:35 by mmovahhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_printf.h"
+#include "./includes/ft_printf.h"
 
 void	init_width_o_prec(t_args *args, int *len, int size)
 {
@@ -44,7 +44,7 @@ void	width_over_prec(char *buf, t_args *args, int size, int *p_buf)
 		*p_buf += args->width - len - BUFF_SIZE * i;
 	}
 	if (args->alt)
-		add_hash(buf, args, p_buf);
+		add_hash(buf, args, p_buf, size);
 	if (args->showsign && !args->minus && args->spec == 'd')
 		print_sign(buf, p_buf, args);
 	if (args->minus)

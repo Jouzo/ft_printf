@@ -1,20 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printstr.c                                      :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmovahhe <mmovahhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/14 18:43:47 by mmovahhe          #+#    #+#             */
-/*   Updated: 2019/02/14 18:51:42 by mmovahhe         ###   ########.fr       */
+/*   Created: 2019/02/14 18:43:04 by mmovahhe          #+#    #+#             */
+/*   Updated: 2019/04/22 20:02:35 by mmovahhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_printf.h"
+#include "./includes/ft_printf.h"
 
-int		ft_printstr(char const *s, int p_buf, t_args args)
+void	ft_bzero(void *s, size_t n)
 {
-	if (s)
-		return (write(args.fd, s, p_buf));
-	return (0);
+	if (n != 0)
+		ft_memset(s, 0, n);
 }
