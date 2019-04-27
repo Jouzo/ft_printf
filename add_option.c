@@ -6,7 +6,7 @@
 /*   By: mmovahhe <mmovahhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 18:42:19 by mmovahhe          #+#    #+#             */
-/*   Updated: 2019/04/22 20:02:35 by mmovahhe         ###   ########.fr       */
+/*   Updated: 2019/04/27 14:36:30 by mmovahhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void	add_option(char *buf, t_args *args, char *conv, int *p_buf)
 	if (args->space && !args->showsign && args->spec == 'd' && !args->minus)
 		one_space(buf, p_buf, args);
 	if (args->alt == 1 && !(args->prec != 0 && args->prec < args->width))
-			add_hash(buf, args, p_buf, ft_strlen(conv));
+		add_hash(buf, args, p_buf, ft_strlen(conv));
 	if (args->minus && ((args->prec >= args->width)
 		|| (args->width && !args->prec)))
 		print_minus(buf, p_buf, args);
