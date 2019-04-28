@@ -6,7 +6,7 @@
 /*   By: jdescler <jdescler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 18:42:19 by mmovahhe          #+#    #+#             */
-/*   Updated: 2019/04/28 19:55:34 by jdescler         ###   ########.fr       */
+/*   Updated: 2019/04/28 20:08:29 by jdescler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,9 @@ void	padding_left(char *buf, t_args *args, int size, int *p_buf)
 	int i;
 
 	i = 0;
+	printf("inside padding left\n");
+	if (args->showsign && !args->minus && args->spec == 'd')
+		print_sign(buf, p_buf, args);
 	len = args->prec == -1 && (args->spec == 'x'
 			|| args->spec == 'o') ? 0 : MAX(args->prec, size);
 	if (args->minus)
@@ -43,6 +46,8 @@ void	fill_zero(char *buf, t_args *args, int size, int *p_buf)
 
 	i = 0;
 	min = 0;
+	printf("inside fill zero\n");
+
 	if (args->showsign && !args->minus && args->spec == 'd')
 		print_sign(buf, p_buf, args);
 	if (args->showsign || args->minus || args->space)

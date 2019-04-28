@@ -6,7 +6,7 @@
 /*   By: jdescler <jdescler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 18:42:15 by mmovahhe          #+#    #+#             */
-/*   Updated: 2019/04/28 19:59:10 by jdescler         ###   ########.fr       */
+/*   Updated: 2019/04/28 20:09:17 by jdescler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	width_over_prec(char *buf, t_args *args, int size, int *p_buf)
 	int len;
 
 	i = 0;
+	printf("inside width over prec\n");
 	init_width_o_prec(args, &len, size);
 	if (args->width - len >= 0 && !args->left)
 	{
@@ -77,6 +78,7 @@ void	fill_prec(char *buf, t_args *args, int size, int *p_buf)
 
 	i = 0;
 	init_prec(args, &min, size);
+	printf("inside fill prec\n");
 	if (args->prec - size > 0)
 	{
 		if (args->width - args->prec - min >= 0 && !args->left)
@@ -94,15 +96,7 @@ void	fill_prec(char *buf, t_args *args, int size, int *p_buf)
 		*p_buf += args->prec - size - BUFF_SIZE * i;
 	}
 	else if (!args->zero)
-	{
-		if (args->showsign && !args->minus && args->spec == 'd')
-			print_sign(buf, p_buf, args);
 		padding_left(buf, args, args->width + size, p_buf);
-	}
 	else
-	{
-	if (args->showsign && !args->minus && args->spec == 'd')
-			print_sign(buf, p_buf, args);
 		padding_left(buf, args, size, p_buf);
-	}
 }

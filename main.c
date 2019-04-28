@@ -22,11 +22,11 @@ int     main()
     printf("rl_printf %+.2d>\n", 1544969773);
     ft_printf("-----------\n");
     ft_printf("-----------\n");
-    // ft_printf("ft_printf %+2.2d\n", 0);
-    // ft_printf("\n");
-    // printf("rl_printf %+2.2d\n", 0);
-    // ft_printf("-----------\n");
-    // ft_printf("-----------\n");
+    ft_printf("ft_printf %+2d\n", 801085967);
+    ft_printf("\n");
+    printf("rl_printf %+2d\n", 801085967);
+    ft_printf("-----------\n");
+    ft_printf("-----------\n");
     // ft_printf("ft_printf test %22.2ls\n", L"いいえ");
     // ft_printf("\n");
     // printf("rl_printf test %22.2ls\n", L"いいえ");
