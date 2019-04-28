@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_parse2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmovahhe <mmovahhe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jdescler <jdescler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 18:44:21 by mmovahhe          #+#    #+#             */
-/*   Updated: 2019/04/22 20:02:35 by mmovahhe         ###   ########.fr       */
+/*   Updated: 2019/04/28 19:05:32 by jdescler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,7 @@ void	check_type2(const char *str, int *i, t_args *args)
 	if (str[*i] == 'd' || str[*i] == 'i')
 		args->spec = 'd';
 	else if (str[*i] == 'D' || str[*i] == 'I')
-	{
 		args->spec = 'd';
-		args->is_long = 1;
-	}
 	else if (str[*i] == 'o' || str[*i] == 'O')
 	{
 		if (str[*i] == 'O')

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_all_toa_base2.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmovahhe <mmovahhe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jdescler <jdescler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 18:42:59 by mmovahhe          #+#    #+#             */
-/*   Updated: 2019/04/22 20:02:35 by mmovahhe         ###   ########.fr       */
+/*   Updated: 2019/04/28 17:58:07 by jdescler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int						add_utoa(char *s, char *buf, int *p_buf, t_args *args)
 		&& *s == '0' && len == 1 && args->prec == -1 && args->width)
 		ft_memset(s, ' ', 1);
 	ft_memcpy(buf + *p_buf, s, len);
-	if (args->spec != 'p' && *s == '0' && len == 1
+	if (*s == '0' && len == 1
 			&& args->prec == -1 && !args->width)
 		*p_buf -= 1;
 	if (args->left && args->width > args->prec)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   add_option.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmovahhe <mmovahhe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jdescler <jdescler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 18:42:19 by mmovahhe          #+#    #+#             */
-/*   Updated: 2019/04/27 14:36:30 by mmovahhe         ###   ########.fr       */
+/*   Updated: 2019/04/28 19:28:32 by jdescler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ void	fill_zero(char *buf, t_args *args, int size, int *p_buf)
 		min = 1;
 	if (args->alt && args->spec == 'o')
 	{
-		printf("dede\n");
 		args->width -= 1;
 		if (args->width > args->prec && args->prec > size)
 			args->width -= 1;
@@ -78,7 +77,7 @@ void	add_option(char *buf, t_args *args, char *conv, int *p_buf)
 		|| (args->width && !args->prec)))
 		print_minus(buf, p_buf, args);
 	if (args->showsign && !args->minus && args->spec == 'd'
-		&& args->prec >= args->width)
+		&& !args->prec && !args->width)
 		print_sign(buf, p_buf, args);
 	if ((args->prec != 0 && args->prec >= args->width))
 		fill_prec(buf, args, ft_strlen(conv), p_buf);

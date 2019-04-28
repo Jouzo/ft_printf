@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   conversion.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmovahhe <mmovahhe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jdescler <jdescler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 18:41:44 by mmovahhe          #+#    #+#             */
-/*   Updated: 2019/04/22 20:02:35 by mmovahhe         ###   ########.fr       */
+/*   Updated: 2019/04/28 17:41:30 by jdescler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ int		conversion_l_l_u(char *buf, va_list ap, t_args *args, int *p_buf)
 int		conversion(char *buf, va_list ap, t_args *args, int *p_buf)
 {
 	int (*conv)(char *, va_list, t_args*, int*);
-
 	conv = g_conversions[args->conv + args->is_long + args->is_long_long];
 	if (args->spec == '%')
 		return (conversion_percent(buf, "%", args, p_buf));
