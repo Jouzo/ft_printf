@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   add_option3.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmovahhe <mmovahhe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jdescler <jdescler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 18:42:15 by mmovahhe          #+#    #+#             */
-/*   Updated: 2019/04/22 20:02:35 by mmovahhe         ###   ########.fr       */
+/*   Updated: 2019/04/28 19:59:10 by jdescler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,15 @@ void	fill_prec(char *buf, t_args *args, int size, int *p_buf)
 		*p_buf += args->prec - size - BUFF_SIZE * i;
 	}
 	else if (!args->zero)
+	{
+		if (args->showsign && !args->minus && args->spec == 'd')
+			print_sign(buf, p_buf, args);
 		padding_left(buf, args, args->width + size, p_buf);
+	}
 	else
+	{
+	if (args->showsign && !args->minus && args->spec == 'd')
+			print_sign(buf, p_buf, args);
 		padding_left(buf, args, size, p_buf);
+	}
 }
