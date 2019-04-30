@@ -35,7 +35,7 @@ void	width_over_prec(char *buf, t_args *args, int size, int *p_buf)
 	int len;
 
 	i = 0;
-	printf("inside width over prec\n");
+	// printf("inside width over prec\n");
 	init_width_o_prec(args, &len, size);
 	if (args->width - len >= 0 && !args->left)
 	{
@@ -78,7 +78,7 @@ void	fill_prec(char *buf, t_args *args, int size, int *p_buf)
 
 	i = 0;
 	init_prec(args, &min, size);
-	printf("inside fill prec\n");
+	// printf("inside fill prec\n");
 	if (args->prec - size > 0)
 	{
 		if (args->width - args->prec - min >= 0 && !args->left)

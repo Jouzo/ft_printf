@@ -18,7 +18,7 @@ void	padding_left(char *buf, t_args *args, int size, int *p_buf)
 	int i;
 
 	i = 0;
-	printf("inside padding left\n");
+	// printf("inside padding left\n");
 	if (args->showsign && !args->minus && args->spec == 'd')
 		print_sign(buf, p_buf, args);
 	len = args->prec == -1 && (args->spec == 'x'
@@ -46,7 +46,7 @@ void	fill_zero(char *buf, t_args *args, int size, int *p_buf)
 
 	i = 0;
 	min = 0;
-	printf("inside fill zero\n");
+	// printf("inside fill zero\n");
 
 	if (args->showsign && !args->minus && args->spec == 'd')
 		print_sign(buf, p_buf, args);
