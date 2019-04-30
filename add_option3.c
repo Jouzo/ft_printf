@@ -6,7 +6,7 @@
 /*   By: jdescler <jdescler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 18:42:15 by mmovahhe          #+#    #+#             */
-/*   Updated: 2019/04/28 20:09:17 by jdescler         ###   ########.fr       */
+/*   Updated: 2019/04/30 18:41:13 by jdescler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ void	width_over_prec(char *buf, t_args *args, int size, int *p_buf)
 	int len;
 
 	i = 0;
-	printf("inside width over prec\n");
 	init_width_o_prec(args, &len, size);
 	if (args->width - len >= 0 && !args->left)
 	{
@@ -47,9 +46,15 @@ void	width_over_prec(char *buf, t_args *args, int size, int *p_buf)
 	if (args->alt)
 		add_hash(buf, args, p_buf, size);
 	if (args->showsign && !args->minus && args->spec == 'd')
+	{
 		print_sign(buf, p_buf, args);
+		args->printed_plus = 1;
+	}
 	if (args->minus)
+	{
 		print_minus(buf, p_buf, args);
+		args->printed_minus = 1;
+	}
 	if (args->prec - size > 0)
 	{
 		if (args->prec - size > BUFF_SIZE * i)
@@ -78,7 +83,6 @@ void	fill_prec(char *buf, t_args *args, int size, int *p_buf)
 
 	i = 0;
 	init_prec(args, &min, size);
-	printf("inside fill prec\n");
 	if (args->prec - size > 0)
 	{
 		if (args->width - args->prec - min >= 0 && !args->left)
@@ -89,7 +93,15 @@ void	fill_prec(char *buf, t_args *args, int size, int *p_buf)
 			*p_buf += args->width - args->prec - min - BUFF_SIZE * i;
 		}
 		if (args->showsign && !args->minus && args->spec == 'd')
+		{
 			print_sign(buf, p_buf, args);
+			args->printed_plus = 1;
+		}
+		if (args->minus)
+		{
+			print_minus(buf, p_buf, args);
+			args->printed_minus = 1;
+		}
 		if (args->prec - size > BUFF_SIZE * i)
 			i += big_fill_prec(buf, p_buf, args, args->prec - size);
 		ft_memset(buf + *p_buf, '0', args->prec - size - BUFF_SIZE * i);

@@ -17,14 +17,9 @@ int     main()
     // printf("rl_printf test d : % s\n", 20000000000000049);
     // ft_printf("-----------\n");
     // ft_printf("-----------\n");
-    ft_printf("ft_printf %+.2d>\n", 1544969773);
+    ft_printf("ft_printf %+38d\n", -717257732);
     ft_printf("\n");
-    printf("rl_printf %+.2d>\n", 1544969773);
-    ft_printf("-----------\n");
-    ft_printf("-----------\n");
-    ft_printf("ft_printf %+2d\n", 801085967);
-    ft_printf("\n");
-    printf("rl_printf %+2d\n", 801085967);
+    printf("rl_printf %+38d\n", -717257732);
     ft_printf("-----------\n");
     ft_printf("-----------\n");
     // ft_printf("ft_printf test %22.2ls\n", L"いいえ");
@@ -40,13 +35,7 @@ int     main()
     // ft_printf("ft_printf test % 2.56llD\n", 1189040556628108926);
     // ft_printf("\n");
     // printf("rl_printf test % 2.56llD\n", 1189040556628108926);
-    // ft_printf("-----------\n");
-    // ft_printf("-----------\n");
-    ft_printf("ft_printf test %+d\n", 1557799982);
-    ft_printf("\n");
-    printf("rl_printf test %+d\n", 1557799982);
-    ft_printf("-----------\n");
-    ft_printf("-----------\n");
+
     // ft_printf("ft_printf test s : % s\n", NULL);
     // ft_printf("\n");
     // printf("rl_printf test s : % s\n", NULL);

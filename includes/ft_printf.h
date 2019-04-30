@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmovahhe <mmovahhe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jdescler <jdescler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 18:41:32 by mmovahhe          #+#    #+#             */
-/*   Updated: 2019/04/22 19:54:41 by mmovahhe         ###   ########.fr       */
+/*   Updated: 2019/04/30 18:35:33 by jdescler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ typedef struct		s_args
 	unsigned int	left : 1;
 	unsigned int	showsign : 1;
 	unsigned int	minus : 1;
+	unsigned int	printed_minus : 1;
+	unsigned int	printed_plus : 1;
 	unsigned int	zero : 1;
 	unsigned int	base : 5;
 	unsigned int	capital : 5;
