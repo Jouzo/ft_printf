@@ -6,19 +6,11 @@
 /*   By: jdescler <jdescler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 18:41:38 by mmovahhe          #+#    #+#             */
-/*   Updated: 2019/04/28 19:55:57 by jdescler         ###   ########.fr       */
+/*   Updated: 2019/05/01 14:16:20 by jdescler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./includes/ft_printf.h"
-
-void	one_space(char *buf, int *p_buf, t_args *args)
-{
-	if (*p_buf == BUFF_SIZE)
-		check_buf(buf, p_buf, args);
-	ft_memset(buf + *p_buf, ' ', 1);
-	*p_buf += 1;
-}
 
 void	padding_right(char *buf, char *conv, t_args *args, int *p_buf)
 {
@@ -77,10 +69,16 @@ void	add_hash(char *buf, t_args *args, int *p_buf, int size)
 	{
 		if (*p_buf == BUFF_SIZE)
 			check_buf(buf, p_buf, args);
-		if (args->width < args->prec || args->prec < size)
-			ft_memset(buf + *p_buf, '0', 1);
-		else
-			ft_memset(buf + *p_buf, ' ', 1);
+		(void)size;
+		ft_memset(buf + *p_buf, '0', 1);
 		*p_buf += 1;
 	}
+}
+
+void	one_space(char *buf, int *p_buf, t_args *args)
+{
+	if (*p_buf == BUFF_SIZE)
+		check_buf(buf, p_buf, args);
+	ft_memset(buf + *p_buf, ' ', 1);
+	*p_buf += 1;
 }

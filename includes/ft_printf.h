@@ -6,7 +6,7 @@
 /*   By: jdescler <jdescler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 18:41:32 by mmovahhe          #+#    #+#             */
-/*   Updated: 2019/04/30 18:35:33 by jdescler         ###   ########.fr       */
+/*   Updated: 2019/05/01 13:37:29 by jdescler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ typedef struct		s_args
 	unsigned int	minus : 1;
 	unsigned int	printed_minus : 1;
 	unsigned int	printed_plus : 1;
+	unsigned int	printed_alt : 1;
 	unsigned int	zero : 1;
 	unsigned int	base : 5;
 	unsigned int	capital : 5;

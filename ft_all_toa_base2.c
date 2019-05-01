@@ -6,7 +6,7 @@
 /*   By: jdescler <jdescler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 18:42:59 by mmovahhe          #+#    #+#             */
-/*   Updated: 2019/04/28 17:58:07 by jdescler         ###   ########.fr       */
+/*   Updated: 2019/05/01 14:19:48 by jdescler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@ int						add_utoa(char *s, char *buf, int *p_buf, t_args *args)
 
 	len = ft_strlen(s);
 	ft_strrev(s);
-	if (args->alt && args->spec == 'o' && args->prec == 0)
-		args->prec += 1;
 	if ((*s == '0' && len == 1 && args->spec != 'p'
 		&& !(args->prec == -1 && args->spec == 'o')))
 		args->alt = 0;
@@ -29,6 +27,8 @@ int						add_utoa(char *s, char *buf, int *p_buf, t_args *args)
 	if ((args->spec == 'x' || args->spec == 'o')
 		&& *s == '0' && len == 1 && args->prec == -1 && args->width)
 		ft_memset(s, ' ', 1);
+	if (args->alt && !args->printed_alt)
+		add_hash(buf, args, p_buf, len);
 	ft_memcpy(buf + *p_buf, s, len);
 	if (*s == '0' && len == 1
 			&& args->prec == -1 && !args->width)

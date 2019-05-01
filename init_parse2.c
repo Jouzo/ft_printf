@@ -6,7 +6,7 @@
 /*   By: jdescler <jdescler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 18:44:21 by mmovahhe          #+#    #+#             */
-/*   Updated: 2019/04/28 19:05:32 by jdescler         ###   ########.fr       */
+/*   Updated: 2019/05/01 13:44:30 by jdescler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,18 @@ void	check_type1(const char *str, int *i, t_args *args)
 
 void	check_type2(const char *str, int *i, t_args *args)
 {
-	if (str[*i] == 'd' || str[*i] == 'i')
-		args->spec = 'd';
-	else if (str[*i] == 'D' || str[*i] == 'I')
+	if (str[*i] == 'd' || str[*i] == 'i'
+		|| str[*i] == 'D' || str[*i] == 'I')
 		args->spec = 'd';
 	else if (str[*i] == 'o' || str[*i] == 'O')
 	{
 		if (str[*i] == 'O')
-			args->is_long = 1;
+		{
+			args->is_short = 0;
+			args->is_char = 0;
+			if (!args->is_long && !args->is_long_long)
+				args->is_long_long = 1;
+		}
 		args->spec = 'o';
 		args->base = 8;
 		args->conv = 4;
@@ -55,7 +59,12 @@ void	check_type2(const char *str, int *i, t_args *args)
 	else if (str[*i] == 'u' || str[*i] == 'U')
 	{
 		if (str[*i] == 'U')
-			args->is_long = 1;
+		{
+			args->is_short = 0;
+			args->is_char = 0;
+			if (!args->is_long && !args->is_long_long)
+				args->is_long_long = 1;
+		}
 		args->spec = 'u';
 		args->showsign = 0;
 		args->conv = 4;

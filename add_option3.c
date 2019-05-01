@@ -6,7 +6,7 @@
 /*   By: jdescler <jdescler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 18:42:15 by mmovahhe          #+#    #+#             */
-/*   Updated: 2019/05/01 13:05:07 by jdescler         ###   ########.fr       */
+/*   Updated: 2019/05/01 14:19:19 by jdescler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	init_width_o_prec(t_args *args, int *len, int size)
 	int min;
 
 	min = 0;
+	if (args->alt)
+		(args->prec)--;
 	if (args->prec <= size && (args->spec == 'd'
 		|| args->spec == 'o') && args->prec != -1)
 		args->prec = 0;
@@ -35,17 +37,16 @@ void	width_over_prec(char *buf, t_args *args, int size, int *p_buf)
 	int len;
 
 	i = 0;
-	// printf("inside width over prec\n");
+	// printf("inside width over prec : %s\n", buf);
 	init_width_o_prec(args, &len, size);
 	if (args->width - len >= 0 && !args->left)
 	{
+		// // printf("insideprint space\n");
 		if (args->width - len > BUFF_SIZE * i)
 			i += big_fill_prec(buf, p_buf, args, args->width - len);
 		ft_memset(buf + *p_buf, ' ', args->width - len - BUFF_SIZE * i);
 		*p_buf += args->width - len - BUFF_SIZE * i;
 	}
-	if (args->alt)
-		add_hash(buf, args, p_buf, size);
 	if (args->showsign && !args->minus && args->spec == 'd')
 	{
 		print_sign(buf, p_buf, args);
@@ -55,6 +56,11 @@ void	width_over_prec(char *buf, t_args *args, int size, int *p_buf)
 	{
 		print_minus(buf, p_buf, args);
 		args->printed_minus = 1;
+	}
+	if (args->alt)
+	{
+		add_hash(buf, args, p_buf, size);
+		args->printed_alt = 1;
 	}
 	if (args->prec - size > 0)
 	{
@@ -84,7 +90,7 @@ void	fill_prec(char *buf, t_args *args, int size, int *p_buf)
 
 	i = 0;
 	init_prec(args, &min, size);
-	// printf("inside fill prec\n");
+	// // printf("inside fill prec\n");
 	if (args->prec - size > 0)
 	{
 		if (args->width - args->prec - min >= 0 && !args->left)
@@ -103,6 +109,11 @@ void	fill_prec(char *buf, t_args *args, int size, int *p_buf)
 		{
 			print_minus(buf, p_buf, args);
 			args->printed_minus = 1;
+		}
+		if (args->alt)
+		{
+			add_hash(buf, args, p_buf, size);
+			args->printed_alt = 1;
 		}
 		if (args->prec - size > BUFF_SIZE * i)
 			i += big_fill_prec(buf, p_buf, args, args->prec - size);

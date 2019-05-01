@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_parse.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmovahhe <mmovahhe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jdescler <jdescler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 18:44:16 by mmovahhe          #+#    #+#             */
-/*   Updated: 2019/04/22 20:02:35 by mmovahhe         ###   ########.fr       */
+/*   Updated: 2019/05/01 14:19:19 by jdescler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,11 +85,22 @@ void	check_taille(const char *str, int *i, t_args *args)
 	}
 }
 
+void	alt_and_zero(const char *str, t_args *args)
+{
+
+	if (str[1] == '0' && str[2] == '#')
+	{
+		args->alt = 1;
+		args->zero = 1;
+	}
+}
+
 int		assign(const char *str, t_args *args)
 {
 	int i;
 
 	i = 1;
+	alt_and_zero(str, args);
 	check_option(str, &i, args);
 	check_larg_mini(str, &i, args);
 	check_prec(str, &i, args);
@@ -109,5 +120,7 @@ int		assign(const char *str, t_args *args)
 	if ((args->spec != 'x' && args->spec != 'o' && args->spec != 'p')
 		&& args->alt)
 		args->alt = 0;
+	// // printf("value of args->alt and alt->zero : %d %d\n", args->alt, args->zero);
 	return (i);
+
 }

@@ -68,25 +68,14 @@ int		conversion_percent(char *buf, char *str, t_args *args, int *p_buf)
 	int len;
 
 	len = ft_strlen(str);
-	if (args->prec && ft_strlen(str) > (size_t)args->prec)
+	if (args->prec)
 		len = args->prec;
-	if (!str)
-	{
-		args->prec = args->prec == 0 ? 6 : args->prec;
-		if (*p_buf + 6 > BUFF_SIZE)
-			check_buf(buf, p_buf, args);
-		add_option_string(buf, args, "(null)", p_buf);
-		ft_memcpy(buf + *p_buf, "(null)", args->prec);
-		return (args->prec);
-	}
-	else
-	{
-		add_option_string(buf, args, str, p_buf);
-		if (*p_buf + len > BUFF_SIZE)
-			check_buf(buf, p_buf, args);
-		ft_memcpy(buf + *p_buf, str, len);
-		if (args->left && args->width)
-			padding_right_string(buf, str, args, p_buf);
-		return (len);
-	}
+	add_option_string(buf, args, str, p_buf);
+	if (*p_buf + len > BUFF_SIZE)
+		check_buf(buf, p_buf, args);
+	ft_memcpy(buf + *p_buf, str, len);
+	if (args->left && args->width)
+		padding_right_string(buf, str, args, p_buf);
+	return (len);
+
 }
