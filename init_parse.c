@@ -109,5 +109,6 @@ int		assign(const char *str, t_args *args)
 	if ((args->spec != 'x' && args->spec != 'o' && args->spec != 'p')
 		&& args->alt)
 		args->alt = 0;
+	// printf("value inside args : \nargs->is_short : %d\nargs->is_char : %d\nargs->is_long : %d\nargs->is_long_long : %d\n", args->is_short, args->is_char, args->is_long, args->is_long_long);
 	return (i);
 }

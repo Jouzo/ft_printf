@@ -2,8 +2,11 @@
 
 int     main()
 {
-    int i = ft_printf("!%#-58.54jo!", 383230838);
-    int j = printf("!%#-58.54jo!", 383230838);
+
+// "%12.3%\n"
+// "%16.14%\n"
+    int i = ft_printf("faux---------- %13.10%\n");
+    int j = printf("vrai---------- %13.10%\n");
 
     printf("%d %d \n", i, j);
 }
