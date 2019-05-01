@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   option_string.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdescler <jdescler@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmovahhe <mmovahhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 18:44:32 by mmovahhe          #+#    #+#             */
-/*   Updated: 2019/04/28 17:37:18 by jdescler         ###   ########.fr       */
+/*   Updated: 2019/04/29 22:20:46 by mmovahhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,15 @@ void	padding_right_string(char *buf, char *conv, t_args *args, int *p_buf)
 {
 	int len;
 	int i;
-	int min;
 
-	min = 0;
 	i = 0;
 	len = ft_strlen(conv);
 	if (args->prec && len > args->prec)
 		len = args->prec;
 	if (ft_strcmp(conv, "(null)") == 0 && args->prec == 0)
 		len = 0;
-	*p_buf += len + min;
+	if (args->left && (args->width > (int)ft_strlen(conv) || args->width > args->prec))
+		*p_buf += len;
 	if (args->width - len > 0 && len < args->width)
 	{
 		if (args->width - len > BUFF_SIZE)

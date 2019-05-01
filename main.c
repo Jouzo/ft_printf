@@ -2,6 +2,7 @@
 
 int     main()
 {
+<<<<<<< HEAD
     // ft_printf("ft_printf test c : %s\n", 200000000049);
     // ft_printf("\n");
     // printf("rl_printf test c : %s\n", 200000000049);
@@ -171,5 +172,10 @@ int     main()
     // printf("rl_printf test p : %s\n", (void*)-45);
     // ft_printf("-----------\n");
     // ft_printf("-----------\n");
+=======
+    int i = ft_printf("!%#-58.54jo!", 383230838);
+    int j = printf("!%#-58.54jo!", 383230838);
+>>>>>>> d9630b86623b236ceef253c17807fa59e1dbdac0
 
+    printf("%d %d \n", i, j);
 }

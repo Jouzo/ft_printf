@@ -6,7 +6,7 @@
 /*   By: jdescler <jdescler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 18:42:19 by mmovahhe          #+#    #+#             */
-/*   Updated: 2019/04/30 19:10:40 by jdescler         ###   ########.fr       */
+/*   Updated: 2019/05/01 13:05:27 by jdescler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ void	fill_zero(char *buf, t_args *args, int size, int *p_buf)
 
 	i = 0;
 	min = 0;
+	// printf("inside fill zero\n");
+
 	if (args->showsign && !args->minus && args->spec == 'd')
 	{
 		print_sign(buf, p_buf, args);

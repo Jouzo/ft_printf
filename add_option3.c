@@ -6,7 +6,7 @@
 /*   By: jdescler <jdescler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 18:42:15 by mmovahhe          #+#    #+#             */
-/*   Updated: 2019/04/30 18:41:13 by jdescler         ###   ########.fr       */
+/*   Updated: 2019/05/01 13:05:07 by jdescler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	width_over_prec(char *buf, t_args *args, int size, int *p_buf)
 	int len;
 
 	i = 0;
+	// printf("inside width over prec\n");
 	init_width_o_prec(args, &len, size);
 	if (args->width - len >= 0 && !args->left)
 	{
@@ -83,6 +84,7 @@ void	fill_prec(char *buf, t_args *args, int size, int *p_buf)
 
 	i = 0;
 	init_prec(args, &min, size);
+	// printf("inside fill prec\n");
 	if (args->prec - size > 0)
 	{
 		if (args->width - args->prec - min >= 0 && !args->left)
