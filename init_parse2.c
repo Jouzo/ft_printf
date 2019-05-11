@@ -6,7 +6,7 @@
 /*   By: jdescler <jdescler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 18:44:21 by mmovahhe          #+#    #+#             */
-/*   Updated: 2019/05/01 13:44:30 by jdescler         ###   ########.fr       */
+/*   Updated: 2019/05/11 13:05:33 by jdescler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,11 +97,7 @@ void	check_type3(const char *str, int *i, t_args *args)
 
 void	check_type(const char *str, int *i, t_args *args)
 {
-	char option[20];
-
-	ft_bzero(option, 20);
-	ft_memcpy(option, "jbcCsSpdDiIoOuUxXf%", 19);
-	if (ft_strchr(option, str[*i]))
+	if (ft_strchr("jbcCsSpdDiIoOuUxXf%", str[*i]))
 	{
 		if (str[*i] == 'j')
 		{
@@ -125,11 +121,7 @@ void	check_type(const char *str, int *i, t_args *args)
 
 void	check_option(const char *str, int *i, t_args *args)
 {
-	char option[6];
-
-	ft_bzero(option, 6);
-	ft_memcpy(option, "-+#0 ", 5);
-	while (ft_strchr(option, str[*i]))
+	while (ft_strchr("-+#0 ", str[*i]))
 	{
 		if (str[*i] == '0')
 			args->zero = 1;
