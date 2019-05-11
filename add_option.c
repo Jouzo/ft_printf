@@ -3,14 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   add_option.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdescler <jdescler@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmovahhe <mmovahhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 18:42:19 by mmovahhe          #+#    #+#             */
-/*   Updated: 2019/05/11 14:03:45 by jdescler         ###   ########.fr       */
+/*   Updated: 2019/05/11 14:58:37 by mmovahhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./includes/ft_printf.h"
+
+void	little_option(char *buf, t_args *args, int size, int *p_buf)
+{
+	if (args->showsign && !args->minus && args->spec == 'd')
+	{
+		print_sign(buf, p_buf, args);
+		args->printed_plus = 1;
+	}
+	if (args->minus)
+	{
+		print_minus(buf, p_buf, args);
+		args->printed_minus = 1;
+	}
+	if (args->alt)
+	{
+		add_hash(buf, args, p_buf, size);
+		args->printed_alt = 1;
+	}
+}
 
 void	padding_left(char *buf, t_args *args, int size, int *p_buf)
 {
@@ -33,46 +52,16 @@ void	padding_left(char *buf, t_args *args, int size, int *p_buf)
 		ft_memset(buf + *p_buf, ' ', args->width - len - BUFF_SIZE * i);
 		*p_buf += args->width - len - BUFF_SIZE * i;
 	}
-	if (args->showsign && !args->minus && args->spec == 'd')
-	{
-		print_sign(buf, p_buf, args);
-		args->printed_plus = 1;
-	}
-	if (args->minus)
-	{
-		print_minus(buf, p_buf, args);
-		args->printed_minus = 1;
-	}
-	if (args->alt)
-	{
-		add_hash(buf, args, p_buf, size);
-		args->printed_alt = 1;
-	}
+	little_option(buf, args, size, p_buf);
 }
 
-void	fill_zero(char *buf, t_args *args, int size, int *p_buf)
+void	fill_zero2(char *buf, t_args *args, int size, int *p_buf)
 {
 	int min;
 	int i;
 
 	i = 0;
 	min = 0;
-
-	if (args->showsign && !args->minus && args->spec == 'd')
-	{
-		print_sign(buf, p_buf, args);
-		args->printed_plus = 1;
-	}
-	if (args->minus)
-	{
-		print_minus(buf, p_buf, args);
-		args->printed_minus = 1;
-	}
-	if (args->alt)
-	{
-		add_hash(buf, args, p_buf, size);
-		args->printed_alt = 1;
-	}
 	if (args->showsign || args->minus || args->space)
 		min = 1;
 	if (args->alt && args->spec == 'o')
@@ -85,7 +74,6 @@ void	fill_zero(char *buf, t_args *args, int size, int *p_buf)
 		args->width -= 2;
 	if (args->width - size - min > 0)
 	{
-		// printf("inside fill zero if condition\n");
 		if (args->width - size - min > BUFF_SIZE)
 			i = big_fill_zero(buf, p_buf, args, args->width - size - min);
 		ft_memset(buf + *p_buf, '0', args->width - size - min - BUFF_SIZE * i);
@@ -93,9 +81,28 @@ void	fill_zero(char *buf, t_args *args, int size, int *p_buf)
 	}
 }
 
+void	fill_zero(char *buf, t_args *args, int size, int *p_buf)
+{
+	if (args->showsign && !args->minus && args->spec == 'd')
+	{
+		print_sign(buf, p_buf, args);
+		args->printed_plus = 1;
+	}
+	if (args->minus)
+	{
+		print_minus(buf, p_buf, args);
+		args->printed_minus = 1;
+	}
+	if (args->alt)
+	{
+		add_hash(buf, args, p_buf, size);
+		args->printed_alt = 1;
+	}
+	fill_zero2(buf, args, size, p_buf);
+}
+
 void	add_option(char *buf, t_args *args, char *conv, int *p_buf)
 {
-	// printf("value of buf, args->alt and alt->zero and args->width : %s %d %d %d\n", buf, args->alt, args->zero, args->width);
 	if (((args->space && args->width && !args->left && !args->zero)
 		|| (args->width && !args->zero && !args->left)) && args->prec == 0)
 		padding_left(buf, args, ft_strlen(conv), p_buf);
@@ -107,6 +114,4 @@ void	add_option(char *buf, t_args *args, char *conv, int *p_buf)
 		width_over_prec(buf, args, ft_strlen(conv), p_buf);
 	else if (args->zero && args->width && !args->left)
 		fill_zero(buf, args, ft_strlen(conv), p_buf);
-	// printf("value of buf, args->alt and alt->zero and args->width : %s %d %d %d\n", buf, args->alt, args->zero, args->width);
-
 }

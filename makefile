@@ -6,7 +6,7 @@
 #    By: mmovahhe <mmovahhe@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/07 18:10:13 by jdescler          #+#    #+#              #
-#    Updated: 2019/04/22 20:02:35 by mmovahhe         ###   ########.fr        #
+#    Updated: 2019/05/11 15:03:50 by mmovahhe         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ SRCS =	add_option.c\
 		conversion3.c\
 		init_parse.c\
 		init_parse2.c\
+		init_parse3.c\
 		unicode.c\
 		check_buf.c\
 		big_option.c\

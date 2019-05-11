@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdescler <jdescler@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmovahhe <mmovahhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 18:41:32 by mmovahhe          #+#    #+#             */
-/*   Updated: 2019/05/11 14:30:46 by jdescler         ###   ########.fr       */
+/*   Updated: 2019/05/11 15:04:54 by mmovahhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -190,5 +190,8 @@ int					ft_uni4_to_buf(wchar_t sign, t_args *a, char *buf, int *p);
 int					ft_uni3_to_buf(wchar_t sign, t_args *a, char *buf, int *p);
 int					ft_uni2_to_buf(wchar_t sign, t_args *a, char *buf, int *p);
 int					ft_uni_to_buf(wchar_t sign, t_args *a, char *buf, int *p);
+void				little_option(char *buf, t_args *args, int size, int *p_buf);
+void				check_larg_mini(const char *str, int *i, t_args *args);
+void				check_prec(const char *str, int *i, t_args *args);
 
 #endif
