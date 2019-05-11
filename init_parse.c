@@ -6,7 +6,7 @@
 /*   By: mmovahhe <mmovahhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 18:44:16 by mmovahhe          #+#    #+#             */
-/*   Updated: 2019/04/22 20:02:35 by mmovahhe         ###   ########.fr       */
+/*   Updated: 2019/05/01 14:01:01 by mmovahhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ int		assign(const char *str, t_args *args)
 	check_option(str, &i, args);
 	check_larg_mini(str, &i, args);
 	check_prec(str, &i, args);
-	check_taille(str, &i, args);
+	check_taille(str, &i, args); 
 	check_type(str, &i, args);
 	if (args->spec == 'c' && args->is_long)
 	{

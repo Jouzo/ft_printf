@@ -6,7 +6,7 @@
 /*   By: mmovahhe <mmovahhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 18:43:42 by mmovahhe          #+#    #+#             */
-/*   Updated: 2019/04/22 20:02:35 by mmovahhe         ###   ########.fr       */
+/*   Updated: 2019/05/11 13:53:03 by mmovahhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void		init_args(t_args *args)
 {
 	args->prec = 0;
+	args->len = 0;
 	args->width = 0;
 	args->spec = 0;
 	args->conv = 0;
@@ -58,7 +59,7 @@ int			dprintf(int fd, const char *format, ...)
 	while (format[i])
 	{
 		while (format[i] && format[i] != '%')
-			buf[j++] = format[i++];
+			buf[j++] = format[i++];	
 		if (format[i] == '%')
 		{
 			init_args(&args);

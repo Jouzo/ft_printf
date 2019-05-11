@@ -6,7 +6,7 @@
 /*   By: mmovahhe <mmovahhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 18:44:32 by mmovahhe          #+#    #+#             */
-/*   Updated: 2019/04/29 22:20:46 by mmovahhe         ###   ########.fr       */
+/*   Updated: 2019/05/11 13:54:33 by mmovahhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,10 +88,13 @@ void	width_over_prec_string(char *buf, t_args *args, char *conv, int *p_buf)
 		len = 0;
 	if (args->width - len >= 0 && !args->left)
 	{
+
 		if (args->width - len > BUFF_SIZE * i)
 			i += big_fill_prec(buf, p_buf, args, args->width - len);
 		ft_memset(buf + *p_buf, ' ', args->width - len - BUFF_SIZE * i);
 		*p_buf += args->width - len - BUFF_SIZE * i;
+	// printf("---%s\n", buf);
+		// printf("======%d\n", args->width - len - BUFF_SIZE * i);
 	}
 }
 
@@ -103,7 +106,7 @@ void	add_option_string(char *buf, t_args *args, char *conv, int *p_buf)
 				< args->prec) || args->prec == -1)
 		fill_prec_string(buf, args, ft_strlen(conv), p_buf);
 	else if (args->prec && args->width && args->width > args->prec)
-		width_over_prec_string(buf, args, conv, p_buf);
+		width_over_prec_string(buf, args, conv, p_buf); //va ici
 	else if ((!args->prec && !args->left && !args->zero && args->width)
 				|| ft_strcmp(conv, "(null)") == 0)
 		padding_left_string(buf, args, ft_strlen(conv), p_buf);

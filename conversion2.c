@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   conversion2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdescler <jdescler@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmovahhe <mmovahhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 18:42:12 by mmovahhe          #+#    #+#             */
-/*   Updated: 2019/04/28 17:35:32 by jdescler         ###   ########.fr       */
+/*   Updated: 2019/05/11 13:57:02 by mmovahhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,19 +63,36 @@ int		conversion_double(char *buf, va_list ap, t_args *args, int *p_buf)
 	return (ft_dtoa(nb, args, buf, p_buf));
 }
 
+void	percent_option(char *buf, t_args *args, int *p_buf)
+{
+	int i;
+	int len;
+
+	i = 0;
+	len = args->prec && args->prec > 0 ? args->prec : 1;
+	if (args->width - len >= 0 && !args->left)
+	{
+		if (args->width - len > BUFF_SIZE * i)
+			i += big_fill_prec(buf, p_buf, args, args->width - len);
+		ft_memset(buf + *p_buf, ' ', args->width - 1);
+		*p_buf += args->width - 1;
+	}
+}
+
 int		conversion_percent(char *buf, char *str, t_args *args, int *p_buf)
 {
 	int len;
-
-	len = ft_strlen(str);
-	if (args->prec)
+	len = 1;
+	if (args->prec && args->prec > 0)
 		len = args->prec;
-	add_option_string(buf, args, str, p_buf);
+	if (args->zero && args->width && !args->left && args->spec == '%')
+		fill_zero_string(buf, args, 1, p_buf);
+	else
+		percent_option(buf, args, p_buf);
 	if (*p_buf + len > BUFF_SIZE)
 		check_buf(buf, p_buf, args);
-	ft_memcpy(buf + *p_buf, str, len);
+	ft_memcpy(buf + *p_buf, "%", 1);
 	if (args->left && args->width)
 		padding_right_string(buf, str, args, p_buf);
-	return (len);
-
+	return (1);
 }

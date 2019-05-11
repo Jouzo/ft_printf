@@ -6,7 +6,7 @@
 /*   By: mmovahhe <mmovahhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 18:41:32 by mmovahhe          #+#    #+#             */
-/*   Updated: 2019/04/22 19:54:41 by mmovahhe         ###   ########.fr       */
+/*   Updated: 2019/05/11 13:58:34 by mmovahhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,6 +131,7 @@ void				padding_dright(char *buf, char *conv,
 										t_args *a, int *p);
 void				fill_prec(char *buf, t_args *args, int size,
 										int *p_buf);
+void	fill_zero_string(char *buf, t_args *args, int size, int *p_buf);
 
 /*
 **  Conversion functions
