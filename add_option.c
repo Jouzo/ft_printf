@@ -6,7 +6,7 @@
 /*   By: jdescler <jdescler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 18:42:19 by mmovahhe          #+#    #+#             */
-/*   Updated: 2019/05/11 12:11:03 by jdescler         ###   ########.fr       */
+/*   Updated: 2019/05/11 14:03:45 by jdescler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void	padding_left(char *buf, t_args *args, int size, int *p_buf)
 	int i;
 
 	i = 0;
-	// printf("inside padding left\n");
 	len = args->prec == -1 && (args->spec == 'x'
 			|| args->spec == 'o') ? 0 : MAX(args->prec, size);
 	if (args->alt && args->spec == 'o')
@@ -58,7 +57,6 @@ void	fill_zero(char *buf, t_args *args, int size, int *p_buf)
 
 	i = 0;
 	min = 0;
-	// printf("inside fill zero\n");
 
 	if (args->showsign && !args->minus && args->spec == 'd')
 	{
@@ -97,7 +95,7 @@ void	fill_zero(char *buf, t_args *args, int size, int *p_buf)
 
 void	add_option(char *buf, t_args *args, char *conv, int *p_buf)
 {
-	// // printf("value of args->alt and alt->zero and args->width : %d %d %d\n", args->alt, args->zero, args->width);
+	// printf("value of buf, args->alt and alt->zero and args->width : %s %d %d %d\n", buf, args->alt, args->zero, args->width);
 	if (((args->space && args->width && !args->left && !args->zero)
 		|| (args->width && !args->zero && !args->left)) && args->prec == 0)
 		padding_left(buf, args, ft_strlen(conv), p_buf);
@@ -109,4 +107,6 @@ void	add_option(char *buf, t_args *args, char *conv, int *p_buf)
 		width_over_prec(buf, args, ft_strlen(conv), p_buf);
 	else if (args->zero && args->width && !args->left)
 		fill_zero(buf, args, ft_strlen(conv), p_buf);
+	// printf("value of buf, args->alt and alt->zero and args->width : %s %d %d %d\n", buf, args->alt, args->zero, args->width);
+
 }

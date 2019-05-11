@@ -6,7 +6,7 @@
 /*   By: jdescler <jdescler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 18:44:21 by mmovahhe          #+#    #+#             */
-/*   Updated: 2019/05/11 13:05:33 by jdescler         ###   ########.fr       */
+/*   Updated: 2019/05/11 13:46:10 by jdescler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,12 @@ void	check_type2(const char *str, int *i, t_args *args)
 {
 	if (str[*i] == 'd' || str[*i] == 'i'
 		|| str[*i] == 'D' || str[*i] == 'I')
+	{
 		args->spec = 'd';
+		if (str[*i] == 'D' || str[*i] == 'I')
+			if (!args->is_long && !args->is_long_long)
+				args->is_long_long = 1;
+	}
 	else if (str[*i] == 'o' || str[*i] == 'O')
 	{
 		if (str[*i] == 'O')

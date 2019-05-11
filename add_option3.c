@@ -6,7 +6,7 @@
 /*   By: jdescler <jdescler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 18:42:15 by mmovahhe          #+#    #+#             */
-/*   Updated: 2019/05/11 12:08:50 by jdescler         ###   ########.fr       */
+/*   Updated: 2019/05/11 14:03:32 by jdescler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@ void	init_width_o_prec(t_args *args, int *len, int size)
 	int min;
 
 	min = 0;
-	if (args->alt && args->spec == 'o')
+	if (args->alt && args->spec == 'o' && args->prec != -1)
 		(args->prec)--;
 	if (args->prec <= size && (args->spec == 'd'
-		|| args->spec == 'o') && args->prec != -1)
+		|| args->spec == 'o') && args->prec != -1 && args->width)
 		args->prec = 0;
 	*len = args->prec < size ? size : args->prec;
 	if (args->showsign || args->minus || args->space)

@@ -17,9 +17,9 @@ int     main()
     // printf("rl_printf test d : % s\n", 20000000000000049);
     // ft_printf("-----------\n");
     // ft_printf("-----------\n");
-    int a = ft_printf("!%p!\n", 0x0);
+    int a = ft_printf("toto %#.O!\n", 0);
     ft_printf("\n");
-    int b = printf("!%p!\n", 0x0);
+    int b = printf("toto %#.O!\n", 0);
     ft_printf("-----------\n");
     ft_printf("-----------\n");
     printf("value of a and b %d %d\n", a, b);
