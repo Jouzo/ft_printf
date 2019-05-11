@@ -17,9 +17,9 @@ int     main()
     // printf("rl_printf test d : % s\n", 20000000000000049);
     // ft_printf("-----------\n");
     // ft_printf("-----------\n");
-    ft_printf("ft_printf %#02o\n", 0);
+    ft_printf("ft_printf %-#27zo\n", 158504848);
     ft_printf("\n");
-    printf("rl_printf %#02o\n", 0);
+    printf("rl_printf %-#27zo\n", 158504848);
     ft_printf("-----------\n");
     ft_printf("-----------\n");
     // ft_printf("ft_printf test %22.2ls\n", L"いいえ");

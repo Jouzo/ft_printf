@@ -6,7 +6,7 @@
 /*   By: jdescler <jdescler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 18:42:19 by mmovahhe          #+#    #+#             */
-/*   Updated: 2019/05/01 14:19:48 by jdescler         ###   ########.fr       */
+/*   Updated: 2019/05/11 11:43:52 by jdescler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,12 +77,12 @@ void	fill_zero(char *buf, t_args *args, int size, int *p_buf)
 	}
 	if (args->showsign || args->minus || args->space)
 		min = 1;
-	// if (args->alt && args->spec == 'o')
-	// {
-	// 	args->width -= 1;
-	// 	if (args->width > args->prec && args->prec > size)
-	// 		args->width -= 1;
-	// }
+	if (args->alt && args->spec == 'o')
+	{
+		args->width -= 1;
+		if (args->width > args->prec && args->prec > size)
+			args->width -= 1;
+	}
 	if (args->alt && (args->spec == 'x' || args->spec == 'p'))
 		args->width -= 2;
 	if (args->width - size - min > 0)

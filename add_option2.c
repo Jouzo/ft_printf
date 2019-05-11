@@ -6,7 +6,7 @@
 /*   By: jdescler <jdescler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 18:41:38 by mmovahhe          #+#    #+#             */
-/*   Updated: 2019/05/01 14:16:20 by jdescler         ###   ########.fr       */
+/*   Updated: 2019/05/11 11:43:51 by jdescler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,14 @@ void	padding_right(char *buf, char *conv, t_args *args, int *p_buf)
 
 	i = 0;
 	min = 0;
+	// printf("inside padding right\n");
 	len = (args->spec == 'p' || args->spec == 'x')
 			&& args->alt ? ft_strlen(conv) + 2 : ft_strlen(conv);
 	len = args->spec == 'o' && args->alt ? len += 1 : len;
 	if (args->showsign || args->minus || args->space)
-		min = 1;
-	len += min;
+		len++;
 	if (len <= args->prec && args->prec)
-		len = args->prec + min;
+		len = args->prec + args->alt;
 	if (args->width - len > 0)
 	{
 		if (args->width - len > BUFF_SIZE)

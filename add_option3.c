@@ -6,7 +6,7 @@
 /*   By: jdescler <jdescler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 18:42:15 by mmovahhe          #+#    #+#             */
-/*   Updated: 2019/05/01 14:19:19 by jdescler         ###   ########.fr       */
+/*   Updated: 2019/05/11 11:43:53 by jdescler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	width_over_prec(char *buf, t_args *args, int size, int *p_buf)
 	init_width_o_prec(args, &len, size);
 	if (args->width - len >= 0 && !args->left)
 	{
-		// // printf("insideprint space\n");
+		// printf("insideprint space\n");
 		if (args->width - len > BUFF_SIZE * i)
 			i += big_fill_prec(buf, p_buf, args, args->width - len);
 		ft_memset(buf + *p_buf, ' ', args->width - len - BUFF_SIZE * i);
@@ -79,8 +79,10 @@ void	init_prec(t_args *args, int *min, int size)
 		args->prec = 0;
 	if (args->showsign || args->minus || args->space)
 		*min = 1;
-	if (args->spec == 'o' && args->alt && args->prec > size)
+	if (args->spec == 'o' && args->alt && args->prec > size) {
+		(*min)++;
 		args->prec -= 1;
+	}
 }
 
 void	fill_prec(char *buf, t_args *args, int size, int *p_buf)
@@ -90,11 +92,15 @@ void	fill_prec(char *buf, t_args *args, int size, int *p_buf)
 
 	i = 0;
 	init_prec(args, &min, size);
-	// // printf("inside fill prec\n");
+	// printf("inside fill prec %d %d\n", args->prec, size);
+
 	if (args->prec - size > 0)
 	{
-		if (args->width - args->prec - min >= 0 && !args->left)
+	// printf("inside fill prec2 %d %d %d\n", args->width, args->prec, min);
+
+		if (args->width - args->prec - min > 0 && !args->left)
 		{
+	// printf("inside fill prec3 %d\n", args->width - args->prec - min);
 			i = big_fill_prec(buf, p_buf, args, args->width - args->prec - min);
 			ft_memset(buf + *p_buf, ' ', args->width
 				- args->prec - min - BUFF_SIZE * i);
