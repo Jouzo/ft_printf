@@ -6,7 +6,7 @@
 /*   By: jdescler <jdescler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 18:42:00 by mmovahhe          #+#    #+#             */
-/*   Updated: 2019/04/30 18:38:35 by jdescler         ###   ########.fr       */
+/*   Updated: 2019/05/11 14:45:20 by jdescler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ int						add_toa(char *s, char *buf, int *p_buf, t_args *args)
 	if (args->spec == 'd' && *s == '0'
 		&& len == 1 && args->prec == -1 && args->width)
 		ft_memset(s, ' ', 1);
-	if (args->showsign && !args->minus && args->spec == 'd' && !args->printed_plus)
+	if (args->showsign && !args->minus
+		&& args->spec == 'd' && !args->printed_plus)
 		print_sign(buf, p_buf, args);
 	if (args->minus && !args->printed_minus)
 		print_minus(buf, p_buf, args);

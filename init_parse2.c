@@ -6,7 +6,7 @@
 /*   By: jdescler <jdescler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 18:44:21 by mmovahhe          #+#    #+#             */
-/*   Updated: 2019/05/11 13:46:10 by jdescler         ###   ########.fr       */
+/*   Updated: 2019/05/11 14:43:40 by jdescler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	check_type1(const char *str, int *i, t_args *args)
 	}
 }
 
-void	check_type2(const char *str, int *i, t_args *args)
+void	check_type2_handler(const char *str, int *i, t_args *args)
 {
 	if (str[*i] == 'd' || str[*i] == 'i'
 		|| str[*i] == 'D' || str[*i] == 'I')
@@ -61,6 +61,15 @@ void	check_type2(const char *str, int *i, t_args *args)
 		args->base = 8;
 		args->conv = 4;
 	}
+}
+
+void	check_type2(const char *str, int *i, t_args *args)
+{
+	if (str[*i] == 'd' || str[*i] == 'i'
+		|| str[*i] == 'D' || str[*i] == 'I')
+		check_type2_handler(str, i, args);
+	else if (str[*i] == 'o' || str[*i] == 'O')
+		check_type2_handler(str, i, args);
 	else if (str[*i] == 'u' || str[*i] == 'U')
 	{
 		if (str[*i] == 'U')
@@ -120,27 +129,6 @@ void	check_type(const char *str, int *i, t_args *args)
 		else if (str[*i] == 'x' || str[*i] == 'X'
 				|| str[*i] == 'f' || str[*i] == '%' || str[*i] == 'b')
 			check_type3(str, i, args);
-		*i += 1;
-	}
-}
-
-void	check_option(const char *str, int *i, t_args *args)
-{
-	while (ft_strchr("-+#0 ", str[*i]))
-	{
-		if (str[*i] == '0')
-			args->zero = 1;
-		if (str[*i] == '-')
-		{
-			args->left = 1;
-			args->zero = 0;
-		}
-		if (str[*i] == '+')
-			args->showsign = 1;
-		if (str[*i] == '#')
-			args->alt = 1;
-		if (str[*i] == ' ')
-			args->space = 1;
 		*i += 1;
 	}
 }

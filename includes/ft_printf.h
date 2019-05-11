@@ -6,7 +6,7 @@
 /*   By: jdescler <jdescler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 18:41:32 by mmovahhe          #+#    #+#             */
-/*   Updated: 2019/05/11 14:16:40 by jdescler         ###   ########.fr       */
+/*   Updated: 2019/05/11 14:30:46 by jdescler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,7 +171,8 @@ int					ft_ulltoa_base(unsigned long long int n, t_args *a,
 int					ft_dtoa(long double n, t_args *a, char *buf, int *p);
 int					add_toa(char *s, char *buf, int *p, t_args *a);
 int					add_utoa(char *s, char *buf, int *p_buf, t_args *args);
-void				fill_zero_string(char *buf, t_args *args, int size, int *p_buf);
+void				fill_zero_string(char *buf,
+						t_args *args, int size, int *p_buf);
 /*
 **  Dtoa functions
 */

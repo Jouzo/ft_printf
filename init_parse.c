@@ -6,41 +6,11 @@
 /*   By: jdescler <jdescler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 18:44:16 by mmovahhe          #+#    #+#             */
-/*   Updated: 2019/05/11 13:50:07 by jdescler         ###   ########.fr       */
+/*   Updated: 2019/05/11 14:44:40 by jdescler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./includes/ft_printf.h"
-
-void	check_larg_mini(const char *str, int *i, t_args *args)
-{
-	int res;
-
-	res = 0;
-	while (str[*i] <= '9' && str[*i] >= '0')
-	{
-		res = res * 10 + str[*i] - '0';
-		*i += 1;
-	}
-	args->width = res;
-}
-
-void	check_prec(const char *str, int *i, t_args *args)
-{
-	int res;
-
-	res = 0;
-	if (str[*i] == '.')
-	{
-		*i += 1;
-		while (str[*i] <= '9' && str[*i] >= '0')
-		{
-			res = res * 10 + str[*i] - '0';
-			*i += 1;
-		}
-		args->prec = res != 0 ? res : -1;
-	}
-}
 
 void	check_taille2(const char *str, int *i, t_args *args)
 {
@@ -87,7 +57,6 @@ void	check_taille(const char *str, int *i, t_args *args)
 
 void	alt_and_zero(const char *str, t_args *args)
 {
-
 	if (str[1] == '0' && str[2] == '#')
 	{
 		args->alt = 1;
@@ -120,7 +89,5 @@ int		assign(const char *str, t_args *args)
 	if ((args->spec != 'x' && args->spec != 'o' && args->spec != 'p')
 		&& args->alt)
 		args->alt = 0;
-	// // printf("value of args->alt and alt->zero : %d %d\n", args->alt, args->zero);
 	return (i);
-
 }

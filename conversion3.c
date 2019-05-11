@@ -6,7 +6,7 @@
 /*   By: jdescler <jdescler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 18:42:08 by mmovahhe          #+#    #+#             */
-/*   Updated: 2019/04/28 19:55:37 by jdescler         ###   ########.fr       */
+/*   Updated: 2019/05/11 14:46:12 by jdescler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,30 @@ int		conversion_void(char *buf, va_list ap, t_args *args, int *p_buf)
 	args->alt = 1;
 	args->base = 16;
 	return (ft_ulltoa_base(ptr, args, buf, p_buf));
+}
+
+int		conversion_int(char *buf, va_list ap, t_args *args, int *p_buf)
+{
+	int nb;
+	int len;
+
+	len = 0;
+	nb = va_arg(ap, int);
+	if (args->is_short)
+		nb = (short)nb;
+	if (args->is_char)
+		nb = (char)nb;
+	if (args->spec == 'c' || args->spec == 'C')
+	{
+		if (*p_buf == BUFF_SIZE)
+			check_buf(buf, p_buf, args);
+		ft_itoc(nb, args, buf, p_buf);
+		if (args->left)
+			padding_right_char(buf, "", args, p_buf);
+	}
+	else
+		len = ft_itoa_base(nb, args, buf, p_buf);
+	return (len);
 }
 
 int		conversion_unicode(char *buf, va_list ap, t_args *args, int *p_buf)

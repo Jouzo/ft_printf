@@ -6,7 +6,7 @@
 /*   By: jdescler <jdescler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 18:41:44 by mmovahhe          #+#    #+#             */
-/*   Updated: 2019/05/01 14:19:19 by jdescler         ###   ########.fr       */
+/*   Updated: 2019/05/11 14:48:10 by jdescler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ int		conversion_unsigned(char *buf, va_list ap, t_args *args, int *p_buf)
 {
 	unsigned int nb;
 
-	// // printf("size : %d %d %d %d\n", args->is_char, args->is_short, args->is_long, args->is_long_long);
 	nb = va_arg(ap, unsigned int);
 	if (args->is_short)
 		nb = (unsigned short)nb;
@@ -61,6 +60,7 @@ int		conversion_l_l_u(char *buf, va_list ap, t_args *args, int *p_buf)
 int		conversion(char *buf, va_list ap, t_args *args, int *p_buf)
 {
 	int (*conv)(char *, va_list, t_args*, int*);
+
 	conv = g_conversions[args->conv + args->is_long + args->is_long_long];
 	if (args->spec == '%')
 		return (conversion_percent(buf, "%", args, p_buf));
