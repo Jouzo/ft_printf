@@ -6,7 +6,7 @@
 /*   By: jdescler <jdescler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 18:41:38 by mmovahhe          #+#    #+#             */
-/*   Updated: 2019/05/11 11:43:51 by jdescler         ###   ########.fr       */
+/*   Updated: 2019/05/11 12:55:30 by jdescler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,18 @@ void	padding_right(char *buf, char *conv, t_args *args, int *p_buf)
 	i = 0;
 	min = 0;
 	// printf("inside padding right\n");
-	len = (args->spec == 'p' || args->spec == 'x')
-			&& args->alt ? ft_strlen(conv) + 2 : ft_strlen(conv);
-	len = args->spec == 'o' && args->alt ? len += 1 : len;
-	if (args->showsign || args->minus || args->space)
+	len = args->alt ? ft_strlen(conv) + 1 : ft_strlen(conv);
+	if (args->showsign || args->minus || args->space || (args->alt && (args->spec == 'x' || args->spec == 'p')))
 		len++;
-	if (len <= args->prec && args->prec)
-		len = args->prec + args->alt;
+	if (len - args-> alt < args->prec && args->prec)
+	{
+		// printf("inside if\n");
+		if (args->spec == 'o')
+			len = args->prec + args->alt;
+		else
+			len = args->prec + args->alt * 2;
+	}
+	// printf("value of len %d\n", len);
 	if (args->width - len > 0)
 	{
 		if (args->width - len > BUFF_SIZE)
