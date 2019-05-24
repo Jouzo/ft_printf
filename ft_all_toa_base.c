@@ -6,7 +6,7 @@
 /*   By: jdescler <jdescler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 18:42:00 by mmovahhe          #+#    #+#             */
-/*   Updated: 2019/05/11 14:45:20 by jdescler         ###   ########.fr       */
+/*   Updated: 2019/05/24 23:21:35 by mmovahhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ int						add_toa(char *s, char *buf, int *p_buf, t_args *args)
 	if (*p_buf + len > BUFF_SIZE)
 		check_buf(buf, p_buf, args);
 	if (args->spec == 'd' && *s == '0'
-		&& len == 1 && args->prec == -1 && args->width)
+			&& len == 1 && args->prec == -1 && args->width)
 		ft_memset(s, ' ', 1);
 	if (args->showsign && !args->minus
-		&& args->spec == 'd' && !args->printed_plus)
+			&& args->spec == 'd' && !args->printed_plus)
 		print_sign(buf, p_buf, args);
 	if (args->minus && !args->printed_minus)
 		print_minus(buf, p_buf, args);
@@ -60,7 +60,7 @@ int						ft_itoa_base(int n, t_args *args, char *buf, int *p_buf)
 }
 
 int						ft_ltoa_base(long n,
-						t_args *args, char *buf, int *p_buf)
+		t_args *args, char *buf, int *p_buf)
 {
 	int					i;
 	char				s[63];
@@ -80,7 +80,7 @@ int						ft_ltoa_base(long n,
 }
 
 int						ft_lltoa_base(long long n,
-						t_args *args, char *buf, int *p_buf)
+		t_args *args, char *buf, int *p_buf)
 {
 	int					i;
 	char				s[63];

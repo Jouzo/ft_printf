@@ -6,7 +6,7 @@
 /*   By: mmovahhe <mmovahhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 18:44:36 by mmovahhe          #+#    #+#             */
-/*   Updated: 2019/04/22 20:02:35 by mmovahhe         ###   ########.fr       */
+/*   Updated: 2019/05/24 23:23:24 by mmovahhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,20 @@ void	fill_prec_string(char *buf, t_args *args, int size, int *p_buf)
 	}
 	if (args->prec == -1)
 		padding_left_string(buf, args, size, p_buf);
+}
+
+int		print_long_string(char *buf, int *p_buf, t_args *args, char *str)
+{
+	int i;
+
+	i = 0;
+	check_buf(buf, p_buf, args);
+	while (args->prec - BUFF_SIZE * i > BUFF_SIZE)
+	{
+		ft_memcpy(buf + *p_buf, str + BUFF_SIZE * i, BUFF_SIZE - *p_buf);
+		*p_buf += BUFF_SIZE - *p_buf;
+		check_buf(buf, p_buf, args);
+		i++;
+	}
+	return (i);
 }

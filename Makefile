@@ -6,13 +6,12 @@
 #    By: mmovahhe <mmovahhe@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/07 18:10:13 by jdescler          #+#    #+#              #
-#    Updated: 2019/05/11 16:15:04 by mmovahhe         ###   ########.fr        #
+#    Updated: 2019/05/24 23:36:32 by mmovahhe         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
 
-OPTION = ./includes/ft_printf.h
 
 SRCS =	add_option.c\
 		add_option2.c\
@@ -20,6 +19,7 @@ SRCS =	add_option.c\
 		conversion.c\
 		conversion2.c\
 		conversion3.c\
+		conversion_string.c\
 		init_parse.c\
 		init_parse2.c\
 		init_parse3.c\
@@ -48,7 +48,7 @@ OBJS = $(SRCS:.c=.o)
 
 CC = gcc
 
-CFLAGS = -c -O3 -Wall -Werror -Wextra -I
+CFLAGS = -c -O3 -Wall -Werror -Wextra -Iincludes
 
 all: $(NAME)
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   option_string.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdescler <jdescler@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmovahhe <mmovahhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 18:44:32 by mmovahhe          #+#    #+#             */
-/*   Updated: 2019/05/11 14:37:22 by jdescler         ###   ########.fr       */
+/*   Updated: 2019/05/24 23:23:10 by mmovahhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void	width_over_prec_string(char *buf, t_args *args, char *conv, int *p_buf)
 	if (args->width - len >= 0 && !args->left)
 	{
 		if (args->width - len > BUFF_SIZE * i)
-			i += big_fill_prec(buf, p_buf, args, args->width - len);
+			i += big_padding_left(buf, p_buf, args, args->width - len);
 		ft_memset(buf + *p_buf, ' ', args->width - len - BUFF_SIZE * i);
 		*p_buf += args->width - len - BUFF_SIZE * i;
 	}

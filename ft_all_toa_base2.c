@@ -6,7 +6,7 @@
 /*   By: jdescler <jdescler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 18:42:59 by mmovahhe          #+#    #+#             */
-/*   Updated: 2019/05/11 14:03:51 by jdescler         ###   ########.fr       */
+/*   Updated: 2019/05/24 23:21:35 by mmovahhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@ int						add_utoa(char *s, char *buf, int *p_buf, t_args *args)
 	len = ft_strlen(s);
 	ft_strrev(s);
 	if ((*s == '0' && len == 1 && args->spec != 'p'
-		&& !(args->prec == -1 && args->spec == 'o')))
+				&& !(args->prec == -1 && args->spec == 'o')))
 		args->alt = 0;
 	add_option(buf, args, s, p_buf);
 	if (*p_buf + len > BUFF_SIZE)
 		check_buf(buf, p_buf, args);
 	if ((args->spec == 'x' || args->spec == 'o')
-		&& *s == '0' && len == 1 && args->prec == -1 && args->width)
+			&& *s == '0' && len == 1 && args->prec == -1 && args->width)
 		ft_memset(s, ' ', 1);
 	if (args->alt && !args->printed_alt)
 		add_hash(buf, args, p_buf, len);
@@ -39,7 +39,7 @@ int						add_utoa(char *s, char *buf, int *p_buf, t_args *args)
 }
 
 int						ft_utoa_base(unsigned int n,
-						t_args *args, char *buf, int *p_buf)
+		t_args *args, char *buf, int *p_buf)
 {
 	int					i;
 	char				s[31];
@@ -55,7 +55,7 @@ int						ft_utoa_base(unsigned int n,
 }
 
 int						ft_ultoa_base(unsigned long n,
-						t_args *args, char *buf, int *p_buf)
+		t_args *args, char *buf, int *p_buf)
 {
 	int					i;
 	char				s[63];
@@ -71,7 +71,7 @@ int						ft_ultoa_base(unsigned long n,
 }
 
 int						ft_ulltoa_base(unsigned long long n,
-						t_args *ar, char *bf, int *p_b)
+		t_args *ar, char *bf, int *p_b)
 {
 	int					i;
 	char				s[63];

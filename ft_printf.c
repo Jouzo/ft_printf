@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdescler <jdescler@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmovahhe <mmovahhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 18:43:42 by mmovahhe          #+#    #+#             */
-/*   Updated: 2019/05/11 13:17:01 by jdescler         ###   ########.fr       */
+/*   Updated: 2019/05/24 23:48:51 by mmovahhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,60 +43,60 @@ void		let_there_bprintf(int fd, char *buf, t_args *args)
 	ft_bzero(buf, BUFF_SIZE + 1);
 }
 
-int			dprintf(int fd, const char *format, ...)
+int			do_printf(const char *format, va_list ap, t_args *args, char *buf)
 {
-	va_list	ap;
-	t_args	args;
-	char	buf[BUFF_SIZE + 1];
-	int		i;
-	int		j;
+	int i;
+	int j;
 
 	i = 0;
 	j = 0;
-	let_there_bprintf(fd, buf, &args);
-	va_start(ap, format);
 	if (format[0] == '%' && ft_strlen(format) == 1)
 		return (0);
 	while (format[i])
 	{
 		while (format[i] && format[i] != '%')
+		{
+			if (j == BUFF_SIZE)
+				check_buf(buf, &j, args);
 			buf[j++] = format[i++];
+		}
 		if (format[i] == '%')
 		{
-			init_args(&args);
-			i += assign(format + i, &args);
-			j += conversion(buf, ap, &args, &j);
+			init_args(args);
+			i += assign(format + i, args);
+			j += conversion(buf, ap, args, &j);
 		}
 	}
+	return (j);
+}
+
+int			ft_dprintf(int fd, const char *format, ...)
+{
+	va_list		ap;
+	t_args		args;
+	char		buf[BUFF_SIZE + 1];
+	int			j;
+
+	let_there_bprintf(fd, buf, &args);
+	va_start(ap, format);
+	j = do_printf(format, ap, &args, buf);
 	va_end(ap);
 	return (args.len += ft_printstr(buf, j, args));
 }
 
 int			ft_printf(const char *format, ...)
 {
-	va_list	ap;
-	t_args	args;
-	char	buf[BUFF_SIZE + 1];
-	int		i;
-	int		j;
+	va_list		ap;
+	t_args		args;
+	char		buf[BUFF_SIZE + 1];
+	int			i;
+	int			j;
 
 	i = 0;
 	j = 0;
 	let_there_bprintf(1, buf, &args);
 	va_start(ap, format);
-	if (format[0] == '%' && ft_strlen(format) == 1)
-		return (0);
-	while (format[i])
-	{
-		while (format[i] && format[i] != '%')
-			buf[j++] = format[i++];
-		if (format[i] == '%')
-		{
-			init_args(&args);
-			i += assign(format + i, &args);
-			j += conversion(buf, ap, &args, &j);
-		}
-	}
+	j = do_printf(format, ap, &args, buf);
 	va_end(ap);
 	return (args.len += ft_printstr(buf, j, args));
 }

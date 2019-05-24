@@ -6,7 +6,7 @@
 /*   By: jdescler <jdescler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 18:44:16 by mmovahhe          #+#    #+#             */
-/*   Updated: 2019/05/11 14:44:40 by jdescler         ###   ########.fr       */
+/*   Updated: 2019/05/24 23:21:36 by mmovahhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,13 +81,13 @@ int		assign(const char *str, t_args *args)
 		args->conv = 9;
 	}
 	if (args->conv == 9 || args->conv == 3
-		|| args->conv == 7 || args->conv == 8)
+			|| args->conv == 7 || args->conv == 8)
 	{
 		args->is_long = 0;
 		args->is_long_long = 0;
 	}
 	if ((args->spec != 'x' && args->spec != 'o' && args->spec != 'p')
-		&& args->alt)
+			&& args->alt)
 		args->alt = 0;
 	return (i);
 }

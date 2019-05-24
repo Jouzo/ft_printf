@@ -6,7 +6,7 @@
 /*   By: mmovahhe <mmovahhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 18:41:32 by mmovahhe          #+#    #+#             */
-/*   Updated: 2019/05/11 16:08:45 by mmovahhe         ###   ########.fr       */
+/*   Updated: 2019/05/24 23:32:02 by mmovahhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ typedef struct		s_args
 */
 
 int					ft_printf(const char *format, ...);
+int					ft_dprintf(int fd, const char *format, ...);
 char				*ft_strchr(const char *s, int c);
 int					ft_printstr(char const *s, int p_buf, t_args args);
 void				ft_putchar(char c);
@@ -194,5 +195,7 @@ void				little_option(char *buf, t_args *args, int size,
 						int *p_buf);
 void				check_larg_mini(const char *str, int *i, t_args *args);
 void				check_prec(const char *str, int *i, t_args *args);
+int        			conversion_long_string(char *buf, char *str, t_args *args, int *p_buf);
+int        			print_long_string(char *buf, int *p_buf, t_args *args, char *str);
 
 #endif

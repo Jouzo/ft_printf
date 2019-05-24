@@ -6,7 +6,7 @@
 /*   By: mmovahhe <mmovahhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 18:42:19 by mmovahhe          #+#    #+#             */
-/*   Updated: 2019/05/11 14:58:37 by mmovahhe         ###   ########.fr       */
+/*   Updated: 2019/05/24 23:23:47 by mmovahhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,8 @@ void	fill_zero(char *buf, t_args *args, int size, int *p_buf)
 void	add_option(char *buf, t_args *args, char *conv, int *p_buf)
 {
 	if (((args->space && args->width && !args->left && !args->zero)
-		|| (args->width && !args->zero && !args->left)) && args->prec == 0)
+				|| (args->width && !args->zero && !args->left))
+					&& args->prec == 0)
 		padding_left(buf, args, ft_strlen(conv), p_buf);
 	if (args->space && !args->showsign && args->spec == 'd' && !args->minus)
 		one_space(buf, p_buf, args);
