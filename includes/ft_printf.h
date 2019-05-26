@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmovahhe <mmovahhe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jdescler <jdescler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 18:41:32 by mmovahhe          #+#    #+#             */
-/*   Updated: 2019/05/24 23:32:02 by mmovahhe         ###   ########.fr       */
+/*   Updated: 2019/05/26 20:19:47 by jdescler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,26 @@
 # include <unistd.h>
 # include <wchar.h>
 # include <string.h>
+
+#define RESET  "\x1B[0m"
+#define BOLD "\x1B[1m"
+#define ITALIC "\x1B[3m"
+
+#define RED  "\x1B[31m"
+#define GRN  "\x1B[32m"
+#define YEL  "\x1B[33m"
+#define BLU  "\x1B[34m"
+#define MAG  "\x1B[35m"
+#define CYN  "\x1B[36m"
+#define WHT  "\x1B[37m"
+
+#define BG_RED  "\x1B[41m"
+#define BG_GRN  "\x1B[42m"
+#define BG_YEL  "\x1B[43m"
+#define BG_BLU  "\x1B[44m"
+#define BG_MAG  "\x1B[45m"
+#define BG_CYN  "\x1B[46m"
+#define BG_WHT  "\x1B[47m"
 
 /*
 ** Macros
