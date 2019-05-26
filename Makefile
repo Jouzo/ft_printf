@@ -3,15 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mmovahhe <mmovahhe@student.42.fr>          +#+  +:+       +#+         #
+#    By: jdescler <jdescler@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/07 18:10:13 by jdescler          #+#    #+#              #
-#    Updated: 2019/05/24 23:36:32 by mmovahhe         ###   ########.fr        #
+#    Updated: 2019/05/26 19:14:54 by jdescler         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
 
+OBJDIR = obj
 
 SRCS =	add_option.c\
 		add_option2.c\
@@ -44,23 +45,34 @@ SRCS =	add_option.c\
 		ft_dtoa.c\
 		ft_dtoa2.c\
 
-OBJS = $(SRCS:.c=.o)
+OBJS = $(patsubst %.c,$(OBJDIR)/%.o,$(SRCS))
 
 CC = gcc
-
 CFLAGS = -c -O3 -Wall -Werror -Wextra -Iincludes
 
-all: $(NAME)
+all: $(OBJDIR) $(NAME)
+	@:
+
+$(OBJDIR):
+	@mkdir -p $(OBJDIR)
+
+$(OBJDIR)/%.o: %.c
+	@ $(CC) $(INC) $(INC_LIB) $(CFLAGS) -c $< -o $@
 
 $(NAME): $(OBJS)
-	ar rc $(NAME) $(OBJS)
-	ranlib $(NAME)
+	@ar rc $(NAME) $(OBJS)
+	@ranlib $(NAME)
+	@echo "Made printf !"
 
-.PHONY: clean fclean re
 clean:
-	-rm -f $(OBJS)
+	@-rm -rf $(OBJDIR)
+	@echo "Cleaned printf !"
 
-fclean:clean
-	-rm -f $(NAME)
+fclean:
+	@-rm -rf $(OBJDIR)
+	@-rm -f $(NAME)
+	@echo "Fcleaned printf !"
 
 re: fclean all
+
+.PHONY: clean fclean re all
